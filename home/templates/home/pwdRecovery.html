@@ -1,0 +1,17 @@
+{% extends 'header.html' %}
+{% block title %}
+    <title>EGGS - Récupération de mot de passe</title>
+{% endblock %}
+
+
+{% block content %}
+ <h2>Récupération de mot de passe</h2>
+
+    <form action="{% url 'home:pwdRecovery' %}" method="POST">
+        {% csrf_token %} <!-- Vérification sécurité-->
+        <label for="mail">Email</label><br>
+        <input type="email" id="mail" name="mail">
+
+        <input type="submit" value="Valider">
+    </form>
+{% endblock %}

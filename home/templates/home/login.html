@@ -1,0 +1,27 @@
+{% extends 'header.html' %}
+
+{% block title %}
+    <title>EGGS - Connexion</title>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Connexion</h2>
+
+    <form action="{% url 'home:login' %}" method="POST">
+        {% csrf_token %} <!-- Vérification sécurité-->
+
+        <label for="mail">Email</label><br>
+        <input type="email" id="mail" name="mail">
+
+        <br><br>
+        <label for="pass">Mot de passe</label><br>
+        <input type="password" id="pass" name="pass">
+
+        <a href="{% url 'home:pwdRecovery' %}" class="">Mot de passe oublié</a>
+
+        <br><br>
+        <input type="submit" value="Valider">
+    </form>
+
+{% endblock %}

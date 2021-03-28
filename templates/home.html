@@ -1,0 +1,12 @@
+{% extends 'header.html' %}
+
+{% block title %}
+<title>Accueil</title>
+{% endblock %}
+
+{% block content %}
+<nav class="login_signin">
+    <a href="{% url 'home:signin' %}" class="buttonSignin" >Inscription</a>
+    <a href="{% url 'home:login' %}" class="buttonLogin">Connexion</a>
+</nav>
+{% endblock %}
