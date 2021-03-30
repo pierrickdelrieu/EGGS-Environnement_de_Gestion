@@ -6,6 +6,8 @@ from .forms import *
 from .models import *
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.contrib.auth import logout
+
 
 
 def connexion(request):
@@ -60,3 +62,8 @@ def inscription(request):
 def pwdRecovery(request):
     form = PwdRecoveryForm()
     return render(request, 'home/pwdRecovery.html', locals())
+
+
+def deconnexion(request):
+    logout(request)
+    return HttpResponseRedirect('/home/login/')

@@ -5,3 +5,5 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def manager(request):
     return render(request, "manager/manager.html")
+
+

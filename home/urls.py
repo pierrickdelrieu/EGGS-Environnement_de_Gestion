@@ -6,4 +6,5 @@ urlpatterns =[
     path('signin/', views.inscription, name="signin"),
     path('login/', views.connexion, name="login"),
     path('pwdRecovery/', views.pwdRecovery, name="pwdRecovery"),
+    path('logout/', views.deconnexion, name="logout"),
 ]
