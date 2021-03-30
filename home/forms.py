@@ -5,13 +5,12 @@ from django import forms
 
 
 
-from .models import Users
+from .models import UserManager
 
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Nom d'utilisateur", max_length=30, widget=forms.TextInput(attrs={'class': 'botom_user'}))
-    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput) # boite de caractères masqués
-    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput) # boite de caractères masqués
 
 
 class SigninForm(forms.Form):
