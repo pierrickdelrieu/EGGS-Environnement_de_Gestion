@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 
 
-
 def connexion(request):
     error = False
 
@@ -34,6 +33,8 @@ def connexion(request):
 
 def inscription(request):
     error = False
+    error_username = False
+    error_password = False
 
     if request.user.is_authenticated:
         return HttpResponseRedirect('/manager/')
@@ -42,11 +43,21 @@ def inscription(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
-            password = form.cleaned_data["password1"]
+            password1 = form.cleaned_data["password1"]
+            password2 = form.cleaned_data["password2"]
             first_name = form.cleaned_data["first_name"]
             last_name = form.cleaned_data["last_name"]
 
-            new_user = User.objects.create_user(username, email, password)
+            # Vérification si le nom d'utilisateur n'est pas déjà existant
+            if User.objects.filter(username=username).exists():
+                error_username = True
+                new_user = None
+            # Vérification de la confirmation du mot de passe
+            elif password1 != password2:
+                error_password = True
+                new_user = None
+            else:
+                new_user = User.objects.create_user(username, email, password1)
 
             if new_user:  # si user ≠ None
                 user = UserManager(userModel=new_user)

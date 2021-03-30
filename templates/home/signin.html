@@ -7,8 +7,12 @@
 {% block content %}
     <h2>Incription</h2>
 
-    {% if error %}
-        <p><strong>Erreur </strong></p>
+    {% if error_username %}
+        <p><strong>Nom d'utilisateur déjà existant</strong></p>
+    {% elif error_password %}
+        <p><strong>Les mots de passe sont différents</strong></p>
+    {% elif error %}
+        <p><strong>Erreur</strong></p>
     {% endif %}
 
     <form action="{% url 'home:signin' %}" method="POST">
