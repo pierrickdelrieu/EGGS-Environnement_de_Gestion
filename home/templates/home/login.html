@@ -8,20 +8,19 @@
 {% block content %}
     <h2>Connexion</h2>
 
-    <form action="{% url 'home:login' %}" method="POST">
-        {% csrf_token %} <!-- Vérification sécurité-->
+    {% if error %}
+        <p><strong>Nom d'utilisateur ou/et mot de passe incorect </strong></p>
+    {% endif %}
 
-        <label for="mail">Email</label><br>
-        <input type="email" id="mail" name="mail">
-
-        <br><br>
-        <label for="pass">Mot de passe</label><br>
-        <input type="password" id="pass" name="pass">
-
-        <a href="{% url 'home:pwdRecovery' %}" class="">Mot de passe oublié</a>
-
-        <br><br>
-        <input type="submit" value="Valider">
-    </form>
+    {% if users.is_authenticated %}
+        Vous êtes connecté, {{ user.username }} !
+    {% else %}
+        <form action="{% url 'home:login' %}" method="POST">
+            {% csrf_token %} <!-- Vérification sécurité-->
+            {{ form.as_p }}
+            <input type="submit" value="Valider">
+        </form>
+        <a href="{% url 'home:pwdRecovery' %}">Mot de passe oublié</a>
+    {% endif %}
 
 {% endblock %}

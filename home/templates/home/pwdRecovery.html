@@ -9,9 +9,7 @@
 
     <form action="{% url 'home:pwdRecovery' %}" method="POST">
         {% csrf_token %} <!-- Vérification sécurité-->
-        <label for="mail">Email</label><br>
-        <input type="email" id="mail" name="mail">
-
+        {{ form.as_p }}
         <input type="submit" value="Valider">
     </form>
 {% endblock %}

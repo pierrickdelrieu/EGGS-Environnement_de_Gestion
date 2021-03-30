@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'eggs',
         'USER': 'pierrickdelrieu', # attention : remplacez par votre nom d'utilisateur
         'PASSWORD': '',
-        'HOST': '',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -127,3 +127,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/home/login/'
