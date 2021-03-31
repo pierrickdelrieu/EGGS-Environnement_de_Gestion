@@ -7,11 +7,15 @@
 {% block content %}
     <h2>Incription</h2>
 
-    {% if error_username %}
+    {% if error == "username" %}
         <p><strong>Nom d'utilisateur déjà existant</strong></p>
-    {% elif error_password %}
+    {% elif error == "email" %}
+        <p><strong>Adresse email déjà existant</strong></p>
+    {% elif error == "different_password" %}
         <p><strong>Les mots de passe sont différents</strong></p>
-    {% elif error %}
+    {% elif error == "password_condition" %}
+        <p><strong>Les conditions de mot de passe ne sont pas remplis</strong></p>
+    {% elif error == "other" %}
         <p><strong>Erreur</strong></p>
     {% endif %}
 

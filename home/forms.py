@@ -19,3 +19,8 @@ class SigninForm(forms.Form):
     email = forms.EmailField(label="Email")
     password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
     password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput)
+
+
+class PasswordResetForm(forms.Form):
+    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
+    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput)
