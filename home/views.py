@@ -70,11 +70,6 @@ def inscription(request):
     return render(request, 'home/signin.html', locals())
 
 
-def pwdRecovery(request):
-    form = PwdRecoveryForm()
-    return render(request, 'home/pwdRecovery.html', locals())
-
-
 def deconnexion(request):
     logout(request)
     return HttpResponseRedirect('/home/login/')

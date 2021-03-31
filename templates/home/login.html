@@ -18,7 +18,7 @@
         <form action="{% url 'home:login' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
             {{ form.as_p }}
-            <a href="{% url 'home:pwdRecovery' %}">Mot de passe oublié</a><br>
+            <a href="{% url 'home:password_reset' %}">Mot de passe oublié</a><br>
             <input type="submit" value="Valider">
         </form>
     {% endif %}

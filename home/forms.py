@@ -18,9 +18,4 @@ class SigninForm(forms.Form):
     username = forms.CharField(label="Nom d'utilisateur", max_length=30)
     email = forms.EmailField(label="Email")
     password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
-    password2 = forms.CharField(label="Confirmation de mot de passe",
-                                widget=forms.PasswordInput)  # boite de caractères masqués
-
-
-class PwdRecoveryForm(forms.Form):
-    email = forms.EmailField(label="Email")
+    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput)
