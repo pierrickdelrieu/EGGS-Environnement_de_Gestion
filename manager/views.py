@@ -7,3 +7,8 @@ def manager(request):
     return render(request, "manager/manager.html")
 
 
+@login_required
+def contact(request):
+    return render(request, "manager/contact.html")
+
+
