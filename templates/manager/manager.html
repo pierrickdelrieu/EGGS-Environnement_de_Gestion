@@ -8,13 +8,16 @@
 {% block content %}
     <h2>Interface interne</h2>
 
+    <nav>
+        <a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br>
+        <a href="{% url 'home' %}">Retour à l'accueil</a>
+    </nav>
+
     {% if user.is_authenticated %}
-        Vous êtes connecté, {{ user.username }} !
+        <p class="text">Vous êtes connecté, {{ user.username }} !</p>
     {% endif %}
 
-    <a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a>
 
-    <br><a href="{% url 'home' %}">Retour à l'accueil</a><br>
 
 
 {% endblock %}

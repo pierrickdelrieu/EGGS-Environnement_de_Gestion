@@ -2,11 +2,21 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/header.css' %}">
+
+    {% block stylesheet %} {% endblock %}
 
     {% block title %} {% endblock %}
 </head>
+
 <body>
-    <h1>EGGS</h1>
+    <h1 id="title">EGGS</h1>
+    <img id="logo" width="76px" height="81px" top="84px" left="13px" src="{% static 'home/img/logo.png' %}" alt="Logo Eggs">
+
+    <p id="rect1"></p>
+    <p id="rect2"></p>
+    <p id="rect3"></p>
 
     {% block content %} {% endblock %}
 

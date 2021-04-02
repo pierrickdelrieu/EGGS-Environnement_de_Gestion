@@ -23,12 +23,18 @@ class LoginForm(forms.Form):
 
 
 class SigninForm(forms.Form):
-    first_name = forms.CharField(label="Prénom", max_length=30)
-    last_name = forms.CharField(label="Nom", max_length=30)
-    username = forms.CharField(label="Nom d'utilisateur", max_length=30)
-    email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
-    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput)
+    first_name = forms.CharField(label="Prénom", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre prénom"}))
+    last_name = forms.CharField(label="Nom", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre nom de famille"}))
+    username = forms.CharField(label="Nom d'utilisateur", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer le nom d'utilisateur"}))
+    email = forms.EmailField(label="Email", widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre email"}))
+    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe"}))  # boite de caractères masqués
+    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput(
+        attrs={'placeholder': "Confirmer votre mot de passe"}))
 
     def signup(self):
         username = self.cleaned_data["username"]

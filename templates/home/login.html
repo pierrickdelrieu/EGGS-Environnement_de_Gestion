@@ -5,11 +5,17 @@
 {% endblock %}
 
 
+
 {% block content %}
     <h2>Connexion</h2>
 
+    <nav>
+        <a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br>
+        <a href="{% url 'home:signin' %}" class="survol">Inscription</a>
+    </nav>
+
     {% if error %}
-        <p><strong>Nom d'utilisateur ou/et mot de passe incorect </strong></p>
+        <p class="error"><strong>Nom d'utilisateur ou/et mot de passe incorrect </strong></p>
     {% endif %}
 
     {% if user.is_authenticated %}
@@ -23,7 +29,6 @@
         </form>
     {% endif %}
 
-    <br><a href="{% url 'home' %}">Retour à l'accueil</a><br>
-    <a href="{% url 'home:signin' %}">Inscription</a><br>
+
 
 {% endblock %}

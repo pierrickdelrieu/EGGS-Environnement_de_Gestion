@@ -4,9 +4,12 @@
 <title>Accueil</title>
 {% endblock %}
 
+
 {% block content %}
-<nav class="login_signin">
-    <a href="{% url 'home:signin' %}" class="buttonSignin" >Inscription</a>
-    <a href="{% url 'home:login' %}" class="buttonLogin">Connexion</a>
-</nav>
+    <nav>
+        <a href="{% url 'home:signin' %}" class="survol">Inscription</a><br>
+        <a href="{% url 'home:login' %}" class="survol">Connexion</a>
+    </nav>
+
+    <h2>Un outil pour vous faciliter la vie</h2>
 {% endblock %}
