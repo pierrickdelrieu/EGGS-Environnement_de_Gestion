@@ -1,14 +1,7 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-
+from django.shortcuts import render
 from .forms import *
-from .models import *
-from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
-from django.contrib.auth import password_validation
-from .passwordValidator import *
 
 
 def connexion(request):
@@ -19,11 +12,7 @@ def connexion(request):
     elif request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password)  # vérifications si les données sont corrects
-            if user:  # si user ≠ None
-                login(request, user)
+            if form.log(request):
                 return HttpResponseRedirect('/manager/')
             else:
                 error = True
@@ -39,25 +28,14 @@ def inscription(request):
         return HttpResponseRedirect('/manager/')
     elif request.method == 'POST':
         form = SigninForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            email = form.cleaned_data["email"].lower()
-            password1 = form.cleaned_data["password1"]
-            password2 = form.cleaned_data["password2"]
-            first_name = form.cleaned_data["first_name"]
-            last_name = form.cleaned_data["last_name"]
 
-            error = check_error_userForm(password=password1, password_confirmation=password2, username=username,
-                                         email=email)
+        if form.is_valid():
+            error = form.check_error()
 
             if error == "None":
-                new_user = User.objects.create_user(username, email, password1)
+                form.signup()
+                return HttpResponseRedirect('/home/login/')
 
-                if new_user:  # si user ≠ None
-                    user = UserManager(userModel=new_user)
-                    user.save()
-            else:
-                error = "other"
     else:
         form = SigninForm()
 

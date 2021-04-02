@@ -17,7 +17,7 @@ def check_password_condition(password) -> bool:
 
     return True
 
-
+"""
 def check_error_userForm(password, password_confirmation, username, email) -> str:
     # Vérification si le nom d'utilisateur n'est pas déjà existant
     if User.objects.filter(username=username).exists():
@@ -35,3 +35,4 @@ def check_error_userForm(password, password_confirmation, username, email) -> st
         return "password_condition"
 
     return "None"
+"""
