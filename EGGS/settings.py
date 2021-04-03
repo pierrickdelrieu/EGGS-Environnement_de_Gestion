@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'EGGS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # adaptateur postgresql
-        'NAME': 'eggs',
+        'NAME': 'EGGS',
         'USER': 'pierrickdelrieu',  # attention : remplacez par votre nom d'utilisateur
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -137,3 +137,4 @@ EMAIL_HOST_USER = 'eggs.contacts@gmail.com'
 EMAIL_HOST_PASSWORD = '20190551Efrei*&'
 EMAIL_USE_TLS = True
 
+AUTH_USER_MODEL = 'home.Manager'

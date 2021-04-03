@@ -14,7 +14,7 @@
     </nav>
 
     {% if user.is_authenticated %}
-        <p class="text">Vous êtes connecté, {{ user.username }} !</p>
+        <p class="text">Vous êtes connecté, {{ user.get_full_name }} !</p>
     {% endif %}
 
 

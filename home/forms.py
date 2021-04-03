@@ -1,21 +1,24 @@
-from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import SetPasswordForm, PasswordResetForm
+from django.utils.translation import gettext_lazy as _
 
-from .models import UserManager
+from .models import *
 from .passwordValidator import check_password_condition
 from django.contrib.auth import authenticate, login
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", max_length=30,
+    email = forms.CharField(label="Email", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'botom_user'}))
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
 
     def log(self, request) -> bool:
-        username = self.cleaned_data["username"]
+        email = self.cleaned_data["email"]
         password = self.cleaned_data["password"]
-        user = authenticate(username=username, password=password)  # vérifications si les données sont corrects
+        user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
         if user:  # si user ≠ None
             login(request, user)
             return True
@@ -27,8 +30,6 @@ class SigninForm(forms.Form):
         attrs={'placeholder': "Entrer votre prénom"}))
     last_name = forms.CharField(label="Nom", max_length=30, widget=forms.TextInput(
         attrs={'placeholder': "Entrer votre nom de famille"}))
-    username = forms.CharField(label="Nom d'utilisateur", max_length=30, widget=forms.TextInput(
-        attrs={'placeholder': "Entrer le nom d'utilisateur"}))
     email = forms.EmailField(label="Email", widget=forms.TextInput(
         attrs={'placeholder': "Entrer votre email"}))
     password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
@@ -37,32 +38,22 @@ class SigninForm(forms.Form):
         attrs={'placeholder': "Confirmer votre mot de passe"}))
 
     def signup(self):
-        username = self.cleaned_data["username"]
-        email = self.cleaned_data["email"].lower()
+        email = self.cleaned_data["email"]
         password1 = self.cleaned_data["password1"]
         first_name = self.cleaned_data["first_name"]
         last_name = self.cleaned_data["last_name"]
 
-        new_user = User.objects.create_user(username, email, password1)
-        new_user.first_name = first_name
-        new_user.last_name = last_name
-
-        if new_user:  # si user ≠ None
-            user = UserManager(userModel=new_user)
-            user.save()
+        new_user = Manager()
+        new_user.create_user(first_name=first_name, last_name=last_name, email=email,
+                             password=password1)
 
     def check_error(self) -> str:
-        username = self.cleaned_data["username"]
         email = self.cleaned_data["email"].lower()
         password1 = self.cleaned_data["password1"]
         password2 = self.cleaned_data["password2"]
 
-        # Vérification si le nom d'utilisateur n'est pas déjà existant
-        if User.objects.filter(username=username).exists():
-            return "username"
-
         # Vérification si l'email n'est pas déjà existant
-        elif User.objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             return "email"
 
         # Vérification de la confirmation du mot de passe
