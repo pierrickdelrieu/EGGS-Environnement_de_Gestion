@@ -27,8 +27,8 @@ class LoginForm(forms.Form):
 
     # Connection: returns True if the connection was successful and False otherwise
     def log(self, request) -> bool:
-        email = self.cleaned_data["email"]
-        password = self.cleaned_data["password"]
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
         user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
         if user:  # si user ≠ None
             login(request, user)
@@ -50,8 +50,8 @@ class SigninForm(forms.Form):
 
     # Error if the password confirmation is not valid
     def clean_password2(self):
-        password1 = self.cleaned_data["password1"]
-        password2 = self.cleaned_data["password2"]
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise ValidationError(
                 _('Les deux mot de passe sont différents'),
@@ -61,7 +61,7 @@ class SigninForm(forms.Form):
 
     # Error if the email is already existing in the database
     def clean_email(self):
-        email = self.cleaned_data["email"]
+        email = self.cleaned_data.get("email")
         if email and User.objects.filter(email=email).exists():
             raise ValidationError(
                 _("L'email est deja existant"),
@@ -73,7 +73,7 @@ class SigninForm(forms.Form):
         super()._post_clean()
         # Validate the password after self.instance is updated with form data
         # by super().
-        password = self.cleaned_data['password2']
+        password = self.cleaned_data.get('password2')
         if password:
             try:
                 password_validation.validate_password(password)
@@ -82,10 +82,10 @@ class SigninForm(forms.Form):
 
     # User registration in memory. If commit = True, save in the database
     def save(self, commit: bool):
-        email = self.cleaned_data["email"]
-        password = self.cleaned_data["password1"]
-        first_name = self.cleaned_data["first_name"]
-        last_name = self.cleaned_data["last_name"]
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password1")
+        first_name = self.cleaned_data.get("first_name")
+        last_name = self.cleaned_data.get("last_name")
 
         new_user = Manager()
         new_user.create_user(first_name=first_name, last_name=last_name, email=email,
