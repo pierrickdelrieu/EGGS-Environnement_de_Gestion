@@ -14,22 +14,18 @@
         <a href="{% url 'home:login' %}" class="survol">Connexion</a>
     </nav>
 
-    {% if error == "username" %}
-        <p><strong>Nom d'utilisateur déjà existant</strong></p>
-    {% elif error == "email" %}
-        <p><strong>Adresse email déjà existant</strong></p>
-    {% elif error == "different_password" %}
-        <p><strong>Les mots de passe sont différents</strong></p>
-    {% elif error == "password_condition" %}
-        <p><strong>Les conditions de mot de passe ne sont pas remplis</strong></p>
-    {% elif error == "other" %}
-        <p><strong>Erreur</strong></p>
-    {% endif %}
 
     <div id="container">
         <form action="{% url 'home:signin' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
-            {{ form.as_p }}
+            {% for field in form %}
+                <div>
+                    <div class="error">
+                        {{ field.errors }}
+                    </div>
+                    {{ field.label_tag }}{{ field }}
+                </div>
+            {% endfor %}
             <input type="submit" value="Valider">
         </form>
     </div>

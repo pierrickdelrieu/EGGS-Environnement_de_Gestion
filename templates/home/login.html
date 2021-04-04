@@ -23,7 +23,14 @@
     {% else %}
         <form action="{% url 'home:login' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
-            {{ form.as_p }}
+            {% for field in form %}
+                <div>
+                    <div class="error">
+                        {{ field.errors }}
+                    </div>
+                    {{ field.label_tag }}{{ field }}
+                </div>
+            {% endfor %}
             <a href="{% url 'home:password_reset' %}">Mot de passe oublié</a><br>
             <input type="submit" value="Valider">
         </form>

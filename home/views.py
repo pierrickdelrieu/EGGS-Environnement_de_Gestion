@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
+from django.contrib.auth.password_validation import validate_password
 
 
 def connexion(request):
@@ -23,18 +24,14 @@ def connexion(request):
 
 
 def inscription(request):
-
     if request.user.is_authenticated:
         return HttpResponseRedirect('/manager/')
     elif request.method == 'POST':
         form = SigninForm(request.POST)
 
         if form.is_valid():
-            error = form.check_error()
-
-            if error == "None":
-                form.signup()
-                return HttpResponseRedirect('/home/login/')
+            form.save()
+            return HttpResponseRedirect('/home/login/')
 
     else:
         form = SigninForm()

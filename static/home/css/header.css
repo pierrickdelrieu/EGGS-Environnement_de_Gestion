@@ -195,3 +195,7 @@ h2 {
 
     color: #000000;
 }
+
+.error {
+    color: red;
+}
