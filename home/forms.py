@@ -2,21 +2,30 @@ from django import forms
 from django.contrib.auth.forms import SetPasswordForm, PasswordResetForm, UserCreationForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
-
-
 from .models import *
 from django.contrib.auth import authenticate, login, password_validation
 
 from django.contrib.auth import get_user_model
-
-User = get_user_model()
+User = get_user_model()  # new User definitions
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(label="Email", max_length=30,
-                            widget=forms.TextInput(attrs={'class': 'botom_user'}))
+    email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput)
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
 
+    # Error if the account is not active
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if email and User.objects.filter(email=email).exists():
+            user = Manager.objects.filter(email=email).get()
+            if not user.is_active:
+                raise ValidationError(
+                    _("Vous n'avez pas validé votre compte par email"),
+                    code='user_is_not_active',
+                )
+        return email
+
+    # Connection: returns True if the connection was successful and False otherwise
     def log(self, request) -> bool:
         email = self.cleaned_data["email"]
         password = self.cleaned_data["password"]
@@ -39,6 +48,7 @@ class SigninForm(forms.Form):
     password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput(
         attrs={'placeholder': "Confirmer votre mot de passe"}))
 
+    # Error if the password confirmation is not valid
     def clean_password2(self):
         password1 = self.cleaned_data["password1"]
         password2 = self.cleaned_data["password2"]
@@ -49,6 +59,7 @@ class SigninForm(forms.Form):
             )
         return password2
 
+    # Error if the email is already existing in the database
     def clean_email(self):
         email = self.cleaned_data["email"]
         if email and User.objects.filter(email=email).exists():
@@ -69,7 +80,8 @@ class SigninForm(forms.Form):
             except ValidationError as error:
                 self.add_error('password2', error)
 
-    def save(self):
+    # User registration in memory. If commit = True, save in the database
+    def save(self, commit: bool):
         email = self.cleaned_data["email"]
         password = self.cleaned_data["password1"]
         first_name = self.cleaned_data["first_name"]
@@ -78,6 +90,10 @@ class SigninForm(forms.Form):
         new_user = Manager()
         new_user.create_user(first_name=first_name, last_name=last_name, email=email,
                              password=password)
+        if commit:
+            new_user.save()
+
+        return new_user
 
 
 # Redéfinition
@@ -92,6 +108,7 @@ class PasswordResetConfirmationForm(SetPasswordForm):
         widget=forms.PasswordInput,
     )
 
+    # Error if the password confirmation is not valid
     def clean_new_password2(self):
         password1 = self.cleaned_data.get('new_password1')
         password2 = self.cleaned_data.get('new_password2')
