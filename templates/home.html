@@ -6,10 +6,16 @@
 
 
 {% block content %}
-    <nav>
-        <a href="{% url 'home:signin' %}" class="survol">Inscription</a><br>
-        <a href="{% url 'home:login' %}" class="survol">Connexion</a>
-    </nav>
+    {% if user.is_authenticated %}
+        <nav>
+            <a href="{% url 'home:login' %}" class="survol">Mon espace</a><br>
+        </nav>
+    {% else %}
+        <nav>
+            <a href="{% url 'home:signin' %}" class="survol">Inscription</a><br>
+            <a href="{% url 'home:login' %}" class="survol">Connexion</a>
+        </nav>
+    {% endif %}
 
     <h2>Un outil pour vous faciliter la vie</h2>
 {% endblock %}
