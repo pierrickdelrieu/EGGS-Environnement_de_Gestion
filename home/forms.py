@@ -40,14 +40,23 @@ class SigninForm(forms.Form):
         attrs={'placeholder': "Confirmer votre mot de passe"}))
 
     def clean_password2(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
+        password1 = self.cleaned_data["password1"]
+        password2 = self.cleaned_data["password2"]
         if password1 and password2 and password1 != password2:
             raise ValidationError(
                 _('Les deux mot de passe sont différents'),
                 code='password_mismatch',
             )
         return password2
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if email and User.objects.filter(email=email).exists():
+            raise ValidationError(
+                _("L'email est deja existant"),
+                code='email_exist',
+            )
+        return email
 
     def clean(self):
         super()._post_clean()
