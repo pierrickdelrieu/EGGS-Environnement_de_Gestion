@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>EGGS - Inscription</title>
+{% endblock %}
+
+
+
+{% block content %}
+    <h2>Incription</h2>
+
+    <nav>
+        <a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br>
+        <a href="{% url 'home:login' %}" class="survol">Connexion</a>
+    </nav>
+
+
+    <div id="container">
+        <form action="{% url 'home:signin' %}" method="POST">
+            {% csrf_token %} <!-- Vérification sécurité-->
+            {% for field in form %}
+                <div>
+                    <div class="error">
+                        {{ field.errors }}
+                    </div>
+                    {{ field.label_tag }}{{ field }}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Valider">
+        </form>
+    </div>
+
+
+{% endblock %}

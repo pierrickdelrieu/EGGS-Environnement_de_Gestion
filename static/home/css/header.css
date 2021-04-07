@@ -1,0 +1,201 @@
+#title{
+    z-index: 4;
+
+    position: absolute;
+    left: 43.13%;
+    top: 70px;
+    bottom: 77.66%;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+h1 {
+    z-index: 4;
+
+    position: absolute;
+    left: 20%;
+    top: 90px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+
+#rect1{
+    z-index: 3;
+
+    position: absolute;
+    width: 2356.83px;
+    height: 194.34px;
+    left: -500px;
+    top: -120px;
+
+    background: #B8C7FC;
+    border-radius: 30px;
+    transform: matrix(0.99, 0.05, -0.15, 1, 0, 0);
+}
+
+#rect2{
+    position: absolute;
+    width: 1837.31px;
+    height: 270.4px;
+    left: -60px;
+    top: -190px;
+
+    background: #EAAFFF;
+    border-radius: 30px;
+    transform: matrix(0.92, 0.14, -0.47, 0.99, 0, 0);
+}
+
+#rect3{
+    z-index: 1;
+
+    position: absolute;
+    width: 1720.9px;
+    height: 233.62px;
+    left: -271px;
+    top: -170px;
+
+    background: #F8FFCF;
+    border-radius: 30px;
+    transform: matrix(0.96, -0.09, 0.31, 0.99, 0, 0);
+}
+
+#logo{
+    position: absolute;
+    left: 2.5%;
+    right: 92.84%;
+    top: 50px;
+    bottom: 80.28%;
+
+    z-index: 4;
+}
+
+nav {
+    z-index: 4;
+    position: absolute;
+    width: 220px;
+    height: 20px;
+    left: 1200px;
+    top: 50px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+
+    color: #000000;
+}
+
+.survol:hover {
+    color: #5e81ff;
+}
+
+.text {
+    z-index: 4;
+
+    position: absolute;
+    left: 50px;
+    top: 300px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+.error {
+    z-index: 4;
+
+    position: absolute;
+    left: 50px;
+    top: 500px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+.container {
+    width: 400px;
+    margin:0 auto;
+    margin-top: 10%;
+}
+
+
+
+form {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:150px;
+    width: 25%;
+    padding: 30px;
+    border: 1px solid black;
+    background: rgb(230, 227, 227);
+    /*box-shadow: 0 0 20px 0 black, 0 5px 5px 0 black;*/
+}
+
+input[type=text], input[type=password], input[type=email]{
+    width: 100%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #5e81ff;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color: white;
+    color: #5e81ff;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=submit]:hover {
+    background-color: #5e81ff;
+    color: white;
+    border: 1px solid white;
+}
+
+h2 {
+    z-index: 4;
+
+    position: absolute;
+    left: 50px;
+    top: 200px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+.error {
+    color: red;
+}

@@ -1,12 +1,21 @@
-{% extends 'header.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 <title>Accueil</title>
 {% endblock %}
 
+
 {% block content %}
-<nav class="login_signin">
-    <a href="{% url 'home:signin' %}" class="buttonSignin" >Inscription</a>
-    <a href="{% url 'home:login' %}" class="buttonLogin">Connexion</a>
-</nav>
+    {% if user.is_authenticated %}
+        <nav>
+            <a href="{% url 'home:login' %}" class="survol">Mon espace</a><br>
+        </nav>
+    {% else %}
+        <nav>
+            <a href="{% url 'home:signin' %}" class="survol">Inscription</a><br>
+            <a href="{% url 'home:login' %}" class="survol">Connexion</a>
+        </nav>
+    {% endif %}
+
+    <h2>Un outil pour vous faciliter la vie</h2>
 {% endblock %}

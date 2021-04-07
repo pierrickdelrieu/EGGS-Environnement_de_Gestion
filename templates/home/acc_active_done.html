@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>EGGS - Validation du compte</title>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Validation du compte</h2>
+
+    <nav>
+        <a href="{% url 'home' %}">Retour à l'accueil</a><br>
+        <a href="{% url 'home:signin' %}">Inscription</a><br>
+        <a href="{% url 'home:login' %}">Connexion</a>
+    </nav>
+
+    <p class="text">Nous vous avons envoyé par e-mail des instructions pour valider votre email<strong><br></strong>
+        Si vous ne recevez pas d'e-mail, vérifiez votre dossier spam.</p>
+
+{% endblock %}
