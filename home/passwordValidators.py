@@ -10,14 +10,14 @@ class NumberValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[0-9]{' + str(self.nb) + ',}', password):
             raise ValidationError(
-                _("Votre mot de passe doit contenir au moins %(nb)d chiffre."),
+                _("Votre mot de passe doit contenir au moins %(nb)d chiffre(s)."),
                 code='password_no_number',
                 params={'nb': self.nb},
             )
 
     def get_help_text(self):
         return _(
-            "Votre mot de passe doit contenir au moins %(nb)d chiffre."
+            "Votre mot de passe doit contenir au moins %(nb)d chiffre(s)."
             % {'nb': self.nb}
         )
 
@@ -29,14 +29,14 @@ class UppercaseValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[A-Z]{' + str(self.nb) + ',}', password):
             raise ValidationError(
-                _("Votre mot de passe doit contenir au moins %(nb)d lettre majuscule."),
+                _("Votre mot de passe doit contenir au moins %(nb)d lettre(s) majuscule(s)."),
                 code='password_no_upper',
                 params={'nb': self.nb},
             )
 
     def get_help_text(self):
         return _(
-            "Votre mot de passe doit contenir au moins %(nb)d lettre majuscule."
+            "Votre mot de passe doit contenir au moins %(nb)d lettre(s) majuscule(s)."
             % {'nb': self.nb}
         )
 
@@ -48,14 +48,14 @@ class LowercaseValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[a-z]{' + str(self.nb) + ',}', password):
             raise ValidationError(
-                _("Votre mot de passe doit contenir au moins %(nb)d lettre minuscule."),
+                _("Votre mot de passe doit contenir au moins %(nb)d lettre(s) minuscule(s)."),
                 code='password_no_lower',
                 params={'nb': self.nb},
             )
 
     def get_help_text(self):
         return _(
-            "Votre mot de passe doit contenir au moins %(nb)d lettre minuscule."
+            "Votre mot de passe doit contenir au moins %(nb)d lettre(s) minuscule(s)."
             % {'nb': self.nb}
         )
 
@@ -67,13 +67,13 @@ class SymbolValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[\(\/)\[\]\{\}\|`~!@#\$%\^&\*_\-+=;:\'",<>./?]{' + str(self.nb) + ',}', password):
             raise ValidationError(
-                _("Votre mot de passe doit contenir au moins %(nb)d caractère spécial"),
+                _("Votre mot de passe doit contenir au moins %(nb)d caractère(s) spécial(aux)"),
                 code='password_no_symbol',
                 params={'nb': self.nb},
             )
 
     def get_help_text(self):
         return _(
-            "Votre mot de passe doit contenir au moins %(nb)d caractère spécial"
+            "Votre mot de passe doit contenir au moins %(nb)d caractère(s) spécial(aux)"
             % {'nb': self.nb}
         )
