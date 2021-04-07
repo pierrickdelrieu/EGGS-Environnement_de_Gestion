@@ -17,14 +17,14 @@ User = get_user_model()  # new User definitions
 
 def connexion(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/manager/')
+        return HttpResponseRedirect('/manager/dashboard/')
 
     elif request.method == 'POST':
         form = LoginForm(request.POST)
 
         if form.is_valid():  # If there is no error (clean) in the form
             if form.log(request):  # User login attempt
-                return HttpResponseRedirect('/manager/')
+                return HttpResponseRedirect('/manager/dashboard/')
     else:
         form = LoginForm()
 
@@ -33,7 +33,7 @@ def connexion(request):
 
 def inscription(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/manager/')
+        return HttpResponseRedirect('/manager/dashboard/')
 
     elif request.method == 'POST':
         form = SigninForm(request.POST)
