@@ -1,5 +1,11 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .forms import *
+from django.core.mail import send_mail
+
+from django.contrib.auth import get_user_model
+User = get_user_model()  # new User definitions
 
 
 @login_required
@@ -9,6 +15,19 @@ def dashboard(request):
 
 @login_required
 def contact(request):
-    return render(request, "manager/contact.html")
+    send = False
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
 
+        if form.is_valid():
+            subject = "Contact - " + form.cleaned_data.get('subject')
+            user = User.objects.get(username=request.user.username)
+            message = "Utilisateur : " + user.get_full_name() + " " + user.email + '\n\n' \
+                      + form.cleaned_data.get('message')
 
+            send_mail(subject=subject, message=message, from_email=None, recipient_list=['eggs.contacts@gmail.com'])
+            send = True
+
+    form = ContactForm()  # Réintialisation du formulaire
+
+    return render(request, "manager/contact.html", locals())
