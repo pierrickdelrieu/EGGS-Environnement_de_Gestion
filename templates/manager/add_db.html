@@ -1,8 +1,8 @@
 
-Ajout de produit
+Ajout de base de données
 
 
- <form action="{% url 'manager:add_product' %}" method="POST">
+ <form action="{% url 'manager:add_database' %}" method="POST">
      {% csrf_token %} <!-- Vérification sécurité-->
      {% for field in form %}
          <div>

@@ -4,23 +4,23 @@ from home.models import Manager
 
 # Create your models here.
 
-
 class Product(models.Model):
-    quantity = models.IntegerField("Quantité")
-    price = models.IntegerField("Prix")
-    description = models.CharField("Description", max_length=200)
+    name = models.CharField("Nom", max_length=50, default="Inconnu")
+    quantity = models.IntegerField("Quantité", default=0)
+    price = models.IntegerField("Prix", default=0)
 
-    def create(self, quantity: quantity, price: price, description: description):
+    def create(self, name: name, quantity: quantity, price: price):
+        self.name = name
         self.quantity = quantity
         self.price = price
-        self.description = description
 
 
 class DataBase(models.Model):
-    type = models.CharField("Catégorie", max_length=50)
-    description = models.CharField("Description", max_length=200)
+    name = models.CharField("Nom", max_length=50, default="Inconnu")
+    type = models.CharField("Catégorie", max_length=50, default="Inconnu")
 
+    products = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='databases', blank=True)
 
-    def create(self, type: type, description: description):
+    def create(self, name: name, type: type):
+        self.name = name
         self.type = type
-        self.description = description
