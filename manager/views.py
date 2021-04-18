@@ -6,6 +6,7 @@ from .models import *
 from django.core.mail import send_mail
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()  # new User definitions
 
 
@@ -43,13 +44,14 @@ def add_database(request):
             name = form.cleaned_data.get("name")
             type = form.cleaned_data.get("type")
 
-            db = DataBase.objects.create(name=name, type=type)
-            article = Product.objects.filter(name="rag")
-            db.objects.add(article)
+            db = DataBase()
+            db.create(name=name, type=type)
+            db.save()
 
     form = AddDbForm()  # Réintialisation du formulaire
 
     return render(request, "manager/add_db.html", locals())
+
 
 @login_required
 def add_product(request):
@@ -62,7 +64,8 @@ def add_product(request):
             price = form.cleaned_data.get("price")
 
             product = Product()
-            product.create(name=name, quantity=quantity, price=price)
+            database = DataBase.objects.get(name="Magasin")
+            product.create(name=name, quantity=quantity, price=price, database=database)
             product.save()
 
     form = AddProductForm()  # Réintialisation du formulaire
