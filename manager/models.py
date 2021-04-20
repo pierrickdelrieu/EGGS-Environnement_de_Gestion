@@ -33,11 +33,8 @@ class Product(models.Model):
 
     database = models.ForeignKey(DataBase, on_delete=models.CASCADE, related_name='products', null=True)
 
-    def create(self, name: str, quantity: int, price: int, database: DataBase):
+    def create(self, name: str, quantity: int, price: int):
         self.name = name
         self.quantity = quantity
         self.price = price
 
-        # Ajout du produit dans la base de donnée
-        # bulk=False permet d'eviter les erreurs lors de l'ajout du produit sur l'enregistrement du produit dans la BDD
-        database.products.add(self, bulk=False)

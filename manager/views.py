@@ -75,8 +75,11 @@ def add_product(request):
                     price = form.cleaned_data.get("price")
 
                     product = Product()
-                    product.create(name=name, quantity=quantity, price=price, database=current_database)
+                    product.create(name=name, quantity=quantity, price=price)
                     product.save()
+                    # Ajout du produit dans la base de donnée
+                    # bulk=False permet d'eviter les erreurs lors de l'ajout du produit sur l'enregistrement du produit dans la BDD
+                    current_database.products.add(product)
 
             form = AddProductForm()  # Réintialisation du formulaire
 
