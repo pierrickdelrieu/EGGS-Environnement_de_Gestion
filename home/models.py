@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from manager.models import DataBase
 
 
 # https://github.com/django/django/blob/main/django/contrib/auth/models.py
@@ -11,6 +12,12 @@ class Manager(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    current_database = models.OneToOneField(DataBase, on_delete=models.SET_NULL, null=True)
+
+    owner = models.ManyToManyField(DataBase, related_name='user_owner', null=True)
+    editor = models.ManyToManyField(DataBase, related_name='user_editor', null=True)
+    reader = models.ManyToManyField(DataBase, related_name='user_reader', null=True)
 
     def create_user(self, first_name, last_name, email, password):
         self.first_name = first_name.title()
@@ -23,9 +30,24 @@ class Manager(AbstractUser):
         self.username = self.first_name.lower() + self.last_name.lower() + str(self.id)
         self.save()
 
+    def update_current_database(self, database: DataBase):
+        self.current_database = database
+        self.save()
 
+    def is_owner(self, database: DataBase) -> bool:
+        if self in database.user_owner.all():
+            return True
+        else:
+            return False
 
+    def is_editor(self, database: DataBase) -> bool:
+        if self in database.user_editor.all():
+            return True
+        else:
+            return False
 
-
-
-
+    def is_reader(self, database: DataBase) -> bool:
+        if self in database.user_reader.all():
+            return True
+        else:
+            return False

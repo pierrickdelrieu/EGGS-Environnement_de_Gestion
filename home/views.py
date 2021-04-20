@@ -12,6 +12,7 @@ from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()  # new User definitions
 
 
@@ -38,11 +39,11 @@ def inscription(request):
     elif request.method == 'POST':
         form = SigninForm(request.POST)
 
-        if form.is_valid(): # If there is no error (clean) in the form
+        if form.is_valid():  # If there is no error (clean) in the form
             user = form.save(commit=False)  # User registration but not in the database
             user.is_active = False  # Blocking user login
             user.save()  # User registration in the database
-            user.set_username() # Initializing username
+            user.set_username()  # Initializing username
 
             current_site = get_current_site(request)
             mail_subject = 'Active ton compte EGGS'

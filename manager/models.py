@@ -1,8 +1,8 @@
 from django.db import models
-from home.models import Manager
+from typing import TYPE_CHECKING
 
-
-# Create your models here.
+if TYPE_CHECKING:
+    from home.models import Manager
 
 
 class DataBase(models.Model):
@@ -12,6 +12,18 @@ class DataBase(models.Model):
     def create(self, name: str, type: str):
         self.name = name
         self.type = type
+
+    def add_owner(self, user: 'Manager'):
+        user.owner.add(self)
+        self.save()
+
+    def add_editor(self, user: 'Manager'):
+        user.editor.add(self)
+        self.save()
+
+    def add_reader(self, user: 'Manager'):
+        user.reader.add(self)
+        self.save()
 
 
 class Product(models.Model):

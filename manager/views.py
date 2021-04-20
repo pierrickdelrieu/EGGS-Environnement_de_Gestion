@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 from django.core.mail import send_mail
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from django.contrib.auth import get_user_model
 
@@ -37,16 +38,21 @@ def contact(request):
 
 @login_required
 def add_database(request):
+    user = request.user
+
     if request.method == 'POST':
         form = AddDbForm(request.POST)
 
         if form.is_valid():
             name = form.cleaned_data.get("name")
             type = form.cleaned_data.get("type")
+            user = request.user
 
             db = DataBase()
             db.create(name=name, type=type)
             db.save()
+            db.add_owner(user)
+            user.update_current_database(db)
 
     form = AddDbForm()  # Réintialisation du formulaire
 
@@ -55,19 +61,28 @@ def add_database(request):
 
 @login_required
 def add_product(request):
-    if request.method == 'POST':
-        form = AddProductForm(request.POST)
+    user = request.user
+    current_database = user.current_database
 
-        if form.is_valid():
-            name = form.cleaned_data.get("name")
-            quantity = form.cleaned_data.get("quantity")
-            price = form.cleaned_data.get("price")
+    if current_database is not None:
+        if user.is_owner(current_database) or user.is_editor(current_database):
+            if request.method == 'POST':
+                form = AddProductForm(request.POST)
 
-            product = Product()
-            database = DataBase.objects.get(name="Magasin")
-            product.create(name=name, quantity=quantity, price=price, database=database)
-            product.save()
+                if form.is_valid():
+                    name = form.cleaned_data.get("name")
+                    quantity = form.cleaned_data.get("quantity")
+                    price = form.cleaned_data.get("price")
 
-    form = AddProductForm()  # Réintialisation du formulaire
+                    product = Product()
+                    product.create(name=name, quantity=quantity, price=price, database=current_database)
+                    product.save()
+
+            form = AddProductForm()  # Réintialisation du formulaire
+
+        else:
+            return HttpResponseRedirect('/manager/dashboard/')
+    else:
+        return HttpResponseRedirect('/manager/add_database/')
 
     return render(request, "manager/add_products.html", locals())
