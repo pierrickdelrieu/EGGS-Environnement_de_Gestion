@@ -147,7 +147,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 # URL de connexion
-LOGIN_URL = '/home/login'
+LOGIN_URL = '/home/login/'
 
 # Paramtres email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

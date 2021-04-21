@@ -4,10 +4,15 @@ Ajout de produit
 
  <form action="{% url 'manager:add_product' %}" method="POST">
      {% csrf_token %} <!-- Vérification sécurité-->
+
+    {% for field in form %}
+        {{ field.errors }}
+    {% endfor %}
+
      {% for field in form %}
          <div>
              {{ field.label_tag }}{{ field }}
          </div>
      {% endfor %}
-     <input type="submit" value="Valider">
+     <input type="submit" value="Ajouter">
  </form>

@@ -6,6 +6,9 @@ from .models import *
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
+
 from django.contrib.auth import get_user_model
 
 User = get_user_model()  # new User definitions
@@ -13,7 +16,8 @@ User = get_user_model()  # new User definitions
 
 @login_required
 def dashboard(request):
-    return render(request, "manager/dashboard.html")
+    user = request.user
+    return render(request, "manager/dashboard.html", locals())
 
 
 @login_required
@@ -41,7 +45,7 @@ def add_database(request):
     user = request.user
 
     if request.method == 'POST':
-        form = AddDbForm(request.POST)
+        form = AddDbForm(request.POST, initial={'user': request.user})
 
         if form.is_valid():
             name = form.cleaned_data.get("name")
@@ -53,8 +57,8 @@ def add_database(request):
             db.save()
             db.add_owner(user)
             user.update_current_database(db)
-
-    form = AddDbForm()  # Réintialisation du formulaire
+    else:
+        form = AddDbForm(initial={'user': request.user})  # Réintialisation du formulaire
 
     return render(request, "manager/add_db.html", locals())
 
@@ -66,7 +70,7 @@ def add_product(request):
 
     if user.is_current_owner() or user.is_current_editor():
         if request.method == 'POST':
-            form = AddProductForm(request.POST)
+            form = AddProductForm(request.POST, initial={'user': request.user})
 
             if form.is_valid():
                 name = form.cleaned_data.get("name")
@@ -77,14 +81,12 @@ def add_product(request):
                 product.create(name=name, quantity=quantity, price=price)
                 product.save()
                 # Ajout du produit dans la base de donnée
-                # bulk=False permet d'eviter les erreurs lors de l'ajout du produit sur l'enregistrement du produit dans la BDD
                 current_database.products.add(product)
-
-        form = AddProductForm()  # Réintialisation du formulaire
+        else:
+            form = AddProductForm(initial={'user': request.user})
 
     else:
         return HttpResponseRedirect('/manager/dashboard/')
-
 
     return render(request, "manager/add_products.html", locals())
 
@@ -105,7 +107,6 @@ def details_product(request, product_id):
         'user': user
     }
     return render(request, 'manager/details_product.html', context)
-
 
 
 @login_required
@@ -131,3 +132,8 @@ def display_products(request):
         'paginate': True
     }
     return render(request, 'manager/display_products.html', context)
+
+
+@login_required()
+def switch_current_db(request):
+    return render(request, 'manager/switch_current_db.html', locals())

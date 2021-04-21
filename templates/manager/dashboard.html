@@ -13,6 +13,19 @@
         <a href="{% url 'home' %}">Retour à l'accueil</a>
     </nav>
 
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <form action="{% url 'manager:switch_current_db' %}" method="GET">
+        <select name="database" id="">
+            <option value="{{ user.current_database.name }}" selected>{{ user.current_database.name }}</option>
+            {% for database in user.owner.all %}
+                {% if database.name != user.current_database.name %}
+                    <option value="{{ database.name }}">{{ database.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
+
     {% if user.is_authenticated %}
         <p class="text">Vous êtes connecté, {{ user.get_full_name }} !</p>
     {% endif %}
