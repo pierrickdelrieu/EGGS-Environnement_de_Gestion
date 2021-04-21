@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
+from home.models import DataBase
 
 from django.contrib.auth import get_user_model
 
@@ -27,13 +28,12 @@ class AddDbForm(forms.Form):
         self.user = initial['user']
 
     def clean_name(self):
-        name = self.cleaned_data.get("name")
         user = User.objects.get(username=self.user.username)
-        if name and (user.owner.filter(name=name).exists() or
-                     user.editor.filter(name=name).exists() or
-                     user.reader.filter(name=name).exists()):
+        name = self.cleaned_data.get("name") + ' (' + user.first_name[0].upper() + \
+               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + ')'
+        if name and DataBase.objects.filter(name=name).exists():
             raise ValidationError(
-                _("Vous avez déjà une base de donnée avec le même nom"),
+                _("Le nom de la base de donnéee n'est pas disponible"),
                 code='db_exist',
             )
         return name

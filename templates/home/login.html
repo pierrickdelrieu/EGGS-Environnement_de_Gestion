@@ -24,9 +24,11 @@
             {% csrf_token %} <!-- Vérification sécurité-->
             {% for field in form %}
                 <div>
-                    <div class="error">
-                        {{ field.errors }}
-                    </div>
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            {% for field in form %}
+                <div>
                     {{ field.label_tag }}{{ field }}
                 </div>
             {% endfor %}

@@ -57,6 +57,8 @@ def add_database(request):
             db.save()
             db.add_owner(user)
             user.update_current_database(db)
+
+            return HttpResponseRedirect('/manager/dashboard/')
     else:
         form = AddDbForm(initial={'user': request.user})  # Réintialisation du formulaire
 
@@ -82,6 +84,8 @@ def add_product(request):
                 product.save()
                 # Ajout du produit dans la base de donnée
                 current_database.products.add(product)
+
+                return HttpResponseRedirect('/manager/dashboard/')
         else:
             form = AddProductForm(initial={'user': request.user})
 
@@ -136,4 +140,17 @@ def display_products(request):
 
 @login_required()
 def switch_current_db(request):
-    return render(request, 'manager/switch_current_db.html', locals())
+    user = request.user
+
+    if request.method == "POST":
+        database_name = request.POST.get('database')
+        if database_name != "None":
+            database = user.owner.all().get(name=database_name)
+            if database is None:
+                database = user.editor.all().get(name=database_name)
+            if database is None:
+                database = user.reader.all().get(name=database_name)
+
+            user.update_current_database(database)
+
+    return render(request, 'manager/dashboard.html', locals())

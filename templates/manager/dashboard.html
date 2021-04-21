@@ -10,20 +10,52 @@
 
     <nav>
         <a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br>
-        <a href="{% url 'home' %}">Retour à l'accueil</a>
+        <a href="{% url 'home' %}">Retour à l'accueil</a><br><br>
+        <a href="{% url 'manager:add_database' %}" class="top-menu">Ajouter une base de donnée</a><br>
+        <a href="{% url 'manager:add_product' %}" class="top-menu">Ajouter un produit</a><br>
+        <a href="{% url 'manager:display_products' %}" class="top-menu">Afficher les produits</a><br>
     </nav>
 
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <form action="{% url 'manager:switch_current_db' %}" method="GET">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <form action="{% url 'manager:switch_current_db' %}" method="POST">
+        {% csrf_token %} <!-- Vérification sécurité-->
         <select name="database" id="">
-            <option value="{{ user.current_database.name }}" selected>{{ user.current_database.name }}</option>
-            {% for database in user.owner.all %}
-                {% if database.name != user.current_database.name %}
-                    <option value="{{ database.name }}">{{ database.name }}</option>
-                {% endif %}
-            {% endfor %}
+            {% if user.current_database == None %}
+                <option value="None" selected>Aucune base de donnée</option>
+            {% else %}
+                <option value="{{ user.current_database.name }}" selected>{{ user.current_database.name }}</option>
+
+                <optgroup label="Propirétaire">
+                    {% for database in user.owner.all %}
+                        {% if database.name != user.current_database.name %}
+                            <option value="{{ database.name }}">{{ database.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </optgroup>
+
+                <optgroup label="Editeur">
+                    {% for database in user.editor.all %}
+                        {% if database.name != user.current_database.name %}
+                            <option value="{{ database.name }}">{{ database.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </optgroup>
+
+                <optgroup label="Lecteur">
+                    {% for database in user.reader.all %}
+                        {% if database.name != user.current_database.name %}
+                            <option value="{{ database.name }}">{{ database.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </optgroup>
+
+            {% endif %}
         </select>
+        {% if user.current_database != None %}
+            <input type="submit" value="Changer">
+        {% endif %}
+
     </form>
 
     {% if user.is_authenticated %}

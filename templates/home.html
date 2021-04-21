@@ -8,7 +8,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <nav>
-            <a href="{% url 'home:login' %}" class="survol">Mon espace</a><br>
+            <a href="{% url 'manager:dashboard' %}" class="survol">Mon espace</a><br>
         </nav>
     {% else %}
         <nav>
