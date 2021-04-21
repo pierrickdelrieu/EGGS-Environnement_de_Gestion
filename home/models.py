@@ -51,3 +51,21 @@ class Manager(AbstractUser):
             return True
         else:
             return False
+
+    def is_current_owner(self) -> bool:
+        if self.current_database is not None:
+            if self in self.current_database.user_owner.all():
+                return True
+        return False
+
+    def is_current_editor(self) -> bool:
+        if self.current_database is not None:
+            if self in self.current_database.user_editor.all():
+                return True
+        return False
+
+    def is_current_reader(self) -> bool:
+        if self.current_database is not None:
+            if self in self.current_database.user_reader.all():
+                return True
+        return False

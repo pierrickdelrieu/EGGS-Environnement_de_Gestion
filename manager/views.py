@@ -64,29 +64,27 @@ def add_product(request):
     user = request.user
     current_database = user.current_database
 
-    if current_database is not None:
-        if user.is_owner(current_database) or user.is_editor(current_database):
-            if request.method == 'POST':
-                form = AddProductForm(request.POST)
+    if user.is_current_owner() or user.is_current_editor():
+        if request.method == 'POST':
+            form = AddProductForm(request.POST)
 
-                if form.is_valid():
-                    name = form.cleaned_data.get("name")
-                    quantity = form.cleaned_data.get("quantity")
-                    price = form.cleaned_data.get("price")
+            if form.is_valid():
+                name = form.cleaned_data.get("name")
+                quantity = form.cleaned_data.get("quantity")
+                price = form.cleaned_data.get("price")
 
-                    product = Product()
-                    product.create(name=name, quantity=quantity, price=price)
-                    product.save()
-                    # Ajout du produit dans la base de donnée
-                    # bulk=False permet d'eviter les erreurs lors de l'ajout du produit sur l'enregistrement du produit dans la BDD
-                    current_database.products.add(product)
+                product = Product()
+                product.create(name=name, quantity=quantity, price=price)
+                product.save()
+                # Ajout du produit dans la base de donnée
+                # bulk=False permet d'eviter les erreurs lors de l'ajout du produit sur l'enregistrement du produit dans la BDD
+                current_database.products.add(product)
 
-            form = AddProductForm()  # Réintialisation du formulaire
+        form = AddProductForm()  # Réintialisation du formulaire
 
-        else:
-            return HttpResponseRedirect('/manager/dashboard/')
     else:
-        return HttpResponseRedirect('/manager/add_database/')
+        return HttpResponseRedirect('/manager/dashboard/')
+
 
     return render(request, "manager/add_products.html", locals())
 
@@ -98,13 +96,13 @@ def details_product(request, product_id):
 
     if user.current_database is not None:
         if product not in user.current_database.products.all():
-            return HttpResponseRedirect('/manager/dashboard/')
+            return HttpResponseRedirect('/manager/display_products/')
     else:
         return HttpResponseRedirect('/manager/dashboard/')
 
     context = {
         'product': product,
-        'user':user
+        'user': user
     }
     return render(request, 'manager/details_product.html', context)
 
