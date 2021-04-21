@@ -15,7 +15,7 @@ class LoginForm(forms.Form):
 
     # Error if the account is not active
     def clean_email(self):
-        email = self.cleaned_data["email"]
+        email = self.cleaned_data["email"].lower()
         if email and User.objects.filter(email=email).exists():
             user = Manager.objects.filter(email=email).get()
             if not user.is_active:
@@ -27,7 +27,7 @@ class LoginForm(forms.Form):
 
     # Connection: returns True if the connection was successful and False otherwise
     def log(self, request) -> bool:
-        email = self.cleaned_data.get("email")
+        email = self.cleaned_data.get("email").lower()
         password = self.cleaned_data.get("password")
         user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
         if user:  # si user ≠ None
@@ -61,7 +61,7 @@ class SigninForm(forms.Form):
 
     # Error if the email is already existing in the database
     def clean_email(self):
-        email = self.cleaned_data.get("email")
+        email = self.cleaned_data.get("email").lower()
         if email and User.objects.filter(email=email).exists():
             raise ValidationError(
                 _("L'email est deja existant"),
