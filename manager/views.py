@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
@@ -89,3 +89,47 @@ def add_product(request):
         return HttpResponseRedirect('/manager/add_database/')
 
     return render(request, "manager/add_products.html", locals())
+
+
+@login_required
+def details_product(request, product_id):
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+
+    if user.current_database is not None:
+        if product not in user.current_database.products.all():
+            return HttpResponseRedirect('/manager/dashboard/')
+    else:
+        return HttpResponseRedirect('/manager/dashboard/')
+
+    context = {
+        'product': product,
+        'user':user
+    }
+    return render(request, 'manager/details_product.html', context)
+
+
+
+@login_required
+def display_products(request):
+    user = request.user
+    if user.current_database is not None:
+        products_list = user.current_database.products.all()
+    else:
+        products_list = []
+    paginator = Paginator(products_list, 9)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        products = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        products = paginator.page(paginator.num_pages)
+    context = {
+        'products': products,
+        'user': user,
+        'paginate': True
+    }
+    return render(request, 'manager/display_products.html', context)

@@ -1,2 +1,34 @@
  Affichage des produits
 
+{% if products|length_is:"0" %}
+    <div>
+      Palsambleu ! Nous n'avons trouvé aucun résultat à cette requête. Même pas de quoi se ronger la chique !
+      Partez de nouveau à l'abordage !
+    </div>
+
+{% else %}
+    {% for product in products %}
+        {{ product.name }}
+        <div>
+            <a href="{% url 'manager:details_product' product_id=product.id %}">Pour plus de détails : {{ product.name }}</a>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+    {% endfor %}
+
+{% endif %}
+
+
+
+{% if paginate %}
+  <div class="clearfix"></div>
+  <nav aria-label="">
+    <ul class="pager">
+      {% if products.has_previous %}
+          <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+      {% endif %}
+      {% if products.has_next %}
+          <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
