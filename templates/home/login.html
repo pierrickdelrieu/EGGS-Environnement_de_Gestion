@@ -1,17 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
+{% load static %}
 
 {% block title %}
     <title>EGGS - Connexion</title>
 {% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'home/css/login.css' %}">
+{% endblock %}
+
+{% block connexions %}
+    <ul class="links">
+        <li><a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br></li>
+        <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
+    <div class = "eggs">Eggs</div>
     <h2>Connexion</h2>
-
-    <nav>
-        <a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br>
-        <a href="{% url 'home:signin' %}" class="survol">Inscription</a>
-    </nav>
 
     {% if error %}
         <p class="error"><strong>Nom d'utilisateur ou/et mot de passe incorrect </strong></p>
@@ -24,19 +31,20 @@
             {% csrf_token %} <!-- Vérification sécurité-->
             {% for field in form %}
                 <div>
-                    {{ field.errors }}
-                </div>
-            {% endfor %}
-            {% for field in form %}
-                <div>
+                    <div class="error">
+                        {{ field.errors }}
+                    </div>
                     {{ field.label_tag }}{{ field }}
                 </div>
             {% endfor %}
-            <a href="{% url 'home:password_reset' %}">Mot de passe oublié</a><br>
+            <a href="{% url 'home:password_reset' %}" class="mdpo">Mot de passe oublié ?</a><br>
             <input type="submit" value="Valider">
         </form>
     {% endif %}
 
-
+    <div id="signin">
+        <p>Vous n'avez pas encore de compte ?</p>
+        <a href="{% url 'home:signin' %}" class="lien">Inscrivez-vous.</a>
+    </div>
 
 {% endblock %}

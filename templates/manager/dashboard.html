@@ -1,28 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
+{% load static %}
 
 {% block title %}
     <title>EGGS - Manager</title>
 {% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'home/css/dashboard.css' %}">
+{% endblock %}
+
+{% block connexions %}
+    <ul class="links">
+        <li><a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br></li>
+        <li><a href="{% url 'home' %}">Retour à l'accueil</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-    <h2>Interface interne</h2>
-
-    <nav>
-        <a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br>
-        <a href="{% url 'home' %}">Retour à l'accueil</a><br><br>
-        <a href="{% url 'manager:add_database' %}" class="top-menu">Ajouter une base de donnée</a><br>
+    <nav id="ajout_bdd">
+        <p id="text_ajout">Ajouter une base de donnée</p>
+        <a href="{% url 'manager:add_database' %}" class="top-menu" id="bouton_ajout"></a><br>
         {% if user.current_database != None %}
             <a href="{% url 'manager:add_product' %}" class="top-menu">Ajouter un produit</a><br>
             <a href="{% url 'manager:display_products' %}" class="top-menu">Afficher les produits</a><br>
         {% endif %}
     </nav>
 
+    <div class="dashboard"></div>
+
+    <div class="rectPro"></div>
+    <div class="rectTitrePro"><p id="textPro">Propriétaire</p></div>
+
+    <div class="rectEdit"></div>
+    <div class="rectTitreEdit"><p id="textEdit">Editeur</p></div>
+
+     <div class="rectReader"></div>
+    <div class="rectTitreReader"><p id="textReader">Consultant</p></div>
+
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
     <form action="{% url 'manager:dashboard' %}" method="POST">
         {% csrf_token %} <!-- Vérification sécurité-->
-        <select name="database" id="">
+        <select name="database" id="m_bdd">
             {% if user.current_database == None %}
                 <option value="None" selected>Aucune base de donnée</option>
             {% else %}
@@ -61,7 +80,7 @@
     </form>
 
     {% if user.is_authenticated %}
-        <p class="text">Vous êtes connecté, {{ user.get_full_name }} !</p>
+        <p class="name">{{ user.get_full_name }}</p>
     {% endif %}
 
 {% endblock %}

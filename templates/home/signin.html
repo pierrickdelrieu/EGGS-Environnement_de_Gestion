@@ -1,36 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
+{% load static %}
 
 {% block title %}
     <title>EGGS - Inscription</title>
 {% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'home/css/signin.css' %}">
+{% endblock %}
 
+{% block connexions %}
+    <ul class="links">
+        <li><a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br></li>
+        <li><a href="{% url 'home:login' %}" class="survol">Connexion</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-    <h2>Incription</h2>
+    <div class = "eggs">Eggs</div>
+    <h2>Inscription</h2>
 
-    <nav>
-        <a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br>
-        <a href="{% url 'home:login' %}" class="survol">Connexion</a>
-    </nav>
-
-
-    <div id="container">
+    <div>
         <form action="{% url 'home:signin' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
-            {% for field in form %}
-                <div>
+            <div class="error">
+                {% for field in form %}
                     {{ field.errors }}
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
             {% for field in form %}
                 <div>
-                    {{ field.label_tag }} {{ field }}
+                    {{ field.label_tag }}{{ field }}
                 </div>
             {% endfor %}
             <input type="submit" value="Valider">
         </form>
     </div>
 
+    <div id="login">
+        <p>Vous avez déjà un compte ? </p>
+        <a href="{% url 'home:login' %}" class="lien">Connectez-vous.</a>
+    </div>
+
+    <div id="rectVert">
+        <p id="titreVert">E.G.G.S</p>
+    </div>
 
 {% endblock %}

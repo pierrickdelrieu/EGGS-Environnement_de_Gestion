@@ -1,0 +1,90 @@
+h2{
+    position: absolute;
+    height: 37px;
+    left: 407px;
+    right: 407px;
+    top: 80px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    line-height: 41px;
+
+    text-align: center;
+    letter-spacing: 0.374px;
+
+    color: #000000;
+}
+
+p{
+    position: absolute;
+    height: 40px;
+    left: 435.84px;
+    right: 431.52px;
+    top: 135px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 22px;
+    /* or 129% */
+
+    text-align: center;
+    letter-spacing: -0.408px;
+
+    /* Label Light / Secondary */
+
+    color: rgba(60, 60, 67, 0.6);
+}
+
+#name_db{
+    position: absolute;
+    height: 55px;
+    width: 40%;
+    left: 30%;
+    top: 250px;
+
+    border: 0px white;
+    background: #FFFFFF;
+}
+
+#categorie_db{
+    position: absolute;
+    height: 55px;
+    width: 40%;
+    left: 30%;
+    top: 310px;
+    border: 0px white;
+    background: #FFFFFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+input[type=submit] {
+    position: absolute;
+    height: 51px;;
+    width: 30%;
+    left: 35%;
+    bottom: 35%;
+
+    background: #007AFF;
+    border-radius: 14px;
+
+    color: white;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #5e81ff;
+    color: white;
+}
+
+.error {
+    color: red;
+}

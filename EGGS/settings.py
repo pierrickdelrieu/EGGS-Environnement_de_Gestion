@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'EGGS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # adaptateur postgresql
-        'NAME': 'eGGs',
-        'USER': 'pierrickdelrieu',  # attention : remplacez par votre nom d'utilisateur
+        'NAME': 'eggs',
+        'USER': 'Celia',  # attention : remplacez par votre nom d'utilisateur
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',

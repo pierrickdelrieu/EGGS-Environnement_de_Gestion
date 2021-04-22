@@ -16,10 +16,10 @@ class ContactForm(forms.Form):
 
 
 class AddDbForm(forms.Form):
-    name = forms.CharField(label="Nom", max_length=50, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Name"}))
-    type = forms.CharField(label="Catégorie", max_length=50, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Type"}))
+    name = forms.CharField(label="", max_length=50, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Nom de la base de données", 'id': "name_db"}))
+    type = forms.CharField(label="", max_length=50, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Type de la base de données", 'id': "categorie_db"}))
     user = None
 
     def __init__(self, *args, **kwargs):

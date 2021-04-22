@@ -1,21 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
+{% load static %}
 
 {% block title %}
-<title>Accueil</title>
+    <title>Accueil</title>
 {% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block connexions %}
+    {% if user.is_authenticated %}
+        <ul class="links">
+            <li><a href="{% url 'home:login' %}" class="survol">Mon espace</a><br></li>
+        </ul>
+    {% else %}
+        <ul class="links">
+            <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a><br></li>
+            <li><a href="{% url 'home:login' %}" class="survol">Connexion</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <nav>
-            <a href="{% url 'manager:dashboard' %}" class="survol">Mon espace</a><br>
-        </nav>
-    {% else %}
-        <nav>
-            <a href="{% url 'home:signin' %}" class="survol">Inscription</a><br>
-            <a href="{% url 'home:login' %}" class="survol">Connexion</a>
-        </nav>
-    {% endif %}
+    <h1 id="title">E.G.G.S.</h1>
+    <h2 id="text">Un outil pour vous faciliter la vie</h2>
 
-    <h2>Un outil pour vous faciliter la vie</h2>
 {% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/header.css' %}">
+
+    {% block stylesheet %} {% endblock %}
+
+    {% block title %} {% endblock %}
+</head>
+
+<body>
+    <div class = "header">
+        <img id = "logo" src = "{% static 'home/img/logo.png' %}" alt = "logo eggs">
+
+        <div class = "rectangles">
+            <div class = "r1"></div>
+            <div class = "r2"></div>
+            <div class = "r3"></div>
+        </div>
+
+        <div class = "menu-bar">
+            <div class = "eggs">Eggs</div>
+
+            {% block connexions %}
+            {% endblock %}
+
+            <div class = "burger">
+                <div class = "line1"></div>
+                <div class = "line2"></div>
+                <div class = "line3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class = "sub-content">
+         {% block content %} {% endblock %}
+    </div>
+
+    {% load static %}
+    <script src = "{% static 'home/js/header.js' %}"> </script>
+
+    {% block script %} {% endblock %}
+
+</body>
+</html>
