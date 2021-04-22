@@ -12,8 +12,10 @@
         <a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br>
         <a href="{% url 'home' %}">Retour à l'accueil</a><br><br>
         <a href="{% url 'manager:add_database' %}" class="top-menu">Ajouter une base de donnée</a><br>
-        <a href="{% url 'manager:add_product' %}" class="top-menu">Ajouter un produit</a><br>
-        <a href="{% url 'manager:display_products' %}" class="top-menu">Afficher les produits</a><br>
+        {% if user.current_database != None %}
+            <a href="{% url 'manager:add_product' %}" class="top-menu">Ajouter un produit</a><br>
+            <a href="{% url 'manager:display_products' %}" class="top-menu">Afficher les produits</a><br>
+        {% endif %}
     </nav>
 
 
@@ -26,7 +28,7 @@
             {% else %}
                 <option value="{{ user.current_database.name }}" selected>{{ user.current_database.name }}</option>
 
-                <optgroup label="Propirétaire">
+                <optgroup label="Propriétaire">
                     {% for database in user.owner.all %}
                         {% if database.name != user.current_database.name %}
                             <option value="{{ database.name }}">{{ database.name }}</option>

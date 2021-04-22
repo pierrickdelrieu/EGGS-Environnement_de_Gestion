@@ -62,3 +62,21 @@ class AddProductForm(forms.Form):
                 code='product_exist',
             )
         return name
+
+    def clean_quantity(self):
+        quantity = self.cleaned_data.get("quantity")
+        if quantity and quantity < 0:
+            raise ValidationError(
+                _("La quantité doit être positive ou nul"),
+                code='quantity_is_negative',
+            )
+        return quantity
+
+    def clean_price(self):
+        price = self.cleaned_data.get("price")
+        if price and price < 0:
+            raise ValidationError(
+                _("Le price doit être positif ou nul"),
+                code='price_is_negative',
+            )
+        return price
