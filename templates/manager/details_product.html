@@ -2,7 +2,11 @@ Détail du produit
 
 <h1>{{ product.name }}</h1>
 <div>
-    Quantité : {{ product.quantity }}
+    Quantité : {{ product.quantity }}<br>
     Prix à l'unité : {{ product.price }}
 </div>
+
+{% if user.is_current_owner or user.is_current_editor %}
+    <a href="{% url 'manager:update_product' product_id=product.id %}">Modifier le produit</a>
+{% endif %}
 

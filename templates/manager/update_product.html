@@ -1,0 +1,19 @@
+Modifier le produit
+
+<form action="{% url 'manager:update_product' product_id=product.id %}" method="POST">
+    {% csrf_token %} <!-- Vérification sécurité-->
+
+    <label for="name"></label>
+    <input type="text" id="name" name="name" value="{{ product.name }}">
+
+    <br>
+    <label for="quantity">Quantité :</label>
+    <input type="number" id="quantity" name="quantity" value="{{ product.quantity }}">
+
+    <br>
+    <label for="price">Prix à l'unité :</label>
+    <input type="number" id="price" name="price" value="{{ product.price }}">
+
+    <br>
+    <input type="submit" value="Modifier">
+</form>

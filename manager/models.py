@@ -37,4 +37,3 @@ class Product(models.Model):
         self.name = name
         self.quantity = quantity
         self.price = price
-

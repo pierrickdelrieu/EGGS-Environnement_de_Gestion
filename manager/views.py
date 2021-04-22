@@ -1,15 +1,14 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from .forms import *
-from .models import *
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 
-from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext as _
-
-from django.contrib.auth import get_user_model
+from .forms import *
+from .models import *
+from .urls import *
 
 User = get_user_model()  # new User definitions
 
@@ -150,6 +149,29 @@ def switch_current_db(request, database_name):
 
     return render(request, 'manager/dashboard.html', locals())
 
+
 @login_required
 def my_databases(request):
     return render(request, 'manager/my_databases.html', locals())
+
+
+@login_required
+def update_product(request, product_id):
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+
+    if user.is_current_owner() or user.is_current_editor():
+        if product in user.current_database.products.all():
+            if request.method == "POST":
+                product_name = request.POST.get('name')
+                product_quantity = request.POST.get('quantity')
+                product_price = request.POST.get('price')
+                product.create(name=product_name, price=product_price, quantity=product_quantity)
+                product.save()
+                return HttpResponseRedirect(reverse_lazy("manager:details_product", kwargs={'product_id': product_id}))
+        else:
+            return HttpResponseRedirect('/manager/dashboard/')
+    else:
+        return HttpResponseRedirect('/manager/dashboard/')
+
+    return render(request, 'manager/update_product.html', locals())
