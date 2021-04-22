@@ -1,3 +1,10 @@
-{% extends 'base.html' %}
+Compte<br><br>
 
-Compte
+Nom d'utilisateur : {{ user.username }}<br>
+Prénom : {{ user.first_name }}<br>
+Nom : {{ user.last_name }}<br>
+Email : {{ user.email }}<br>
+
+Date d'inscription : {{ user.date_joined }}<br><br>
+
+<a href="{% url 'manager:update_compte' %}">Modifier</a>

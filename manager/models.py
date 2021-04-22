@@ -9,7 +9,7 @@ class DataBase(models.Model):
     name = models.CharField("Nom", max_length=50, default="Inconnu")
     type = models.CharField("Catégorie", max_length=50, default="Inconnu")
 
-    def create(self, name: str, type: str):
+    def set(self, name: str, type: str):
         self.name = name
         self.type = type
 
@@ -33,7 +33,7 @@ class Product(models.Model):
 
     database = models.ForeignKey(DataBase, on_delete=models.CASCADE, related_name='products', null=True)
 
-    def create(self, name: str, quantity: int, price: int):
+    def set(self, name: str, quantity: int, price: int):
         self.name = name
         self.quantity = quantity
         self.price = price

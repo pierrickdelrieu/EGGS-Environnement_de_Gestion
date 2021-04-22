@@ -19,11 +19,10 @@ class Manager(AbstractUser):
     editor = models.ManyToManyField(DataBase, related_name='user_editor', null=True)
     reader = models.ManyToManyField(DataBase, related_name='user_reader', null=True)
 
-    def create_user(self, first_name, last_name, email, password):
+    def set(self, first_name, last_name, email):
         self.first_name = first_name.title()
         self.last_name = last_name.title()
         self.email = email.lower()
-        self.set_password(password)
 
     def set_username(self):
         self.save()  # To have an id the user must be saved in the database

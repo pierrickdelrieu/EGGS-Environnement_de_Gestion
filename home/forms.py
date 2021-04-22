@@ -88,8 +88,9 @@ class SigninForm(forms.Form):
         last_name = self.cleaned_data.get("last_name")
 
         new_user = Manager()
-        new_user.create_user(first_name=first_name, last_name=last_name, email=email,
-                             password=password)
+        new_user.set(first_name=first_name, last_name=last_name, email=email)
+        new_user.set_password(password)
+
         if commit:
             new_user.save()
 
