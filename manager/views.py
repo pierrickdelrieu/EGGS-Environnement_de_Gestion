@@ -57,7 +57,7 @@ def add_database(request):
             user = request.user
 
             db = DataBase()
-            db.create(name=name, type=type)
+            db.set(name=name, type=type)
             db.save()
             db.add_owner(user)
             user.update_current_database(db)
@@ -84,7 +84,7 @@ def add_product(request):
                 price = form.cleaned_data.get("price")
 
                 product = Product()
-                product.create(name=name, quantity=quantity, price=price)
+                product.set(name=name, quantity=quantity, price=price)
                 product.save()
                 # Ajout du produit dans la base de donnée
                 current_database.products.add(product)
@@ -166,7 +166,7 @@ def update_product(request, product_id):
                 product_name = request.POST.get('name')
                 product_quantity = request.POST.get('quantity')
                 product_price = request.POST.get('price')
-                product.create(name=product_name, price=product_price, quantity=product_quantity)
+                product.set(name=product_name, price=product_price, quantity=product_quantity)
                 product.save()
                 return HttpResponseRedirect(reverse_lazy("manager:details_product", kwargs={'product_id': product_id}))
         else:
@@ -175,3 +175,25 @@ def update_product(request, product_id):
         return HttpResponseRedirect('/manager/dashboard/')
 
     return render(request, 'manager/update_product.html', locals())
+
+
+@login_required
+def compte(request):
+    user = request.user
+
+    return render(request, 'manager/compte.html', locals())
+
+
+@login_required
+def update_compte(request):
+    user = request.user
+
+    if request.method == "POST":
+        user_firstname = request.POST.get('first_name')
+        user_lastname = request.POST.get('last_name')
+        user_email = request.POST.get('email')
+        user.set(first_name=user_firstname, last_name=user_lastname, email=user_email)
+        user.save()
+        return HttpResponseRedirect('/manager/compte/')
+
+    return render(request, 'manager/update_compte.html', locals())
