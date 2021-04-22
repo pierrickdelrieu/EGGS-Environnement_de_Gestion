@@ -20,5 +20,6 @@ Nom d'utilisateur : {{ user.username }}<br>
 
     <br>
     <input type="submit" value="Modifier">
-</form>
+</form><br>
 
+<a href="{% url 'manager:update_password' %}">Modifier mon mot de passe</a>

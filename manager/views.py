@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
 from .forms import *
@@ -197,3 +199,35 @@ def update_compte(request):
         return HttpResponseRedirect('/manager/compte/')
 
     return render(request, 'manager/update_compte.html', locals())
+
+
+@login_required
+def update_password(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = UpdatePasswordForm(request.POST, initial={'user': request.user})
+
+        if form.is_valid():
+            new_password2 = form.cleaned_data.get("new_password2")
+            user.set_password(new_password2)
+            user.save()
+
+            extra_email_context = None
+            use_https = False
+            current_site = get_current_site(request)
+            subject = user.get_short_name() + " - Vous avez modifié votre mot de passe - "
+            message = message = render_to_string('manager/update_password_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'protocol': 'https' if use_https else 'http',
+                **(extra_email_context or {}),
+            })
+
+            user.email_user(subject=subject, message=message)
+
+            return HttpResponseRedirect('/manager/compte/')
+    else:
+        form = UpdatePasswordForm(initial={'user': request.user})  # Réintialisation du formulaire
+
+    return render(request, 'manager/update_password.html', locals())

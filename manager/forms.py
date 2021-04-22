@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 from home.models import DataBase
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, password_validation
 
 User = get_user_model()  # new User definitions
 
@@ -76,7 +76,49 @@ class AddProductForm(forms.Form):
         price = self.cleaned_data.get("price")
         if price and price < 0:
             raise ValidationError(
-                _("Le price doit être positif ou nul"),
+                _("Le prix doit être positif ou nul"),
                 code='price_is_negative',
             )
         return price
+
+
+class UpdatePasswordForm(forms.Form):
+    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput)
+    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput)
+    user = None
+
+    def __init__(self, *args, **kwargs):
+        super(UpdatePasswordForm, self).__init__(*args, **kwargs)
+        initial = kwargs.pop('initial')
+        self.user = initial['user']
+
+    def clean_current_password(self):
+        current_password = self.cleaned_data.get("current_password")
+        if current_password and not self.user.check_password(current_password):
+            raise ValidationError(
+                _("Le mot de passe actuel est faux"),
+                code='current_passeword_isfalse',
+            )
+        return current_password
+
+    def clean_new_password2(self):
+        new_password1 = self.cleaned_data.get("new_password1")
+        new_password2 = self.cleaned_data.get("new_password2")
+        if new_password1 and new_password2 and new_password1 != new_password2:
+            raise ValidationError(
+                _('Les deux mot de passe sont différents'),
+                code='password_mismatch',
+            )
+        return new_password2
+
+    def clean(self):
+        super()._post_clean()
+        # Validate the password after self.instance is updated with form data
+        # by super().
+        password = self.cleaned_data.get('new_password2')
+        if password:
+            try:
+                password_validation.validate_password(password)
+            except ValidationError as error:
+                self.add_error('new_password2', error)

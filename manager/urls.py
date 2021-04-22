@@ -14,4 +14,5 @@ urlpatterns = [
     path('my_databases/', views.my_databases, name="my_databases"),
     path('compte/', views.compte, name="compte"),
     path('update_compte/', views.update_compte, name="update_compte"),
+    path('update_password/', views.update_password, name="update_password"),
 ]
