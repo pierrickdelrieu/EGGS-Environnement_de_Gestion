@@ -12,4 +12,6 @@ urlpatterns = [
     path('display_products/', views.display_products, name="display_products"),
     path('switch_current_db/(?P<database_name>[0-9]+)/', views.switch_current_db, name="switch_current_db"),
     path('my_databases/', views.my_databases, name="my_databases"),
+    path('compte/', views.compte, name="compte"),
+    path('update_compte/', views.update_compte, name="update_compte"),
 ]
