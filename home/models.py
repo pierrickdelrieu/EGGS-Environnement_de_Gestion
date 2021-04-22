@@ -30,9 +30,16 @@ class Manager(AbstractUser):
         self.username = self.first_name.lower() + self.last_name.lower() + str(self.id)
         self.save()
 
-    def update_current_database(self, database: DataBase):
-        self.current_database = database
-        self.save()
+    def update_current_database(self, database_name: str):
+        if database_name != "None":
+            database = self.owner.all().get(name=database_name)
+            if database is None:
+                database = self.editor.all().get(name=database_name)
+            if database is None:
+                database = self.reader.all().get(name=database_name)
+
+            self.current_database = database
+            self.save()
 
     def is_owner(self, database: DataBase) -> bool:
         if self in database.user_owner.all():

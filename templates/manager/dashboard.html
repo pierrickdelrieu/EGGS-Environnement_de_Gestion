@@ -20,7 +20,7 @@
 
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <form action="{% url 'manager:switch_current_db' %}" method="POST">
+    <form action="{% url 'manager:dashboard' %}" method="POST">
         {% csrf_token %} <!-- Vérification sécurité-->
         <select name="database" id="">
             {% if user.current_database == None %}

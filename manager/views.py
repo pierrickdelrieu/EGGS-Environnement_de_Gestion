@@ -17,6 +17,11 @@ User = get_user_model()  # new User definitions
 @login_required
 def dashboard(request):
     user = request.user
+
+    if request.method == "POST":
+        database_name = request.POST.get('database')
+        user.update_current_database(database_name)
+
     return render(request, "manager/dashboard.html", locals())
 
 
@@ -138,19 +143,13 @@ def display_products(request):
     return render(request, 'manager/display_products.html', context)
 
 
-@login_required()
-def switch_current_db(request):
+@login_required
+def switch_current_db(request, database_name):
     user = request.user
-
-    if request.method == "POST":
-        database_name = request.POST.get('database')
-        if database_name != "None":
-            database = user.owner.all().get(name=database_name)
-            if database is None:
-                database = user.editor.all().get(name=database_name)
-            if database is None:
-                database = user.reader.all().get(name=database_name)
-
-            user.update_current_database(database)
+    user.update_current_database(database_name)
 
     return render(request, 'manager/dashboard.html', locals())
+
+@login_required
+def my_databases(request):
+    return render(request, 'manager/my_databases.html', locals())

@@ -1,0 +1,38 @@
+
+Mes bases de données<br>
+
+Base de donnée en cours : {{ user.current_database.name }}<br>
+
+
+<h2>Propriétaire</h2>
+{% if user.owner.count == 0 %}
+    Pas de base de donnée
+{% else %}
+    {% for database in user.owner.all %}
+        {% if database.name != user.current_database.name %}
+            <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<h2>Editeur</h2>
+{% if user.editor.count == 0 %}
+    Pas de base de donnée
+{% else %}
+    {% for database in user.editor.all %}
+        {% if database.name != user.current_database.name %}
+            <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<h2>Lecteur</h2>
+{% if user.editor.count == 0 %}
+    Pas de base de donnée
+{% else %}
+    {% for database in user.reader.all %}
+        {% if database.name != user.current_database.name %}
+            <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}

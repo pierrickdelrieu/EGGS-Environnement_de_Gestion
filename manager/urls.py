@@ -9,5 +9,6 @@ urlpatterns = [
     path('add_product/', views.add_product, name="add_product"),
     path('details_product/(?P<product_id>[0-9]+)/', views.details_product, name='details_product'),
     path('display_products/', views.display_products, name="display_products"),
-    path('switch_current_db/', views.switch_current_db, name="switch_current_db"),
+    path('switch_current_db/(?P<database_name>[0-9]+)/', views.switch_current_db, name="switch_current_db"),
+    path('my_databases/', views.my_databases, name="my_databases"),
 ]
