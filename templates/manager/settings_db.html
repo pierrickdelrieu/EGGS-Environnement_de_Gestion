@@ -1,3 +1,52 @@
-{% extends 'base.html' %}
 
-Paramètres de ma base de données
+Paramètres de ma base de données<br><br>
+
+Nom : {{ user.current_database.name }}<br>
+Type  : {{ user.current_database.type }}<br><br>
+
+
+Les proprietaires<br>
+{% for owner in user.current_database.user_owner.all %}
+    {% if owner == user %}
+        {{ owner.get_full_name }} ({{ owner.id }}) (Moi)
+    {% else %}
+        {{ owner.get_full_name }} ({{ owner.id }})
+    {% endif %}
+    <br>
+{% endfor %}
+<br>
+
+{% if user.is_current_owner %}
+    <a href="{% url 'manager:add_owner_db'%}">Ajouter un propriétaire</a><br><br>
+{% endif %}
+
+
+
+{% if user.is_current_owner %}
+    Les editeurs<br>
+    {% for editor in user.current_database.user_editor.all %}
+        {% if editor == user %}
+            {{ editor.get_full_name }} ({{ editor.id }}) (Moi)
+        {% else %}
+            {{ editor.get_full_name }} ({{ editor.id }})
+        {% endif %}
+        <br>
+    {% endfor %}
+    <br>
+    <a href="{% url 'manager:add_editor_db'%}">Ajouter un éditeur</a><br><br>
+{% endif %}
+
+
+{% if user.is_current_owner %}
+    Les lecteurs<br>
+    {% for reader in user.current_database.user_reader.all %}
+        {% if reader == user %}
+            {{ reader.get_full_name }} ({{ reader.id }}) (Moi)
+        {% else %}
+            {{ reader.get_full_name }} ({{ reader.id }})
+        {% endif %}
+        <br>
+    {% endfor %}
+    <br>
+    <a href="{% url 'manager:add_reader_db'%}">Ajouter un lecteur</a><br><br>
+{% endif %}

@@ -15,4 +15,14 @@ urlpatterns = [
     path('compte/', views.compte, name="compte"),
     path('update_compte/', views.update_compte, name="update_compte"),
     path('update_password/', views.update_password, name="update_password"),
+    path('settings_database/', views.settings_database, name="settings_database"),
+
+    path('add_owner_db/', views.add_owner_db, name="add_owner_db"),
+    path('add_editor_db/', views.add_editor_db, name="add_editor_db"),
+    path('add_reader_db/', views.add_reader_db, name="add_reader_db"),
+
+    path('delete_product/', views.delete_product, name="delete_product"),
+    path('delete_database/', views.delete_database, name="delete_database"),
+
+
 ]

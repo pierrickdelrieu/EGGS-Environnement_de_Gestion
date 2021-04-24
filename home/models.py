@@ -36,9 +36,9 @@ class Manager(AbstractUser):
                 database = self.editor.all().get(name=database_name)
             if database is None:
                 database = self.reader.all().get(name=database_name)
-
-            self.current_database = database
-            self.save()
+            if database is not None:
+                self.current_database = database
+                self.save()
 
     def is_owner(self, database: DataBase) -> bool:
         if self in database.user_owner.all():
