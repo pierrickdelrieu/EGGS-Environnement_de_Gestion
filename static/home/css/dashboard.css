@@ -1,30 +1,33 @@
 .name{
-    position: absolute;
+    z-index: 2;
+
+    position: fixed;
     width: 10%;
     height: 18px;
     right: 8%;
-    top: 0.5%;
+    top: 5%;
 
-    font-family: Mulish;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 20px;
 
     text-align: right;
-    letter-spacing: 0.2px;
 
-    color: #252733;
+    color: black;
 }
 
 #m_bdd{
-    position: absolute;
+    z-index: 2;
+
+    position: fixed;
     width: 20%;
     height: 23px;
     left: 10%;
-    top: 0.5%;
+    top: 2%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -34,12 +37,14 @@
     color: #252733;
 }
 
-#text_ajout{
-    position: absolute;
-    left: 12%;
-    top: 23%;
+.ajout_bdd p{
+    z-index: 3;
 
-    font-family: Avenir;
+    position: fixed;
+    left: 12.5%;
+    top: 9%;
+
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -49,150 +54,83 @@
     color: #FFFFFF;
 }
 
-#text_ajout:hover{
-    color: darkblue;
-}
+.ajout_bdd a{
+    z-index: 2;
 
-#bouton_ajout{
-    position: absolute;
+    position: fixed;
     width: 20%;
     height: 46px;
     left: 10%;
-    top: 5%;
+    top: 7%;
 
     background: #007AFF;
     border-radius: 14px;
 }
 
+.ajout_bdd a:hover{
+    background: darkblue;
+}
+
+.lien{
+    z-index: 2;
+
+    position: fixed;
+    right: 8%;
+    top: 9%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+
+    text-align: right;
+
+    color: #252733;
+}
+
+.lien a{
+    color: black;
+    text-decoration: none;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-weight: bold;
+}
+
+.lien li {
+    list-style: none;
+}
+
+
 .dashboard{
-    position: absolute;
+    position: fixed;
     width: 7%;
-    height: 714px;
-    left: 0px;
-    top: 0px;
+    height: 100%;
+    left: 0;
+    top: 0;
 
     background: #FFF2F6;
 }
 
-.rectTitrePro{
-    position: absolute;
-    height: 42px;
-    width: 26%;
-    left: 10.75%;
-    top: 114px;
-
-    background: #B8C7FC;
-    border-radius: 14px;
+.nav-dashboard{
+    position: fixed;
+    top: 20%;
+    width: 7%;
 }
 
-.rectPro{
-    position: absolute;
-    width: 26%;
-    height: 494px;
-    left: 10.75%;
-    top: 162px;
-
-    background: #FFFFFF;
+.nav-item{
+    margin-top: 20px;
+    padding: 10% 10% 10% 20%;
+    width: 100%;
+    height: 100%;
+    top: 20%;
 }
 
-#textPro{
-    position: absolute;
-    width: 177px;
-    height: 30px;
-    left: 28%;
-    top: 10%;
-
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 18px;
-
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
+img{
+    width: 50px;
+    height: 50px;
 }
 
-.rectTitreEdit{
-    position: absolute;
-    height: 42px;
-    width: 26%;
-    left: 40.5%;
-    top: 114px;
-
-    background: #EAAFFF;
-    border-radius: 14px;
-}
-
-.rectEdit{
-    position: absolute;
-    width: 26%;
-    height: 494px;
-    left: 40.5%;
-    top: 162px;
-
-    background: #FFFFFF;
-}
-
-#textEdit{
-    position: absolute;
-    width: 177px;
-    height: 30px;
-    left: 35%;
-    top: 10%;
-
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 18px;
-
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-}
-
-.rectTitreReader{
-    position: absolute;
-    width: 26%;
-    height: 42px;
-    left: 70.25%;
-    top: 114px;
-
-    background: #F8FFCF;
-    border-radius: 14px;
-}
-
-.rectReader{
-    position: absolute;
-    width: 26%;
-    height: 494px;
-    left: 70.25%;
-    top: 162px;
-
-    background: #FFFFFF;
-}
-
-#textReader{
-    position: absolute;
-    width: 177px;
-    height: 30px;
-    left: 30%;
-    top: 10%;
-
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 18px;
-
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
+.nav-item:hover {
+    background: rgba(206, 121, 236, 0.54);
+    cursor: pointer;
 }

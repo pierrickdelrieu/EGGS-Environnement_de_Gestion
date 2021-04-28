@@ -1,44 +1,54 @@
-{% extends 'header.html' %}
 {% load static %}
 
-{% block title %}
+<head>
     <title>EGGS - Manager</title>
-{% endblock %}
+    {% block title_manager %} {% endblock %}
 
-{% block stylesheet %}
     <link rel="stylesheet" href="{% static 'home/css/dashboard.css' %}">
-{% endblock %}
+    <link rel="stylesheet" href="{% static 'home/css/header.css' %}">
+    {% block stylesheet_manager %} {% endblock %}
 
-{% block connexions %}
-    <ul class="links">
-        <li><a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br></li>
+    <ul class="lien">
         <li><a href="{% url 'home' %}">Retour à l'accueil</a></li>
     </ul>
-{% endblock %}
+</head>
 
-{% block content %}
-    <nav id="ajout_bdd">
-        <p id="text_ajout">Ajouter une base de donnée</p>
-        <a href="{% url 'manager:add_database' %}" class="top-menu" id="bouton_ajout"></a><br>
+<body>
+    <div class = "header">
+        <img id = "logo" src = "{% static 'home/img/logo.png' %}" alt = "logo eggs">
+
+        <div class = "rectangles">
+            <div class = "r1"></div>
+            <div class = "r2"></div>
+            <div class = "r3"></div>
+        </div>
+
+        <div class = "menu-bar">
+            <div class = "eggs">Eggs</div>
+
+            {% block connexions %}
+            {% endblock %}
+
+            <div class = "burger">
+                <div class = "line1"></div>
+                <div class = "line2"></div>
+                <div class = "line3"></div>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <p class="name">{{ user.get_full_name }}</p>
+    {% endif %}
+
+    <nav class="ajout_bdd">
+        <a href="{% url 'manager:add_database' %}" class="top-menu"><p>Ajouter une base de donné</p></a><br>
         {% if user.current_database != None %}
             <a href="{% url 'manager:add_product' %}" class="top-menu">Ajouter un produit</a><br>
             <a href="{% url 'manager:display_products' %}" class="top-menu">Afficher les produits</a><br>
         {% endif %}
     </nav>
 
-    <div class="dashboard"></div>
-
-    <div class="rectPro"></div>
-    <div class="rectTitrePro"><p id="textPro">Propriétaire</p></div>
-
-    <div class="rectEdit"></div>
-    <div class="rectTitreEdit"><p id="textEdit">Editeur</p></div>
-
-     <div class="rectReader"></div>
-    <div class="rectTitreReader"><p id="textReader">Consultant</p></div>
-
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
     <form action="{% url 'manager:dashboard' %}" method="POST">
         {% csrf_token %} <!-- Vérification sécurité-->
         <select name="database" id="m_bdd">
@@ -46,41 +56,60 @@
                 <option value="None" selected>Aucune base de donnée</option>
             {% else %}
                 <option value="{{ user.current_database.name }}" selected>{{ user.current_database.name }}</option>
-
-                <optgroup label="Propriétaire">
-                    {% for database in user.owner.all %}
-                        {% if database.name != user.current_database.name %}
-                            <option value="{{ database.name }}">{{ database.name }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </optgroup>
-
-                <optgroup label="Editeur">
-                    {% for database in user.editor.all %}
-                        {% if database.name != user.current_database.name %}
-                            <option value="{{ database.name }}">{{ database.name }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </optgroup>
-
-                <optgroup label="Lecteur">
-                    {% for database in user.reader.all %}
-                        {% if database.name != user.current_database.name %}
-                            <option value="{{ database.name }}">{{ database.name }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </optgroup>
-
+                    <optgroup label="Propriétaire">
+                        {% for database in user.owner.all %}
+                            {% if database.name != user.current_database.name %}
+                                <option value="{{ database.name }}">{{ database.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="Editeur">
+                        {% for database in user.editor.all %}
+                            {% if database.name != user.current_database.name %}
+                                <option value="{{ database.name }}">{{ database.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="Lecteur">
+                        {% for database in user.reader.all %}
+                            {% if database.name != user.current_database.name %}
+                                <option value="{{ database.name }}">{{ database.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </optgroup>
             {% endif %}
         </select>
         {% if user.current_database != None %}
             <input type="submit" value="Changer">
         {% endif %}
-
     </form>
 
-    {% if user.is_authenticated %}
-        <p class="name">{{ user.get_full_name }}</p>
-    {% endif %}
+    <div class="dashboard">
+        <ul class="nav-dashboard">
+            <li class="nav-item" id="database">
+                <a href ="{% url 'manager:my_databases' %}">
+                    <img src="{% static 'home/img/database.png' %}">
+                </a>
+            </li>
+            <li class="nav-item">
+                <img src="{% static 'home/img/map.png' %}">
+            </li>
+            <li class="nav-item">
+                <img src="{% static 'home/img/stat.png' %}">
+            </li>
+            <li class="nav-item">
+                <img src="{% static 'home/img/list.png' %}">
+            </li>
+            <li class="nav-item">
+                <img src="{% static 'home/img/settings.png' %}">
+            </li>
+            <li class="nav-item" id="contact">
+                <a href ="{% url 'manager:contact' %}">
+                    <img src="{% static 'home/img/contact.png' %}">
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% block content_manager %}{% endblock %}
+</body>
 
-{% endblock %}

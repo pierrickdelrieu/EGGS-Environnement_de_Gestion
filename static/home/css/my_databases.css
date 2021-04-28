@@ -1,0 +1,115 @@
+#database{
+    background: rgba(206, 121, 236, 0.54);
+}
+
+#database:hover{
+    background: rgba(206, 12, 250, 0.54);
+}
+
+.rectTitrePro{
+    position: absolute;
+    height: 42px;
+    width: 26%;
+    left: 10.75%;
+    top: 20%;
+
+    background: #B8C7FC;
+    border-radius: 14px;
+}
+
+.rectPro{
+    position: absolute;
+    width: 26%;
+    height: 70%;
+    left: 10.75%;
+    top: 195px;
+
+    background: #FFFFFF;
+}
+
+#textPro{
+    position: absolute;
+    left: 30%;
+    top: 10%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+
+    text-align: center;
+
+    color: #000000;
+}
+
+.rectTitreEdit{
+    position: absolute;
+    height: 42px;
+    width: 26%;
+    left: 40.5%;
+    top: 20%;
+
+    background: #EAAFFF;
+    border-radius: 14px;
+}
+
+.rectEdit{
+    position: absolute;
+    width: 26%;
+    height: 70%;
+    left: 40.5%;
+    top: 195px;
+
+    background: #FFFFFF;
+}
+
+#textEdit{
+    position: absolute;
+    left: 38%;
+    top: 10%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+
+    text-align: center;
+
+    color: #000000;
+}
+
+.rectTitreReader{
+    position: absolute;
+    width: 26%;
+    height: 42px;
+    left: 70.25%;
+    top: 20%;
+
+    background: #F8FFCF;
+    border-radius: 14px;
+}
+
+.rectReader{
+    position: absolute;
+    width: 26%;
+    height: 70%;
+    left: 70.25%;
+    top: 195px;
+
+    background: #FFFFFF;
+}
+
+#textReader {
+    position: absolute;
+    left: 38%;
+    top: 10%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+
+    text-align: center;
+
+    color: #000000;
+}

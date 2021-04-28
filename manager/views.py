@@ -60,6 +60,7 @@ def add_database(request):
             db.create(name=name, type=type)
             db.save()
             db.add_owner(user)
+            db.save()
             user.update_current_database(db)
 
             return HttpResponseRedirect('/manager/dashboard/')

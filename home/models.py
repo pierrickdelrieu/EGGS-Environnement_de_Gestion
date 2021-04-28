@@ -32,11 +32,11 @@ class Manager(AbstractUser):
 
     def update_current_database(self, database_name: str):
         if database_name != "None":
-            database = self.owner.all().get(name=database_name)
+            database = self.owner.get(name=database_name)
             if database is None:
-                database = self.editor.all().get(name=database_name)
+                database = self.editor.get(name=database_name)
             if database is None:
-                database = self.reader.all().get(name=database_name)
+                database = self.reader.get(name=database_name)
 
             self.current_database = database
             self.save()
