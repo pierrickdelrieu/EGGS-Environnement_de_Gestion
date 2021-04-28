@@ -1,0 +1,25 @@
+Modification du compte<br><br>
+
+Nom d'utilisateur : {{ user.username }}<br>
+<form action="{% url 'manager:update_compte' %}" method="POST">
+    {% csrf_token %} <!-- Vérification sécurité-->
+
+    <label for="first_name">Prénom : </label>
+    <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}">
+
+    <br>
+    <label for="last_name">Nom : </label>
+    <input type="text" id="first_name" name="last_name" value="{{ user.last_name }}">
+
+    <br>
+    <label for="email">Email : </label>
+    <input type="text" id="email" name="email" value="{{ user.email }}">
+
+    <br>
+    Date d'inscription : {{ user.date_joined }}<br><br>
+
+    <br>
+    <input type="submit" value="Modifier">
+</form><br>
+
+<a href="{% url 'manager:update_password' %}">Modifier mon mot de passe</a>

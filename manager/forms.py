@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 from home.models import DataBase
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, password_validation
 
 User = get_user_model()  # new User definitions
 
@@ -30,7 +30,7 @@ class AddDbForm(forms.Form):
     def clean_name(self):
         user = User.objects.get(username=self.user.username)
         name = self.cleaned_data.get("name") + ' (' + user.first_name[0].upper() + \
-               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + ')'
+               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + '.' + user.id + ')'
         if name and DataBase.objects.filter(name=name).exists():
             raise ValidationError(
                 _("Le nom de la base de donnéee n'est pas disponible"),
@@ -76,7 +76,147 @@ class AddProductForm(forms.Form):
         price = self.cleaned_data.get("price")
         if price and price < 0:
             raise ValidationError(
-                _("Le price doit être positif ou nul"),
+                _("Le prix doit être positif ou nul"),
                 code='price_is_negative',
             )
         return price
+
+
+class UpdatePasswordForm(forms.Form):
+    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput)
+    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput)
+    user = None
+
+    def __init__(self, *args, **kwargs):
+        super(UpdatePasswordForm, self).__init__(*args, **kwargs)
+        initial = kwargs.pop('initial')
+        self.user = initial['user']
+
+    def clean_current_password(self):
+        current_password = self.cleaned_data.get("current_password")
+        if current_password and not self.user.check_password(current_password):
+            raise ValidationError(
+                _("Le mot de passe actuel est faux"),
+                code='current_passeword_isfalse',
+            )
+        return current_password
+
+    def clean_new_password2(self):
+        new_password1 = self.cleaned_data.get("new_password1")
+        new_password2 = self.cleaned_data.get("new_password2")
+        if new_password1 and new_password2 and new_password1 != new_password2:
+            raise ValidationError(
+                _('Les deux mot de passe sont différents'),
+                code='password_mismatch',
+            )
+        return new_password2
+
+    def clean(self):
+        super()._post_clean()
+        # Validate the password after self.instance is updated with form data
+        # by super().
+        password = self.cleaned_data.get('new_password2')
+        if password:
+            try:
+                password_validation.validate_password(password)
+            except ValidationError as error:
+                self.add_error('new_password2', error)
+
+
+class EnteringUserForm(forms.Form):
+    username = forms.CharField(label="Nom d'utilisateur", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer le nom d'utilisateur"}))
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if username and not User.objects.filter(username=username).exists():
+                raise ValidationError(
+                    _("Le nom d'utilisatuer n'existe pas"),
+                    code='user_dontexist',
+                )
+        return username
+
+
+class AddOwnerDbForm(EnteringUserForm):
+    user = None
+
+    def __init__(self, *args, **kwargs):
+        super(AddOwnerDbForm, self).__init__(*args, **kwargs)
+        initial = kwargs.pop('initial')
+        self.user = initial['user']
+
+    def clean_username(self):
+        super(AddOwnerDbForm, self).clean_username()
+        username = self.cleaned_data.get("username")
+        if username:
+            user = User.objects.get(username=username)
+            if user:
+                if user.is_owner(self.user.current_database):
+                    raise ValidationError(
+                        _("L'utilisateur est déjà propriétaire de cette base de donnée"),
+                        code='already_owner',
+                    )
+                if user == self.user:
+                    raise ValidationError(
+                        _("Vous ne pouvez pas modifier votre statue de la base de donnée"),
+                        code='update_self',
+                    )
+
+        return username
+
+
+class AddEditorDbForm(EnteringUserForm):
+    user = None
+
+    def __init__(self, *args, **kwargs):
+        super(AddEditorDbForm, self).__init__(*args, **kwargs)
+        initial = kwargs.pop('initial')
+        self.user = initial['user']
+
+    def clean_username(self):
+        super(AddEditorDbForm, self).clean_username()
+        username = self.cleaned_data.get("username")
+        if username:
+            user = User.objects.get(username=username)
+            if user:
+                if user.is_editor(self.user.current_database):
+                    raise ValidationError(
+                        _("L'utilisateur est déjà éditeur de cette base de donnée"),
+                        code='already_editor',
+                    )
+                if user == self.user:
+                    raise ValidationError(
+                        _("Vous ne pouvez pas modifier votre statue de la base de donnée"),
+                        code='update_self',
+                    )
+        return username
+
+
+class AddReaderDbForm(EnteringUserForm):
+    user = None
+
+    def __init__(self, *args, **kwargs):
+        super(AddReaderDbForm, self).__init__(*args, **kwargs)
+        initial = kwargs.pop('initial')
+        self.user = initial['user']
+
+    def clean_username(self):
+        super(AddReaderDbForm, self).clean_username()
+        username = self.cleaned_data.get("username")
+        if username:
+            user = User.objects.get(username=username)
+            if user:
+                if user.is_reader(self.user.current_database):
+                    raise ValidationError(
+                        _("L'utilisateur est déjà lecteur de cette base de donnée"),
+                        code='already_reader',
+                    )
+                if user == self.user:
+                    raise ValidationError(
+                        _("Vous ne pouvez pas modifier votre statue de la base de donnée"),
+                        code='update_self',
+                    )
+        return username
+
+

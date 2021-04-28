@@ -9,20 +9,26 @@ class DataBase(models.Model):
     name = models.CharField("Nom", max_length=50, default="Inconnu")
     type = models.CharField("Catégorie", max_length=50, default="Inconnu")
 
-    def create(self, name: str, type: str):
+    def set(self, name: str, type: str):
         self.name = name
         self.type = type
 
     def add_owner(self, user: 'Manager'):
-        user.owner.add(self)
+        self.user_owner.add(user)
+        if user.current_database is None:
+            user.current_database = self
         self.save()
 
     def add_editor(self, user: 'Manager'):
-        user.editor.add(self)
+        self.user_editor.add(user)
+        if user.current_database is None:
+            user.current_database = self
         self.save()
 
     def add_reader(self, user: 'Manager'):
-        user.reader.add(self)
+        self.user_reader.add(user)
+        if user.current_database is None:
+            user.current_database = self
         self.save()
 
 
@@ -33,7 +39,7 @@ class Product(models.Model):
 
     database = models.ForeignKey(DataBase, on_delete=models.CASCADE, related_name='products', null=True)
 
-    def create(self, name: str, quantity: int, price: int):
+    def set(self, name: str, quantity: int, price: int):
         self.name = name
         self.quantity = quantity
         self.price = price

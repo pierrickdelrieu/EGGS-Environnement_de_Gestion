@@ -1,0 +1,17 @@
+Saisie d'un utilisateur
+
+
+<form action="{% url 'manager:add_reader_db' %}" method="POST">
+    {% csrf_token %} <!-- Vérification sécurité-->
+    {% for field in form %}
+        <div>
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Ajouter">
+</form>

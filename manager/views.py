@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
 from .forms import *
@@ -57,11 +59,10 @@ def add_database(request):
             user = request.user
 
             db = DataBase()
-            db.create(name=name, type=type)
+            db.set(name=name, type=type)
             db.save()
             db.add_owner(user)
-            db.save()
-            user.update_current_database(db)
+            user.update_current_database(db.name)
 
             return HttpResponseRedirect('/manager/dashboard/')
     else:
@@ -85,7 +86,7 @@ def add_product(request):
                 price = form.cleaned_data.get("price")
 
                 product = Product()
-                product.create(name=name, quantity=quantity, price=price)
+                product.set(name=name, quantity=quantity, price=price)
                 product.save()
                 # Ajout du produit dans la base de donnée
                 current_database.products.add(product)
@@ -167,7 +168,7 @@ def update_product(request, product_id):
                 product_name = request.POST.get('name')
                 product_quantity = request.POST.get('quantity')
                 product_price = request.POST.get('price')
-                product.create(name=product_name, price=product_price, quantity=product_quantity)
+                product.set(name=product_name, price=product_price, quantity=product_quantity)
                 product.save()
                 return HttpResponseRedirect(reverse_lazy("manager:details_product", kwargs={'product_id': product_id}))
         else:
@@ -176,3 +177,157 @@ def update_product(request, product_id):
         return HttpResponseRedirect('/manager/dashboard/')
 
     return render(request, 'manager/update_product.html', locals())
+
+
+@login_required
+def compte(request):
+    user = request.user
+
+    return render(request, 'manager/compte.html', locals())
+
+
+@login_required
+def update_compte(request):
+    user = request.user
+
+    if request.method == "POST":
+        user_firstname = request.POST.get('first_name')
+        user_lastname = request.POST.get('last_name')
+        user_email = request.POST.get('email')
+        user.set(first_name=user_firstname, last_name=user_lastname, email=user_email)
+        user.save()
+        return HttpResponseRedirect('/manager/compte/')
+
+    return render(request, 'manager/update_compte.html', locals())
+
+
+@login_required
+def update_password(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = UpdatePasswordForm(request.POST, initial={'user': request.user})
+
+        if form.is_valid():
+            new_password2 = form.cleaned_data.get("new_password2")
+            user.set_password(new_password2)
+            user.save()
+
+            current_site = get_current_site(request)
+            subject = user.get_short_name() + " - Vous avez modifié votre mot de passe - "
+            message = message = render_to_string('manager/update_password_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'protocol': 'http',
+            })
+
+            user.email_user(subject=subject, message=message)
+
+            return HttpResponseRedirect('/manager/compte/')
+    else:
+        form = UpdatePasswordForm(initial={'user': request.user})  # Réintialisation du formulaire
+
+    return render(request, 'manager/update_password.html', locals())
+
+
+@login_required
+def settings_database(request):
+    return render(request, 'manager/settings_db.html', locals())
+
+
+@login_required
+def add_owner_db(request):
+    user = request.user
+
+    if user.is_current_owner():
+        if request.method == 'POST':
+            form = AddOwnerDbForm(request.POST, initial={'user': request.user})
+
+            if form.is_valid():
+                username = form.cleaned_data.get("username")
+
+                new_user = User.objects.get(username=username)
+
+                if new_user.is_current_editor:
+                    user.current_database.user_editor.remove(new_user)
+                if new_user.is_current_reader:
+                    user.current_database.user_reader.remove(new_user)
+
+                user.current_database.add_owner(new_user)
+                new_user.save()
+
+                return HttpResponseRedirect('/manager/settings_database/')
+        else:
+            form = AddOwnerDbForm(initial={'user': request.user})
+    else:
+        return HttpResponseRedirect('/manager/settings_database/')
+
+    return render(request, 'manager/add_owner_db.html', locals())
+
+
+@login_required
+def add_editor_db(request):
+    user = request.user
+
+    if user.is_current_owner():
+        if request.method == 'POST':
+            form = AddEditorDbForm(request.POST, initial={'user': request.user})
+
+            if form.is_valid():
+                username = form.cleaned_data.get("username")
+
+                new_user = User.objects.get(username=username)
+
+                if new_user.is_current_owner:
+                    user.current_database.user_owner.remove(new_user)
+                if new_user.is_current_reader:
+                    user.current_database.user_reader.remove(new_user)
+
+                user.current_database.add_editor(new_user)
+                new_user.save()
+
+                return HttpResponseRedirect('/manager/settings_database/')
+        else:
+            form = AddEditorDbForm(initial={'user': request.user})
+    else:
+        return HttpResponseRedirect('/manager/settings_database/')
+
+    return render(request, 'manager/add_editor_db.html', locals())
+
+
+@login_required
+def add_reader_db(request):
+    user = request.user
+
+    if user.is_current_owner():
+        if request.method == 'POST':
+            form = AddReaderDbForm(request.POST, initial={'user': request.user})
+
+            if form.is_valid():
+                username = form.cleaned_data.get("username")
+
+                new_user = User.objects.get(username=username)
+
+                if new_user.is_current_editor:
+                    user.current_database.user_editor.remove(new_user)
+                if new_user.is_current_owner:
+                    user.current_database.user_owner.remove(new_user)
+
+                user.current_database.add_reader(new_user)
+                new_user.save()
+
+                return HttpResponseRedirect('/manager/settings_database/')
+        else:
+            form = AddReaderDbForm(initial={'user': request.user})
+
+    return render(request, 'manager/add_reader_db.html', locals())
+
+
+@login_required
+def delete_product(request):
+    return render(request, 'manager/add_reader_db.html', locals())
+
+
+@login_required
+def delete_databse(request):
+    return render(request, 'manager/add_reader_db.html', locals())
