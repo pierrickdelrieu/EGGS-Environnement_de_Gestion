@@ -113,3 +113,24 @@
 
     color: #000000;
 }
+
+#a_Pro a{
+    position: absolute;
+    left: 12%;
+    top: 30%;
+    color: black;
+}
+
+#p_Edit{
+    position: absolute;
+    left: 42%;
+    top: 30%;
+    color: black;
+}
+
+#p_Reader{
+    position: absolute;
+    left: 72%;
+    top: 30%;
+    color: black;
+}

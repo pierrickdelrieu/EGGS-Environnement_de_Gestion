@@ -41,13 +41,18 @@
         <p class="name">{{ user.get_full_name }}</p>
     {% endif %}
 
-    <nav class="ajout_bdd">
-        <a href="{% url 'manager:add_database' %}" class="top-menu"><p>Ajouter une base de donné</p></a><br>
-        {% if user.current_database != None %}
-            <a href="{% url 'manager:add_product' %}" class="top-menu">Ajouter un produit</a><br>
-            <a href="{% url 'manager:display_products' %}" class="top-menu">Afficher les produits</a><br>
-        {% endif %}
-    </nav>
+
+    <ul class="ajout_bdd">
+        <li class="x"><a href="{% url 'manager:add_database' %}"><p>Ajouter une base de donné</p></a><br></li>
+        <li class="x"><a href="{% url 'manager:add_product' %}" class="top-menu"><p>Ajouter un produit</p></a><br></li>
+        <li class="x"><a href="{% url 'manager:display_products' %}" class="top-menu"><p>Afficher les produits</p></a><br></li>
+    </ul>
+
+
+    {% if user.current_database != None %}
+        <li class=""><a href="{% url 'manager:add_product' %}" class="-menu"><p>Ajouter un produit</p></a><br></li>
+        <li class=""><a href="{% url 'manager:display_products' %}" class="-menu"><p>Afficher les produits</p></a><br></li>
+    {% endif %}
 
     <form action="{% url 'manager:dashboard' %}" method="POST">
         {% csrf_token %} <!-- Vérification sécurité-->
@@ -101,7 +106,9 @@
                 <img src="{% static 'home/img/list.png' %}">
             </li>
             <li class="nav-item">
-                <img src="{% static 'home/img/settings.png' %}">
+                <a href ="{% url 'manager:settings_database' %}">
+                    <img src="{% static 'home/img/settings.png' %}">
+                </a>
             </li>
             <li class="nav-item" id="contact">
                 <a href ="{% url 'manager:contact' %}">

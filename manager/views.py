@@ -329,5 +329,5 @@ def delete_product(request):
 
 
 @login_required
-def delete_databse(request):
+def delete_database(request):
     return render(request, 'manager/add_reader_db.html', locals())

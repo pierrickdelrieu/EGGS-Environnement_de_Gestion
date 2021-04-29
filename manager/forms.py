@@ -40,12 +40,12 @@ class AddDbForm(forms.Form):
 
 
 class AddProductForm(forms.Form):
-    name = forms.CharField(label="Nom", max_length=50, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Nom"}))
-    quantity = forms.IntegerField(label="Quantité", required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Quantité"}))
-    price = forms.IntegerField(label="Prix", required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Prix"}))
+    name = forms.CharField(label="", max_length=50, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Nom du produit", 'id': "name_prod"}))
+    quantity = forms.IntegerField(label="", required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Quantité", 'id': "q_prod"}))
+    price = forms.IntegerField(label="", required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Prix", 'id': "prix_prod"}))
     user = None
 
     def __init__(self, *args, **kwargs):

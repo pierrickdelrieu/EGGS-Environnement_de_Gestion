@@ -1,5 +1,4 @@
 {% extends 'manager/dashboard.html' %}
-
 {% load static %}
 
 {% block title_manager %}
@@ -15,11 +14,13 @@
     <div class="rectTitrePro">
     <h2 id="textPro">Propriétaire</h2></div>
     {% if user.owner.count == 0 %}
-        Pas de base de données
+        <p id="p_Pro">Pas de base de données</p>
     {% else %}
         {% for database in user.owner.all %}
             {% if database.name != user.current_database.name %}
-                <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+                <nav id="a_Pro">
+                    <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+                </nav>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -28,11 +29,11 @@
     <div class="rectTitreEdit">
     <h2 id="textEdit">Editeur</h2></div>
     {% if user.editor.count == 0 %}
-        Pas de base de données
+        <p id="p_Edit">Pas de base de données</p>
     {% else %}
         {% for database in user.editor.all %}
             {% if database.name != user.current_database.name %}
-                <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+                <a id="a_Edit" href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -41,11 +42,11 @@
     <div class="rectTitreReader">
     <h2 id="textReader">Lecteur</h2></div>
     {% if user.editor.count == 0 %}
-        Pas de base de données
+        <p id="p_Reader">Pas de base de données</p>
     {% else %}
         {% for database in user.reader.all %}
             {% if database.name != user.current_database.name %}
-                <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+                <a id="a_Reader" href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
             {% endif %}
         {% endfor %}
     {% endif %}

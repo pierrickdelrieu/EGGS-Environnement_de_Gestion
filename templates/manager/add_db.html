@@ -1,18 +1,17 @@
-{% extends 'header.html' %}
+{% extends 'manager/dashboard.html' %}
 {% load static %}
 
-{% block title %}
+{% block title_manager %}
     <title>EGGS - Manager</title>
 {% endblock %}
 
-{% block stylesheet %}
+{% block stylesheet_manager %}
     <link rel="stylesheet" href="{% static 'home/css/add_db.css' %}">
 {% endblock %}
 
-{% block content %}
-
+{% block content_manager %}
     <h2>Nouvelle base de données</h2>
-    <p>Bienvenue dans l'interface de création de bases de données</p>
+    <p id="welcome">Bienvenue dans l'interface de création de bases de données</p>
 
      <form action="{% url 'manager:add_database' %}" method="POST">
          {% csrf_token %} <!-- Vérification sécurité-->

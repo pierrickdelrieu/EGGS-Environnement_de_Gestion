@@ -14,12 +14,10 @@ h2{
     z-index: 4;
 
     position: absolute;
-    height: 40px;
-    left: 435px;
-    right: 435px;
-    top: 140px;
+    left: 43%;
+    top: 15%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 34px;
@@ -42,18 +40,18 @@ form{
     height: 7.43%;
     width: 40%;
     left: 30%;
-    top: 310px;
-    border: 0px white;
+    top: 30%;
+    border: 0 white;
     background: #FFFFFF;
 }
 
 #mdp {
     position: absolute;
-    height: 55px;
+    height: 7.43%;
     width: 40%;
     left: 30%;
-    top: 370px;
-    border: 0px white;
+    top: 38%;
+    border: 0 white;
     background: #FFFFFF;
 }
 
@@ -68,26 +66,26 @@ input[type=submit] {
     height: 51px;;
     width: 30%;
     left: 35%;
-    bottom: 15%;
+    bottom: 40%;
 
-    background: #007AFF;
+    background-color: #5e81ff;
     border-radius: 14px;
+    border: none;
 
     color: white;
     cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #5e81ff;
-    color: white;
+    background-color: #007AFF;
 }
 
 #signin{
     position: absolute;
     left: 38%;
-    bottom: 9%;
+    bottom: 35%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     line-height: 20px;
 
@@ -105,13 +103,13 @@ input[type=submit]:hover {
 }
 
 .mdpo{
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     color: #007AFF;
 
     position: absolute;
     left: 59%;
-    top: 385px;
+    top: 40%;
 }
 
 .mdpo:hover{
@@ -125,7 +123,7 @@ input[type=submit]:hover {
     left: 50px;
     top: 500px;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

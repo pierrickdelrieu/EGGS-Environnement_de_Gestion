@@ -3,9 +3,9 @@ h2{
     height: 37px;
     left: 407px;
     right: 407px;
-    top: 80px;
+    top: 20%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 34px;
@@ -17,46 +17,43 @@ h2{
     color: #000000;
 }
 
-p{
+#welcome{
     position: absolute;
     height: 40px;
     left: 435.84px;
     right: 431.52px;
-    top: 135px;
+    top: 35%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
     line-height: 22px;
-    /* or 129% */
 
     text-align: center;
     letter-spacing: -0.408px;
-
-    /* Label Light / Secondary */
 
     color: rgba(60, 60, 67, 0.6);
 }
 
 #name_db{
     position: absolute;
-    height: 55px;
+    height: 7.4%;
     width: 40%;
     left: 30%;
-    top: 250px;
+    top: 45%;
 
-    border: 0px white;
+    border: none;
     background: #FFFFFF;
 }
 
 #categorie_db{
     position: absolute;
-    height: 55px;
+    height: 7.4%;
     width: 40%;
     left: 30%;
-    top: 310px;
-    border: 0px white;
+    top: 55%;
+    border: none;
     background: #FFFFFF;
 }
 
@@ -71,18 +68,18 @@ input[type=submit] {
     height: 51px;;
     width: 30%;
     left: 35%;
-    bottom: 35%;
+    top: 70%;
 
-    background: #007AFF;
+    background-color: #5e81ff;
     border-radius: 14px;
+    border: none;
 
     color: white;
     cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #5e81ff;
-    color: white;
+    background-color: #007AFF;
 }
 
 .error {

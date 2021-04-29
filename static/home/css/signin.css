@@ -1,6 +1,6 @@
 .eggs {
     position: absolute;
-    top: 0vh;
+    top: 0;
     left: 1vw;
     text-align: center;
     color: whitesmoke;
@@ -16,10 +16,10 @@ h2{
     position: absolute;
     height: 40px;
     left: 47%;
-    right: 435px;
+    right: 38%;
     top: 140px;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 34px;
@@ -33,7 +33,7 @@ h2{
 
 form{
     background: #F9F9FA;
-    border: 0px #F9F9FA;
+    border: 0 #F9F9FA;
     color: #F9F9FA;
 }
 
@@ -44,7 +44,7 @@ form{
     left: 40%;
     top: 250px;
 
-    border: 0px white;
+    border: 0 white;
     background: #FFFFFF;
 }
 
@@ -54,7 +54,7 @@ form{
     width: 40%;
     left: 40%;
     top: 310px;
-    border: 0px white;
+    border: 0 white;
     background: #FFFFFF;
 }
 
@@ -64,7 +64,7 @@ form{
     width: 40%;
     left: 40%;
     top: 370px;
-    border: 0px white;
+    border: 0 white;
     background: #FFFFFF;
 }
 
@@ -74,7 +74,7 @@ form{
     width: 40%;
     left: 40%;
     top: 430px;
-    border: 0px white;
+    border: 0 white;
     background: #FFFFFF;
 }
 
@@ -84,7 +84,7 @@ form{
     width: 40%;
     left: 40%;
     top: 490px;
-    border: 0px white;
+    border: 0 white;
     background: #FFFFFF;
 }
 
@@ -101,24 +101,24 @@ input[type=submit] {
     left: 45%;
     bottom: 15%;
 
-    background: #007AFF;
+    background-color: #5e81ff;
     border-radius: 14px;
+    border: none;
 
     color: white;
     cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #5e81ff;
-    color: white;
+    background-color: #007AFF;
 }
 
 #rectVert{
     position: absolute;
     width: 20%;
     height: 100%;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
 
     background: rgba(200, 253, 218, 0.28);
     border-radius: 26px;
@@ -129,7 +129,7 @@ input[type=submit]:hover {
     left: 25%;
     top: 140px;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -146,7 +146,7 @@ input[type=submit]:hover {
     left: 50%;
     bottom: 9%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     line-height: 20px;
 
@@ -170,7 +170,7 @@ input[type=submit]:hover {
     left: 82%;
     top: 10%;
 
-    font-family: Avenir;
+    font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
