@@ -21,7 +21,7 @@ urlpatterns = [
     path('add_editor_db/', views.add_editor_db, name="add_editor_db"),
     path('add_reader_db/', views.add_reader_db, name="add_reader_db"),
 
-    path('delete_owner_db/(?P<username>[0-9]+)/', views.delete_owner_db, name="delete_owner_db"),
+    path('leave_db/', views.leave_db, name="leave_db"),
     path('delete_editor_db/(?P<username>[0-9]+)/', views.delete_editor_db, name="delete_editor_db"),
     path('delete_reader_db/(?P<username>[0-9]+)/', views.delete_reader_db, name="delete_reader_db"),
 

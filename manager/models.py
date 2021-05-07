@@ -32,7 +32,9 @@ class DataBase(models.Model):
             user.update_current_database(self)
 
     def get_all_manager(self):
+        self.user_editor.get(username="pierrickdelrieu11").r
         return list(self.user_owner.all()) + list(self.user_editor.all()) + list(self.user_reader.all())
+
 
 
 class Product(models.Model):

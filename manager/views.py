@@ -353,15 +353,41 @@ def delete_database(request):
 
 
 @login_required
-def delete_owner_db(request):
-    return HttpResponse("delete_owner_db")
+def leave_db(request):
+    user = request.user
+    database = user.current_database
+
+    if user.is_current_owner():
+        if database.user_owner.count() > 1:
+            user.switch_random_database()
+            database.user_owner.remove(user)
+    if user.is_current_editor():
+        user.switch_random_database()
+        database.user_editor.remove(user)
+    if user.is_current_reader():
+        user.switch_random_database()
+        database.user_reader.remove(user)
+
+    return HttpResponseRedirect('/manager/dashboard/')
 
 
 @login_required
-def delete_editor_db(request):
-    return HttpResponse("delete_editor_db")
+def delete_editor_db(request, username):
+    editor = User.objects.filter(username=username).get()
+    editor.switch_random_database()
+
+    user = request.user
+    user.current_database.user_editor.remove(editor)
+
+    return HttpResponseRedirect('/manager/settings_database/')
 
 
 @login_required
-def delete_reader_db(request):
-    return HttpResponse("delete_reader_db")
+def delete_reader_db(request, username):
+    editor = User.objects.filter(username=username).get()
+    editor.switch_random_database()
+
+    user = request.user
+    user.current_database.user_reader.remove(editor)
+
+    return HttpResponseRedirect('/manager/settings_database/')
