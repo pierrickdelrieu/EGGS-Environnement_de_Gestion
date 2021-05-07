@@ -1,21 +1,9 @@
-.eggs {
-    position: absolute;
-    top: 0;
-    left: 1vw;
-    text-align: center;
-    color: whitesmoke;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 30px;
-    font-family: "SF Pro Rounded", sans-serif;
-}
-
 h2{
     z-index: 4;
 
-    position: absolute;
+    position: fixed;
     height: 40px;
-    left: 47%;
+    left: 53%;
     right: 38%;
     top: 140px;
 
@@ -38,7 +26,7 @@ form{
 }
 
 #nom{
-    position: absolute;
+    position: fixed;
     height: 55px;
     width: 40%;
     left: 40%;
@@ -49,7 +37,7 @@ form{
 }
 
 #prenom{
-    position: absolute;
+    position: fixed;
     height: 55px;
     width: 40%;
     left: 40%;
@@ -59,7 +47,7 @@ form{
 }
 
 #email{
-    position: absolute;
+    position: fixed;
     height: 55px;
     width: 40%;
     left: 40%;
@@ -69,7 +57,7 @@ form{
 }
 
 #mdp{
-    position: absolute;
+    position: fixed;
     height: 55px;
     width: 40%;
     left: 40%;
@@ -79,7 +67,7 @@ form{
 }
 
 #confirmation{
-    position: absolute;
+    position: fixed;
     height: 55px;
     width: 40%;
     left: 40%;
@@ -95,7 +83,7 @@ form{
 }
 
 input[type=submit] {
-    position: absolute;
+    position: fixed;
     height: 51px;;
     width: 30%;
     left: 45%;
@@ -114,7 +102,7 @@ input[type=submit]:hover {
 }
 
 #rectVert{
-    position: absolute;
+    position: fixed;
     width: 20%;
     height: 100%;
     left: 0;
@@ -142,7 +130,7 @@ input[type=submit]:hover {
 }
 
 #login{
-    position: absolute;
+    position: fixed;
     left: 50%;
     bottom: 9%;
 

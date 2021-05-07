@@ -1,15 +1,3 @@
-.eggs {
-    position: absolute;
-    top: 0vh;
-    left: 1vw;
-    text-align: center;
-    color: whitesmoke;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 30px;
-    font-family: "SF Pro Rounded", sans-serif;
-}
-
 h2{
     z-index: 4;
 

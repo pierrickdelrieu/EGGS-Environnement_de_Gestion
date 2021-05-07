@@ -17,10 +17,19 @@
                 <img id = "eggs-logo" src = "{% static 'home/img/logo.png' %}" alt = "Le logo de EGGS">
                 <p id="header-title">E.G.G.S</p>
 
-                <ul class = "eggs-links">
-                    <li><a href="{% url 'home:login' %}" class="survol">Connexion</a><br></li>
-                    <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
-                </ul>
+                {% if user.is_authenticated %}
+                    <ul class = "eggs-links">
+                        <li><a href="{% url 'home:login' %}" class="survol">Mon espace</a><br></li>
+                        <li><a href="{% url 'home:logout' %}" class="survol">Me déconnecter</a></li>
+                    </ul>
+                {% else %}
+                    <ul class = "eggs-links">
+                        <li><a href="{% url 'home:login' %}" class="survol">Connexion</a><br></li>
+                        <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
+                    </ul>
+                {% endif %}
+
+
             </header>
 
             <div id="container1">
@@ -34,10 +43,17 @@
                             </div>
                         </div>
 
-                        <div class="eggs-buttons">
-                            <a href="{% url 'home:signin' %}"><button>Créer un compte</button></a>
-                            <a href="{% url 'home:login' %}"><button>Se connecter</button></a>
-                        </div>
+                        {% if user.is_authenticated %}
+                            <div class="eggs-buttons">
+                                <a href="{% url 'home:login' %}"><button>Mon espace</button></a>
+                                <a href="{% url 'home:logout' %}"><button>Me déconnecter</button></a>
+                            </div>
+                        {% else %}
+                            <div class="eggs-buttons">
+                                <a href="{% url 'home:signin' %}"><button>Créer un compte</button></a>
+                                <a href="{% url 'home:login' %}"><button>Se connecter</button></a>
+                            </div>
+                        {% endif %}
 
                     </div>
 
