@@ -395,3 +395,19 @@ def delete_reader_db(request, username):
     user.current_database.user_reader.remove(editor)
 
     return HttpResponseRedirect('/manager/settings_database/')
+
+
+@login_required
+def search_products(request):
+    database = request.user.current_database
+    query = request.GET.get('query')
+    if not query:
+        products = database.products.all()
+    else:
+        # title contains the query is and query is not sensitive to case.
+        products = database.products.filter(name__icontains=query)
+
+    context = {
+        'products': products,
+    }
+    return render(request, 'manager/search_products.html', context)
