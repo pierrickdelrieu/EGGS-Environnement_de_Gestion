@@ -54,7 +54,6 @@ def inscription(request):
             user.save()  # User registration in the database
             user.set_username()  # Initializing username
 
-
             current_site = get_current_site(request)
             mail_subject = 'Active ton compte EGGS'
             message = render_to_string('home/acc_active_email.html', {
@@ -69,8 +68,6 @@ def inscription(request):
             )
             email.send()
 
-
-
             return HttpResponseRedirect('/home/activate_done/')
     else:
         form = SigninForm()
@@ -80,7 +77,7 @@ def inscription(request):
 
 def deconnexion(request):
     logout(request)
-    return HttpResponseRedirect('/home/login/')
+    return HttpResponseRedirect('/')
 
 
 # cf : https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef
