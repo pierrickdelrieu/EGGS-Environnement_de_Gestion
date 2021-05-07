@@ -16,6 +16,8 @@ class LoginForm(forms.Form):
     # Error if the account is not active
     def clean_email(self):
         email = self.cleaned_data["email"].lower()
+        password = self.cleaned_data.get("password")
+        user_auth = authenticate(username=email, password=password)  # vérifications si les données sont corrects
         if email and User.objects.filter(email=email).exists():
             user = Manager.objects.filter(email=email).get()
             if not user.is_active:
@@ -23,18 +25,12 @@ class LoginForm(forms.Form):
                     _("Vous n'avez pas validé votre compte par email"),
                     code='user_is_not_active',
                 )
+            elif not user_auth:  # si user ≠ None
+                raise ValidationError(
+                    _("Adresse email ou mot de passe invalide"),
+                    code='invalid_auth',
+                )
         return email
-
-    def clean_password(self):
-        email = self.cleaned_data.get("email").lower()
-        password = self.cleaned_data.get("password")
-        user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
-        if not user:  # si user ≠ None
-            raise ValidationError(
-                _("Adresse email ou mot de passe invalide"),
-                code='invalid_auth',
-            )
-        return password
 
 
 class SigninForm(forms.Form):
