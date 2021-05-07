@@ -31,6 +31,9 @@ class DataBase(models.Model):
         if user.current_database is None:
             user.update_current_database(self)
 
+    def get_all_manager(self):
+        return list(self.user_owner.all()) + list(self.user_editor.all()) + list(self.user_reader.all())
+
 
 class Product(models.Model):
     name = models.CharField("Nom", max_length=50, default="Inconnu")

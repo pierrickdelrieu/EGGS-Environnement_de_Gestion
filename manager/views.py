@@ -334,17 +334,33 @@ def delete_product(request, product_id):
 
     return HttpResponseRedirect('/manager/display_products/')
 
+
 @login_required
 def delete_database(request):
-    return render(request, 'manager/add_reader_db.html', locals())
+    user = request.user
+
+    if user.is_current_owner():
+        database = user.current_database
+        for product in database.products.all():
+            product.delete()
+
+        for manager in database.get_all_manager():
+            manager.switch_random_database()
+
+        database.delete()
+
+    return HttpResponseRedirect('/manager/dashboard/')
+
 
 @login_required
 def delete_owner_db(request):
     return HttpResponse("delete_owner_db")
 
+
 @login_required
 def delete_editor_db(request):
     return HttpResponse("delete_editor_db")
+
 
 @login_required
 def delete_reader_db(request):

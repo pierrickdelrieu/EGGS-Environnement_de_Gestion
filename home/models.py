@@ -1,3 +1,5 @@
+from random import randint
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
@@ -13,7 +15,7 @@ class Manager(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    current_database = models.ForeignKey(DataBase, on_delete=models.CASCADE, related_name='current_user', null=True)
+    current_database = models.ForeignKey(DataBase, on_delete=models.DO_NOTHING, related_name='current_user', null=True)
 
     owner = models.ManyToManyField(DataBase, related_name='user_owner', null=True)
     editor = models.ManyToManyField(DataBase, related_name='user_editor', null=True)
@@ -36,17 +38,17 @@ class Manager(AbstractUser):
                 self.save()
 
     def switch_random_database(self):
-        if self.owner.count() > 0:
-            self.update_current_database(self.owner.first())
-        elif self.editor.count() > 0:
-            self.update_current_database(self.editor.first())
-        elif self.reader.count() > 0:
-            self.update_current_database(self.reader.first())
+        database = self.current_database
+        database_list = self.get_all_database()
+
+        if len(database_list) > 1:
+            while database == self.current_database:
+                random_idx = randint(0, len(database_list) - 1)
+                database = database_list[random_idx]
+            self.update_current_database(database)
         else:
             self.current_database = None
             self.save()
-
-
 
     def is_owner(self, database: DataBase) -> bool:
         if self in database.user_owner.all():
@@ -86,3 +88,6 @@ class Manager(AbstractUser):
 
     def has_role_in_db(self, database: DataBase):
         return self.is_owner(database) or self.is_editor(database) or self.is_reader(database)
+
+    def get_all_database(self):
+        return list(self.owner.all()) + list(self.editor.all()) + list(self.reader.all())
