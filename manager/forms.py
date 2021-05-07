@@ -132,7 +132,7 @@ class EnteringUserForm(forms.Form):
         username = self.cleaned_data.get("username")
         if username and not User.objects.filter(username=username).exists():
                 raise ValidationError(
-                    _("Le nom d'utilisatuer n'existe pas"),
+                    _("Le nom d'utilisateur n'existe pas"),
                     code='user_dontexist',
                 )
         return username
