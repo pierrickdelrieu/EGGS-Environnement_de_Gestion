@@ -13,7 +13,7 @@ class Manager(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    current_database = models.OneToOneField(DataBase, on_delete=models.SET_NULL, null=True)
+    current_database = models.ForeignKey(DataBase, on_delete=models.CASCADE, related_name='current_user', null=True)
 
     owner = models.ManyToManyField(DataBase, related_name='user_owner', null=True)
     editor = models.ManyToManyField(DataBase, related_name='user_editor', null=True)
@@ -29,34 +29,26 @@ class Manager(AbstractUser):
         self.username = self.first_name.lower() + self.last_name.lower() + str(self.id)
         self.save()
 
-    def update_current_database(self, database_name: str):
-        if database_name != "None":
-            database = self.owner.all().get(name=database_name)
-            if database is None:
-                database = self.editor.all().get(name=database_name)
-            if database is None:
-                database = self.reader.all().get(name=database_name)
-            if database is not None:
+    def update_current_database(self, database: DataBase):
+        if database is not None:
+            if self.has_role_in_db(database=database):
                 self.current_database = database
                 self.save()
 
     def is_owner(self, database: DataBase) -> bool:
         if self in database.user_owner.all():
             return True
-        else:
-            return False
+        return False
 
     def is_editor(self, database: DataBase) -> bool:
         if self in database.user_editor.all():
             return True
-        else:
-            return False
+        return False
 
     def is_reader(self, database: DataBase) -> bool:
         if self in database.user_reader.all():
             return True
-        else:
-            return False
+        return False
 
     def is_current_owner(self) -> bool:
         if self.current_database is not None:
@@ -75,3 +67,9 @@ class Manager(AbstractUser):
             if self in self.current_database.user_reader.all():
                 return True
         return False
+
+    def count_database(self) -> int:
+        return self.owner.count() + self.editor.count() + self.reader.count()
+
+    def has_role_in_db(self, database: DataBase):
+        return self.is_owner(database) or self.is_editor(database) or self.is_reader(database)

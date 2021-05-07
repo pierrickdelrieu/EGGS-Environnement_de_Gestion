@@ -50,3 +50,7 @@ Les proprietaires<br>
     <br>
     <a href="{% url 'manager:add_reader_db'%}">Ajouter un lecteur</a><br><br>
 {% endif %}
+
+{% if user.is_current_owner %}
+    <a href="{% url 'manager:delete_database'%}">Supprimer la base de données</a><br><br>
+{% endif %}

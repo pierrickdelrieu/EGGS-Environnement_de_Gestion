@@ -21,7 +21,11 @@ urlpatterns = [
     path('add_editor_db/', views.add_editor_db, name="add_editor_db"),
     path('add_reader_db/', views.add_reader_db, name="add_reader_db"),
 
-    path('delete_product/', views.delete_product, name="delete_product"),
+    path('delete_owner_db/(?P<username>[0-9]+)/', views.delete_owner_db, name="delete_owner_db"),
+    path('delete_editor_db/(?P<username>[0-9]+)/', views.delete_editor_db, name="delete_editor_db"),
+    path('delete_reader_db/(?P<username>[0-9]+)/', views.delete_reader_db, name="delete_reader_db"),
+
+    path('delete_product/(?P<product_id>[0-9]+)/', views.delete_product, name="delete_product"),
     path('delete_database/', views.delete_database, name="delete_database"),
 
 

@@ -14,7 +14,6 @@ urlpatterns = [
     # Account activation link by email
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('activate_done/', views.activate_done, name="activate_done"),
-    path('activate_complete/', views.activate_complete, name="activate_complete"),
 
 
     # Email password reset link

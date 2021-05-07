@@ -27,7 +27,7 @@ Base de donnée en cours : {{ user.current_database.name }}<br>
 {% endif %}
 
 <h2>Lecteur</h2>
-{% if user.editor.count == 0 %}
+{% if user.reader.count == 0 %}
     Pas de base de donnée
 {% else %}
     {% for database in user.reader.all %}

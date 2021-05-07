@@ -98,6 +98,3 @@ def activate(request, uidb64, token):
 def activate_done(request):
     return render(request, 'home/acc_active_done.html', locals())
 
-
-def activate_complete(request):
-    return render(request, 'home/acc_active_complete.html', locals())

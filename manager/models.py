@@ -15,20 +15,14 @@ class DataBase(models.Model):
 
     def add_owner(self, user: 'Manager'):
         self.user_owner.add(user)
-        if user.current_database is None:
-            user.current_database = self
         self.save()
 
     def add_editor(self, user: 'Manager'):
         self.user_editor.add(user)
-        if user.current_database is None:
-            user.current_database = self
         self.save()
 
     def add_reader(self, user: 'Manager'):
         self.user_reader.add(user)
-        if user.current_database is None:
-            user.current_database = self
         self.save()
 
 

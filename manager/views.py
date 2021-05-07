@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -21,7 +21,8 @@ def dashboard(request):
 
     if request.method == "POST":
         database_name = request.POST.get('database')
-        user.update_current_database(database_name)
+        database = DataBase.objects.filter(name=database_name).get()
+        user.update_current_database(database)
 
     return render(request, "manager/dashboard.html", locals())
 
@@ -56,15 +57,14 @@ def add_database(request):
         if form.is_valid():
             name = form.cleaned_data.get("name")
             type = form.cleaned_data.get("type")
-            user = request.user
 
             db = DataBase()
             db.set(name=name, type=type)
             db.save()
             db.add_owner(user)
-            user.update_current_database(db.name)
+            user.update_current_database(db)
 
-            return HttpResponseRedirect('/manager/dashboard/')
+            return HttpResponseRedirect('/manager/display_products/')
     else:
         form = AddDbForm(initial={'user': request.user})  # Réintialisation du formulaire
 
@@ -147,9 +147,10 @@ def display_products(request):
 @login_required
 def switch_current_db(request, database_name):
     user = request.user
-    user.update_current_database(database_name)
+    database = DataBase.objects.filter(name=database_name).get()
+    user.update_current_database(database)
 
-    return render(request, 'manager/dashboard.html', locals())
+    return render(request, 'manager/display_products.html', locals())
 
 
 @login_required
@@ -276,7 +277,7 @@ def add_editor_db(request):
             if form.is_valid():
                 username = form.cleaned_data.get("username")
 
-                new_user = User.objects.get(username=username)
+                new_user = User.objects.filter(username=username).get()
 
                 if new_user.is_current_owner:
                     user.current_database.user_owner.remove(new_user)
@@ -284,7 +285,6 @@ def add_editor_db(request):
                     user.current_database.user_reader.remove(new_user)
 
                 user.current_database.add_editor(new_user)
-                new_user.save()
 
                 return HttpResponseRedirect('/manager/settings_database/')
         else:
@@ -329,5 +329,17 @@ def delete_product(request):
 
 
 @login_required
-def delete_databse(request):
+def delete_database(request):
     return render(request, 'manager/add_reader_db.html', locals())
+
+@login_required
+def delete_owner_db(request):
+    return HttpResponse("delete_owner_db")
+
+@login_required
+def delete_editor_db(request):
+    return HttpResponse("delete_editor_db")
+
+@login_required
+def delete_reader_db(request):
+    return HttpResponse("delete_reader_db")

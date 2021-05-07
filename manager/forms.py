@@ -30,7 +30,7 @@ class AddDbForm(forms.Form):
     def clean_name(self):
         user = User.objects.get(username=self.user.username)
         name = self.cleaned_data.get("name") + ' (' + user.first_name[0].upper() + \
-               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + '.' + user.id + ')'
+               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + '.' + str(user.id) + ')'
         if name and DataBase.objects.filter(name=name).exists():
             raise ValidationError(
                 _("Le nom de la base de donnéee n'est pas disponible"),

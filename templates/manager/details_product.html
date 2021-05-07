@@ -8,5 +8,6 @@ Détail du produit
 
 {% if user.is_current_owner or user.is_current_editor %}
     <a href="{% url 'manager:update_product' product_id=product.id %}">Modifier le produit</a>
+    <a href="{% url 'manager:delete_product' product_id=product.id %}">Supprimer le produit</a>
 {% endif %}
 
