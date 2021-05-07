@@ -1,19 +1,32 @@
-Modifier le produit
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-<form action="{% url 'manager:update_product' product_id=product.id %}" method="POST">
-    {% csrf_token %} <!-- Vérification sécurité-->
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
-    <label for="name"></label>
-    <input type="text" id="name" name="name" value="{{ product.name }}">
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/update_product.css' %}">
+{% endblock %}
 
-    <br>
-    <label for="quantity">Quantité :</label>
-    <input type="number" id="quantity" name="quantity" value="{{ product.quantity }}">
+{% block content_manager %}
+    <p class="titre">- Modifier les caractéristiques de mon produit</p>
+    <form class="modif_prod" action="{% url 'manager:update_product' product_id=product.id %}" method="POST">
+        {% csrf_token %} <!-- Vérification sécurité-->
 
-    <br>
-    <label for="price">Prix à l'unité :</label>
-    <input type="number" id="price" name="price" value="{{ product.price }}">
+        <br><br><br>
+        <label for="name"></label>
+        <h1><input type="text" id="name" name="name" value="{{ product.name }}"></h1><br><br><br>
+        <div>
+            <h3>Description :</h3>
+             <p><br><br><br></p>
+            <h3>Informations générales :</h3><br>
+            <label for="quantity">Quantité :</label>
+            <input type="number" id="quantity" name="quantity" value="{{ product.quantity }}"><br><br>
+            <label for="price">Prix à l'unité :</label>
+            <input type="number" id="price" name="price" value="{{ product.price }}">€
+         </div>
+        <input class="valide" type="submit" value="Valider">
+    </form>
+{% endblock %}
 
-    <br>
-    <input type="submit" value="Modifier">
-</form>

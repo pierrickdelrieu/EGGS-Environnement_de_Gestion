@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content_manager %}
-
+    <p class="titre">- Ajouter un produit</p>
      <form action="{% url 'manager:add_product' %}" method="POST">
          {% csrf_token %} <!-- Vérification sécurité-->
 

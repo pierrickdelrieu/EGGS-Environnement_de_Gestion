@@ -1,0 +1,165 @@
+.info{
+    position: absolute;
+    width: 30%;
+    height: 167px;
+    left: 23%;
+    top: 355px;
+    list-style: none;
+    padding: 0 0 0 10px;
+
+    background-color: #FCF0E9;
+}
+
+.info2{
+    position: absolute;
+    width: 30%;
+    height: 167px;
+    left: 53%;
+    top: 355px;
+    list-style: none;
+    padding: 0 0 0 10px;
+
+    background-color: #FCF0E9;
+}
+
+.name_c{
+    position: absolute;
+    width: 423px;
+    height: 48px;
+    left: 37%;
+    top: 40%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 33px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.profil_c{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    left: 48%;
+    top: 25%;
+    border-radius: 35px;
+}
+
+.user1 p{
+    z-index: 2;
+    width: 50%;
+    height: 10%;
+    left: 35%;
+    top: 11%;
+
+    background: #FFFCFC;
+    border-radius: 7px;
+
+    position: absolute;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.user2 p{
+    z-index: 2;
+    width: 50%;
+    height: 10%;
+    left: 35%;
+    top: 33%;
+
+    background: #FFFCFC;
+    border-radius: 7px;
+
+    position: absolute;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.user3 p{
+    z-index: 2;
+    width: 50%;
+    height: 10%;
+    left: 35%;
+    top: 55%;
+
+    background: #FFFCFC;
+    border-radius: 7px;
+
+    position: absolute;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.user4 p{
+    z-index: 2;
+    width: 50%;
+    height: 10%;
+    left: 35%;
+    top: 77%;
+
+    background: #FFFCFC;
+    border-radius: 7px;
+
+    position: absolute;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.bouton{
+    position: absolute;
+    width: 20%;
+    height: 5%;
+    left: 42%;
+    top: 75%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.bouton p{
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.bouton:hover{
+    background-color: #007AFF;
+}
+

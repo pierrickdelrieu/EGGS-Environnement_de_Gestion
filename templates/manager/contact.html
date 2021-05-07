@@ -10,7 +10,10 @@
 {% endblock %}
 
 {% block content_manager %}
+    <p class="titre">- Nous contacter</p>
+
     <form id="form" action="{% url 'manager:contact' %}" method="POST">
+        <h5>Voulez vous nous faire part de quelque chose ?</h5>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit"><p>Envoyer</p></button>

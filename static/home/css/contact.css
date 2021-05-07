@@ -20,17 +20,17 @@ button[type=submit]{
     height: 40px;
     left: 88%;
     top: 90%;
-    background: #007AFF;
+    background-color: #5e81ff;
     border-radius: 14px;
+
     border: none;
+    color: white;
+    cursor: pointer;
 }
 
-button[type=submit] p{
-    color: white;
-}
 
 button[type=submit]:hover{
-    background-color: darkblue;
+    background-color: #007AFF;
 }
 
 #objet{
@@ -57,4 +57,15 @@ button[type=submit]:hover{
     padding: 5px;
     font-size: 15px;
     color: rgba(60, 60, 67, 0.6);
+}
+
+h5{
+    position: absolute;
+    left: 10%;
+    top: 10%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
 }

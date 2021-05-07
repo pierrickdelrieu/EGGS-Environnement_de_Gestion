@@ -1,4 +1,4 @@
-{% extends 'manager/dashboard.html' %}
+{% extends 'manager/base_manager.html' %}
 {% load static %}
 
 {% block title_manager %}
@@ -10,20 +10,24 @@
 {% endblock %}
 
 {% block content_manager %}
-    <div class="rectPro"></div>
+    <p class="titre">- Mes bases de données</p>
     <div class="rectTitrePro">
     <h2 id="textPro">Propriétaire</h2></div>
-    {% if user.owner.count == 0 %}
-        <p id="p_Pro">Pas de base de données</p>
-    {% else %}
-        {% for database in user.owner.all %}
-            {% if database.name != user.current_database.name %}
-                <nav id="a_Pro">
-                    <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
-                </nav>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+    <div class="rectPro">
+        {% if user.owner.count == 0 %}
+            <p id="p_Pro">Pas de base de données</p>
+        {% else %}
+            <ul class="a_Pro">
+                {% for database in user.owner.all %}
+                    {% if database.name != user.current_database.name %}
+                        <li>
+                            <a href="{% url 'manager:switch_current_db' database_name=database.name %}"><p>{{ database.name }}</p></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+             </ul>
+        {% endif %}
+    </div>
 
     <div class="rectEdit"></div>
     <div class="rectTitreEdit">

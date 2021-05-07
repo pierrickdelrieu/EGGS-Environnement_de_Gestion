@@ -114,11 +114,35 @@
     color: #000000;
 }
 
-#a_Pro a{
+.a_Pro {
     position: absolute;
-    left: 12%;
-    top: 30%;
+    left: 10%;
+    top: 5%;
+}
+
+.a_Pro p{
+    position: absolute;
+    top: 0;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
     color: black;
+    border-bottom: 1px solid #BABABA;
+}
+
+.a_Pro a{
+    position: absolute;
+    left: 10%;
+    width: 300px;
+    background-color: white;
+
+}
+
+.a_Pro li{
+    left: 10%;
+    width: 300px;
+    list-style-type: circle;
+    padding: 40px 0 0 5px;
+
 }
 
 #p_Edit{
@@ -134,3 +158,4 @@
     top: 30%;
     color: black;
 }
+

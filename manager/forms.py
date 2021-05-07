@@ -30,7 +30,7 @@ class AddDbForm(forms.Form):
     def clean_name(self):
         user = User.objects.get(username=self.user.username)
         name = self.cleaned_data.get("name") + ' (' + user.first_name[0].upper() + \
-               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + '.' + user.id + ')'
+               user.last_name[0].upper() + user.last_name[len(user.last_name) - 1].upper() + '.' + str(user.id) + ')'
         if name and DataBase.objects.filter(name=name).exists():
             raise ValidationError(
                 _("Le nom de la base de donnéee n'est pas disponible"),
@@ -45,7 +45,7 @@ class AddProductForm(forms.Form):
     quantity = forms.IntegerField(label="", required=True, widget=forms.TextInput(
         attrs={'placeholder': "Quantité", 'id': "q_prod"}))
     price = forms.IntegerField(label="", required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Prix", 'id': "prix_prod"}))
+        attrs={'placeholder': "Prix à l'unité", 'id': "prix_prod"}))
     user = None
 
     def __init__(self, *args, **kwargs):
@@ -83,9 +83,12 @@ class AddProductForm(forms.Form):
 
 
 class UpdatePasswordForm(forms.Form):
-    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput)
-    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput)
+    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput(
+        attrs={'class': "user2"}))
+    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput(
+        attrs={'class': "user3"}))
+    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput(
+        attrs={'class': "user_4"}))
     user = None
 
     def __init__(self, *args, **kwargs):

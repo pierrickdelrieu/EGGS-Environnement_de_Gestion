@@ -46,14 +46,14 @@ body {
     position: absolute;
     max-width: 70px;
     max-height: 70px;
-    top: 30%;
-    left: 3%;
+    top: 5%;
+    left: 1%;
 }
 
 .eggs {
     position: absolute;
-    top: 0vh;
-    left: 1vw;
+    top: 10%;
+    left: 5%;
     text-align: center;
     color: whitesmoke;
     text-transform: uppercase;
