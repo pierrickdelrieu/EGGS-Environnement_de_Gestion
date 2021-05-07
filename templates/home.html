@@ -1,100 +1,95 @@
-{% extends 'header.html' %}
-{% load static %}
-
-{% block title %}
-    <title>Accueil</title>
-{% endblock %}
-
-{% block stylesheet %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    {% load static %}
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
-{% endblock %}
-
-{% block connexions %}
-    {% if user.is_authenticated %}
-        <ul class="links">
-            <li><a href="{% url 'home:login' %}" class="survol">Mon espace</a><br></li>
-            <li><a href="{% url 'home:logout' %}" class="survol">Deconnexion</a><br></li>
-        </ul>
-    {% else %}
-        <ul class="links">
-            <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a><br></li>
-            <li><a href="{% url 'home:login' %}" class="survol">Connexion</a></li>
-        </ul>
-    {% endif %}
-{% endblock %}
-
-{% block content %}
     <title>Home</title>
-    <header>
-         <img id = "eggs-logo" src = "{% static 'home/img/logo.png' %}" alt = "Le logo de EGGS">
-         <p id="header-title">E.G.G.S</p>
+</head>
+    <body>
+        <main>
 
-         <ul class = "eggs-links">
-             <li><a href="{% url 'home:login' %}" class="survol">Connexion</a><br></li>
-             <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
-         </ul>
-    </header>
+            <header>
 
-    <div id="container1">
-        <div class="wrapper-container1">
-            <div id="wrapper-presentation">
-                <div class="eggs-presentation">
-                    <h1 id="eggs-title">E.G.G.S <span><img src="{% static 'home/img/eggs-twoeggs.png' %}"></span></h1>
-                    <div class="eggs-presentation-wrapper">
-                        <p id="eggs-subtitle">Votre environnement de gestion simplifié, un outil pour vous faciliter la vie</p>
-                        <p id="eggs-desc">E.G.G.S est un logiciel de gestion gratuit, fait pour vous, par vous. Créez, puis ajoutez des centaines de produits dans vos bases de données. </p>
+                <img id = "eggs-logo" src = "{% static 'home/img/logo.png' %}" alt = "Le logo de EGGS">
+                <p id="header-title">E.G.G.S</p>
+
+                <ul class = "eggs-links">
+                    <li><a href="{% url 'home:login' %}" class="survol">Connexion</a><br></li>
+                    <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
+                </ul>
+            </header>
+
+            <div id="container1">
+                <div class="wrapper-container1">
+                    <div id="wrapper-presentation">
+                        <div class="eggs-presentation">
+                            <h1 id="eggs-title">E.G.G.S <span><img src="{% static 'home/img/eggs-twoeggs.png' %}"></span></h1>
+                            <div class="eggs-presentation-wrapper">
+                                <p id="eggs-subtitle">Votre environnement de gestion simplifié, un outil pour vous faciliter la vie</p>
+                                <p id="eggs-desc">E.G.G.S est un logiciel de gestion gratuit, fait pour vous, par vous. Créez, puis ajoutez des centaines de produits dans vos bases de données. </p>
+                            </div>
+                        </div>
+
+                        <div class="eggs-buttons">
+                            <a href="{% url 'home:signin' %}"><button>Créer un compte</button></a>
+                            <a href="{% url 'home:login' %}"><button>Se connecter</button></a>
+                        </div>
+
                     </div>
+
+                    <div id="youtube-video"></div>
                 </div>
 
-                <div class="eggs-buttons">
-                    <a href="{% url 'home:signin' %}"><button>Créer un compte</button></a>
-                    <a href="{% url 'home:login' %}"><button>Se connecter</button></a>
-                </div>
-
+                <a class="arrow" href="#container2"><img src = "{% static 'home/img/home/arrow-down.png' %}" alt="arrow down image"></a>
             </div>
-            <div id="youtube-video"></div>
-        </div>
 
-        <a class="arrow" href="#container2"><img src = "{% static 'home/img/arrow-down.png' %}" alt="arrow down image"></a>
-    </div>
             <div id="container2">
                 <div id ="wrapper-container-2">
                     <div class="text-c2">
-                        <img id="image-database" src="{% static 'home/img/database-storage.svg' %}" alt="database image">
+                        <img id="image-database" src="{% static 'home/img/home/database-storage.svg' %}" alt="database image">
                         <p>Créez vos bases de données</p>
                     </div>
                     <div class="text-c2">
-                        <img id="image-sculptor" src="{% static 'home/img/eggs-sculptor.svg' %}" alt="un mec qui charbonne dur">
+                        <img id="image-sculptor" src="{% static 'home/img/home/eggs-sculptor.svg' %}" alt="un mec qui charbonne dur">
                         <p>Créez les objets que vous voulez ajouter</p>
                     </div>
                     <div class="text-c2">
-                        <img id="image-approved" src="{% static 'home/img/approved.svg' %}" alt="j'approuve ce choix">
+                        <img id="image-approved" src="{% static 'home/img/home/approved.svg' %}" alt="j'approuve ce choix">
                         <p>Ne perdez plus aucune trace de vos objets</p>
                     </div>
                 </div>
 
-                 <a class="arrow" href="#container3"><img src = "{% static 'home/img/arrow-down.png' %}"></a>
+                 <a class="arrow" href="#container3"><img src = "{% static 'home/img/home/arrow-down.png' %}"></a>
             </div>
 
             <div id="container3">
                 <div id="wrapper-container-3">
-                    <img id="image-group-chat" src="{% static 'home/img/group.svg' %}">
+                    <img id="image-group-chat" src="{% static 'home/img/home/group.svg' %}">
                     <div id="table-c3">
                         <div class="text-c3">
-                            <img id="image-magic-wand" src="{% static 'home/img/magic-wand.svg' %}">
+                            <img id="image-magic-wand" src="{% static 'home/img/home/magic-wand.svg' %}">
                             <p>Créez votre environnement EGGS</p>
                         </div>
                         <div class="text-c3">
-                            <img id="image-pencil" src="{% static 'home/img/pencil.svg' %}">
+                            <img id="image-pencil" src="{% static 'home/img/home/pencil.svg' %}">
                             <p>Partagez-le à vos collègues ou amis</p>
                         </div>
                         <div class="text-c3">
-                            <img id="image-binoculars" src="{% static 'home/img/binoculars.svg' %}">
+                            <img id="image-binoculars" src="{% static 'home/img/home/binoculars.svg' %}">
                             <p>Ou accèdez à l’environnement EGGS <br> d’autres utilisateurs</p>
                         </div>
                     </div>
                 </div>
-                <a class="arrow" href="#container1"><img src="{% static 'home/img/arrow-up.png' %}"></a>
+                <a class="arrow" href="#container1"><img src="{% static 'home/img/home/arrow-up.png' %}"></a>
             </div>
 
-{% endblock %}
+            <footer>
+
+            </footer>
+        </main>
+    </body>
+</html>
