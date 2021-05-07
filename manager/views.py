@@ -193,11 +193,13 @@ def update_compte(request):
     user = request.user
 
     if request.method == "POST":
-        user_firstname = request.POST.get('first_name')
-        user_lastname = request.POST.get('last_name')
-        user_email = request.POST.get('email')
+        user_firstname = request.POST.get('first_name').title()
+        user_lastname = request.POST.get('last_name').title()
+        user_email = request.POST.get('email').lower()
+
         user.set(first_name=user_firstname, last_name=user_lastname, email=user_email)
         user.save()
+
         return HttpResponseRedirect('/manager/compte/')
 
     return render(request, 'manager/update_compte.html', locals())
