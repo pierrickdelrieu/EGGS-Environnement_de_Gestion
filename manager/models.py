@@ -16,14 +16,20 @@ class DataBase(models.Model):
     def add_owner(self, user: 'Manager'):
         self.user_owner.add(user)
         self.save()
+        if user.current_database is None:
+            user.update_current_database(self)
 
     def add_editor(self, user: 'Manager'):
         self.user_editor.add(user)
         self.save()
+        if user.current_database is None:
+            user.update_current_database(self)
 
     def add_reader(self, user: 'Manager'):
         self.user_reader.add(user)
         self.save()
+        if user.current_database is None:
+            user.update_current_database(self)
 
 
 class Product(models.Model):
