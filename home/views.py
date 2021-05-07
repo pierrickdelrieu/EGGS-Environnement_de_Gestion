@@ -16,6 +16,10 @@ from django.contrib.auth import get_user_model
 User = get_user_model()  # new User definitions
 
 
+def about(request):
+    return render(request, 'home/about.html', locals())
+
+
 def connexion(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/manager/dashboard/')

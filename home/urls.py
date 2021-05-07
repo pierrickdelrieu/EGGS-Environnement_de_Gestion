@@ -9,6 +9,7 @@ urlpatterns = [
     path('signin/', views.inscription, name="signin"),
     path('login/', views.connexion, name="login"),
     path('logout/', views.deconnexion, name="logout"),
+    path('about/', views.about, name="about"),
 
 
     # Account activation link by email
