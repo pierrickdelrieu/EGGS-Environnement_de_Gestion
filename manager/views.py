@@ -123,7 +123,7 @@ def details_product(request, product_id):
 def display_products(request):
     user = request.user
     if user.current_database is not None:
-        products_list = user.current_database.products.all()
+        products_list = user.current_database.products.all().order_by('id')
     else:
         products_list = []
     paginator = Paginator(products_list, 9)
@@ -138,6 +138,7 @@ def display_products(request):
         products = paginator.page(paginator.num_pages)
     context = {
         'products': products,
+        'products_list': products_list,
         'user': user,
         'paginate': True
     }
@@ -324,9 +325,14 @@ def add_reader_db(request):
 
 
 @login_required
-def delete_product(request):
-    return render(request, 'manager/add_reader_db.html', locals())
+def delete_product(request, product_id):
+    user = request.user
 
+    if user.is_current_owner() or user.is_current_editor():
+        product = Product.objects.filter(id=product_id).get()
+        product.delete()
+
+    return HttpResponseRedirect('/manager/display_products/')
 
 @login_required
 def delete_database(request):

@@ -1,11 +1,9 @@
  Affichage des produits<br>
 
-{% if products|length_is:"0" %}
+{% if products_list.count == 0 %}
     <div>
-      Palsambleu ! Nous n'avons trouvé aucun résultat à cette requête. Même pas de quoi se ronger la chique !
-      Partez de nouveau à l'abordage !
+      Auncun produit
     </div>
-
 {% else %}
     {% for product in products %}
         {{ product.name }}

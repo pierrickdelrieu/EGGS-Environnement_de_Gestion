@@ -35,6 +35,19 @@ class Manager(AbstractUser):
                 self.current_database = database
                 self.save()
 
+    def switch_random_database(self):
+        if self.owner.count() > 0:
+            self.update_current_database(self.owner.first())
+        elif self.editor.count() > 0:
+            self.update_current_database(self.editor.first())
+        elif self.reader.count() > 0:
+            self.update_current_database(self.reader.first())
+        else:
+            self.current_database = None
+            self.save()
+
+
+
     def is_owner(self, database: DataBase) -> bool:
         if self in database.user_owner.all():
             return True
