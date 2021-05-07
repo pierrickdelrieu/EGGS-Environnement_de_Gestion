@@ -24,7 +24,11 @@ def connexion(request):
         form = LoginForm(request.POST)
 
         if form.is_valid():  # If there is no error (clean) in the form
-            if form.log(request):  # User login attempt
+            email = form.cleaned_data.get('email').lower()
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
+            if user:  # si user ≠ None
+                login(request, user)
                 return HttpResponseRedirect('/manager/dashboard/')
     else:
         form = LoginForm()
@@ -42,8 +46,10 @@ def inscription(request):
         if form.is_valid():  # If there is no error (clean) in the form
             user = form.save(commit=False)  # User registration but not in the database
             user.is_active = False  # Blocking user login
+
             user.save()  # User registration in the database
             user.set_username()  # Initializing username
+
 
             current_site = get_current_site(request)
             mail_subject = 'Active ton compte EGGS'
@@ -58,6 +64,8 @@ def inscription(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
+
+
 
             return HttpResponseRedirect('/home/activate_done/')
     else:
@@ -81,7 +89,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True  # Activate the possibility of connection
         user.save()  # User registration in the database
-        return HttpResponseRedirect('/home/activate_complete/')
+        login(request, user)
+        return HttpResponseRedirect('/manager/dashboard/')
     else:
         return HttpResponse("Lien d'activation invalide")
 

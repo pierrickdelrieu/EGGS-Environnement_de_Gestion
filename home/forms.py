@@ -25,15 +25,16 @@ class LoginForm(forms.Form):
                 )
         return email
 
-    # Connection: returns True if the connection was successful and False otherwise
-    def log(self, request) -> bool:
+    def clean_password(self):
         email = self.cleaned_data.get("email").lower()
         password = self.cleaned_data.get("password")
         user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
-        if user:  # si user ≠ None
-            login(request, user)
-            return True
-        return False
+        if not user:  # si user ≠ None
+            raise ValidationError(
+                _("Adresse email ou mot de passe invalide"),
+                code='invalid_auth',
+            )
+        return password
 
 
 class SigninForm(forms.Form):
