@@ -1,12 +1,26 @@
-Contact
+{% extends 'manager/dashboard.html' %}
+{% load static %}
 
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
-<form id="form" action="{% url 'manager:contact' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Envoyer</button>
-</form>
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+{% endblock %}
 
-{% if send %}
-    Message envoyé
-{% endif %}
+{% block content_manager %}
+    <p class="titre">- Nous contacter</p>
+
+    <form id="form" action="{% url 'manager:contact' %}" method="POST">
+        <h5>Voulez vous nous faire part de quelque chose ?</h5>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"><p>Envoyer</p></button>
+    </form>
+
+    {% if send %}
+        <p>Message envoyé</p>
+    {% endif %}
+{% endblock %}
+

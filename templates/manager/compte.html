@@ -1,13 +1,30 @@
-Compte<br><br>
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-Nom d'utilisateur : {{ user.username }}<br>
-Prénom : {{ user.first_name }}<br>
-Nom : {{ user.last_name }}<br>
-Email : {{ user.email }}<br>
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
-Date d'inscription : {{ user.date_joined }}<br><br>
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/compte.css' %}">
+{% endblock %}
 
-<a href="{% url 'manager:update_compte' %}">Modifier</a><br>
+{% block content_manager %}
+    <p class="titre">- Mon compte</p>
+    <div class="name_c">{{ user.get_full_name }}</div>
+    <img class="profil_c" src="{% static 'home/img/mon_compte.png' %}">
 
-<a href="{% url 'manager:update_password' %}">Modifier mon mot de passe</a>
+    <ul class="info">
+        <li class="user1"><br><h4>Nom d'utilisateur : <p>{{ user.username }}</p></h4></li>
+        <li class="user2"><br><h4>Date d'inscription : <p>{{ user.date_joined }}</p></h4></li>
+        <li class="user3"><br><h4>Prénom : <p>{{ user.first_name }}</p></h4></li>
+        <li class="user4"><br><h4>Nom : </h4><div><p>{{ user.last_name }}</p></div></li>
+    </ul>
+    <ul class="info2">
+        <li class="user1"><br><h4>Email : <p>{{ user.email }}</p></h4></li>
+        <li class="user2"><br><h4>Mot de passe : <p>************</p></h4></li>
+        <li class="user3"><br><a href="{% url 'manager:update_password' %}"><h4>Modifier mon mot de passe</h4></a></li>
+    </ul>
+    <a class="bouton" href="{% url 'manager:update_compte' %}"><p>Modifier</p></a>
 
+{% endblock %}

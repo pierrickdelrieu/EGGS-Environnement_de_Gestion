@@ -31,9 +31,8 @@ def connexion(request):
             email = form.cleaned_data.get('email').lower()
             password = form.cleaned_data.get('password')
             user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
-            if user:  # si user ≠ None
-                login(request, user)
-                return HttpResponseRedirect('/manager/dashboard/')
+            login(request, user)
+            return HttpResponseRedirect('/manager/dashboard/')
     else:
         form = LoginForm()
 

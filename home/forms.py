@@ -10,21 +10,21 @@ User = get_user_model()  # new User definitions
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput)
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
+    email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput(
+        attrs = {'placeholder': "Entrer votre email", 'id': "email"}))
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
 
     # Error if the account is not active
     def clean_email(self):
         email = self.cleaned_data["email"].lower()
-
-        if email:
-            if User.objects.filter(email=email).exists():
-                user = User.objects.filter(email=email).get()
-                if not user.is_active:
-                    raise ValidationError(
-                        _("Vous n'avez pas validé votre compte par email"),
-                        code='user_is_not_active',
-                    )
+        if email and User.objects.filter(email=email).exists():
+            user = Manager.objects.filter(email=email).get()
+            if not user.is_active:
+                raise ValidationError(
+                    _("Vous n'avez pas validé votre compte par email"),
+                    code='user_is_not_active',
+                )
         return email
 
     def clean_password(self):
@@ -42,16 +42,16 @@ class LoginForm(forms.Form):
 
 
 class SigninForm(forms.Form):
-    first_name = forms.CharField(label="Prénom", max_length=30, widget=forms.TextInput(
-        attrs={'placeholder': "Entrer votre prénom"}))
     last_name = forms.CharField(label="Nom", max_length=30, widget=forms.TextInput(
-        attrs={'placeholder': "Entrer votre nom de famille"}))
+        attrs={'placeholder': "Entrer votre nom", 'id': "nom"}))
+    first_name = forms.CharField(label="Prénom", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre prénom", 'id': "prenom"}))
     email = forms.EmailField(label="Email", widget=forms.TextInput(
-        attrs={'placeholder': "Entrer votre email"}))
+        attrs={'placeholder': "Entrer votre email", 'id': "email"}))
     password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
-        attrs={'placeholder': "Entrer votre mot de passe"}))  # boite de caractères masqués
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
     password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput(
-        attrs={'placeholder': "Confirmer votre mot de passe"}))
+        attrs={'placeholder': "Confirmer votre mot de passe", 'id': "confirmation"}))
 
     # Error if the password confirmation is not valid
     def clean_password2(self):
@@ -131,4 +131,5 @@ class PasswordResetConfirmationForm(SetPasswordForm):
 # Redefinition
 # cf. : https://django-wiki.readthedocs.io/en/0.2.2/_modules/django/contrib/auth/forms.html
 class PasswordResetFormEmail(PasswordResetForm):
-    email = forms.EmailField(label="Email", max_length=254)
+    email = forms.EmailField(label="Email", max_length=254, widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))

@@ -1,32 +1,45 @@
- Affichage des produits<br>
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-{% if products_list.count == 0 %}
-    <div>
-      Auncun produit
-    </div>
-{% else %}
-    {% for product in products %}
-        {{ product.name }}
-        <div>
-            <a href="{% url 'manager:details_product' product_id=product.id %}">Pour plus de détails : {{ product.name }}</a>
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
+
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/display_products.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    <p class="titre">- Liste des produits</p>
+    {% if products_list.count == 0 %}
+        <div class="null">
+            Aucun produits n'a été ajouté dans cette base de données
         </div>
-        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
-    {% endfor %}
+    {% else %}
+        <ul class="affichage">
+            {% for product in products %}
+                <li>
+                    <a href="{% url 'manager:details_product' product_id=product.id %}">{{ product.name }}</a>
+                </li>
+            {% if forloop.counter|divisibleby:3 %}
+                <div class="clearfix"></div>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
 
-{% endif %}
+    {% if paginate %}
+        <div class="clearfix"></div>
+        <nav aria-label="">
+            <ul class="pager">
+                {% if products.has_previous %}
+                    <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+                {% endif %}
+                {% if products.has_next %}
+                    <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 
-
-
-{% if paginate %}
-  <div class="clearfix"></div>
-  <nav aria-label="">
-    <ul class="pager">
-      {% if products.has_previous %}
-          <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
-      {% endif %}
-      {% if products.has_next %}
-          <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
-      {% endif %}
-    </ul>
-  </nav>
-{% endif %}
+{% endblock %}

@@ -1,38 +1,58 @@
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-Mes bases de données<br>
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
-Base de donnée en cours : {{ user.current_database.name }}<br>
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/my_databases.css' %}">
+{% endblock %}
 
-
-<h2>Propriétaire</h2>
-{% if user.owner.count == 0 %}
-    Pas de base de donnée
-{% else %}
-    {% for database in user.owner.all %}
-        {% if database.name != user.current_database.name %}
-            <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+{% block content_manager %}
+    <p class="titre">- Mes bases de données</p>
+    <div class="rectTitrePro">
+    <h2 id="textPro">Propriétaire</h2></div>
+    <div class="rectPro">
+        {% if user.owner.count == 0 %}
+            <p id="p_Pro">Pas de base de données</p>
+        {% else %}
+            <ul class="a_Pro">
+                {% for database in user.owner.all %}
+                    {% if database.name != user.current_database.name %}
+                        <li>
+                            <a href="{% url 'manager:switch_current_db' database_name=database.name %}"><p>{{ database.name }}</p></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+             </ul>
         {% endif %}
-    {% endfor %}
-{% endif %}
+    </div>
 
-<h2>Editeur</h2>
-{% if user.editor.count == 0 %}
-    Pas de base de donnée
-{% else %}
-    {% for database in user.editor.all %}
-        {% if database.name != user.current_database.name %}
-            <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+    <div class="rectEdit"></div>
+    <div class="rectTitreEdit">
+    <h2 id="textEdit">Editeur</h2></div>
+    {% if user.editor.count == 0 %}
+        <p id="p_Edit">Pas de base de données</p>
+    {% else %}
+        {% for database in user.editor.all %}
+            {% if database.name != user.current_database.name %}
+                <a id="a_Edit" href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
-<h2>Lecteur</h2>
-{% if user.reader.count == 0 %}
-    Pas de base de donnée
-{% else %}
-    {% for database in user.reader.all %}
-        {% if database.name != user.current_database.name %}
-            <a href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+    <div class="rectReader"></div>
+    <div class="rectTitreReader">
+    <h2 id="textReader">Lecteur</h2></div>
+    {% if user.editor.count == 0 %}
+        <p id="p_Reader">Pas de base de données</p>
+    {% else %}
+        {% for database in user.reader.all %}
+            {% if database.name != user.current_database.name %}
+                <a id="a_Reader" href="{% url 'manager:switch_current_db' database_name=database.name %}">{{ database.name }}</a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

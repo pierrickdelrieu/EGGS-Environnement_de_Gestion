@@ -1,0 +1,168 @@
+h2{
+    z-index: 4;
+
+    position: fixed;
+    height: 40px;
+    left: 53%;
+    right: 38%;
+    top: 140px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 41px;
+
+    text-align: center;
+    letter-spacing: 0.374px;
+
+    color: #000000;
+}
+
+form{
+    background: #F9F9FA;
+    border: 0 #F9F9FA;
+    color: #F9F9FA;
+}
+
+#nom{
+    position: fixed;
+    height: 55px;
+    width: 40%;
+    left: 40%;
+    top: 250px;
+
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+#prenom{
+    position: fixed;
+    height: 55px;
+    width: 40%;
+    left: 40%;
+    top: 310px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+#email{
+    position: fixed;
+    height: 55px;
+    width: 40%;
+    left: 40%;
+    top: 370px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+#mdp{
+    position: fixed;
+    height: 55px;
+    width: 40%;
+    left: 40%;
+    top: 430px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+#confirmation{
+    position: fixed;
+    height: 55px;
+    width: 40%;
+    left: 40%;
+    top: 490px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+input[type=submit] {
+    position: fixed;
+    height: 51px;;
+    width: 30%;
+    left: 45%;
+    bottom: 15%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+
+    color: white;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #007AFF;
+}
+
+#rectVert{
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    background: rgba(200, 253, 218, 0.28);
+    border-radius: 26px;
+}
+
+#titreVert{
+    position: absolute;
+    left: 25%;
+    top: 140px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 22px;
+    /* or 61% */
+
+    letter-spacing: -0.408px;
+
+    color: #000000;
+}
+
+#login{
+    position: fixed;
+    left: 50%;
+    bottom: 9%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+.lien{
+    color: #007AFF;
+}
+
+.lien:hover{
+    color: darkblue;
+}
+
+.error{
+    z-index: 4;
+
+    position: absolute;
+    left: 82%;
+    top: 10%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 38px;
+
+    color: red;
+}

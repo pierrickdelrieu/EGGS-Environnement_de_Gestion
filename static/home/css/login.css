@@ -1,0 +1,133 @@
+h2{
+    z-index: 4;
+
+    position: absolute;
+    left: 43%;
+    top: 15%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 41px;
+
+    text-align: center;
+    letter-spacing: 0.374px;
+
+    color: #000000;
+}
+
+form{
+    background: #F9F9FA;
+    border: 0px #F9F9FA;
+    color: #F9F9FA;
+}
+
+#email{
+    position: absolute;
+    height: 7.43%;
+    width: 40%;
+    left: 30%;
+    top: 30%;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+#mdp {
+    position: absolute;
+    height: 7.43%;
+    width: 40%;
+    left: 30%;
+    top: 38%;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+input[type=submit] {
+    position: absolute;
+    height: 51px;;
+    width: 30%;
+    left: 35%;
+    bottom: 40%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+
+    color: white;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #007AFF;
+}
+
+#signin{
+    position: absolute;
+    left: 38%;
+    bottom: 35%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+.lien{
+    color: #007AFF;
+}
+
+.lien:hover{
+    color: darkblue;
+}
+
+.mdpo{
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: #007AFF;
+
+    position: absolute;
+    left: 59%;
+    top: 40%;
+}
+
+.mdpo:hover{
+    color: darkblue;
+}
+
+.error {
+    z-index: 4;
+
+    position: absolute;
+    left: 50px;
+    top: 500px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+.error {
+    color: red;
+}
+
+#cadenas{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 80%;
+    top: 44%;
+}

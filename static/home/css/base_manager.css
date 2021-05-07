@@ -1,0 +1,285 @@
+.titre{
+    z-index: 2;
+    position: absolute;
+    top: 2%;
+    left: 13%;
+    text-align: center;
+    color: whitesmoke;
+    letter-spacing: 1px;
+    font-size: 25px;
+    font-family: "SF Pro Rounded", sans-serif;
+}
+
+.name{
+    z-index: 2;
+
+    position: fixed;
+    width: 10%;
+    height: 18px;
+    right: 8%;
+    top: 5%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+
+    text-align: right;
+
+    color: black;
+}
+
+.profil img{
+    z-index: 2;
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    right: 2.35%;
+    top: 3.7%;
+    border-radius: 35px;
+}
+
+.profil{
+    z-index: 3;
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    right: 2%;
+    top: 3%;
+    border-radius: 30px;
+    border: 1px solid black;
+    background-color: transparent;
+}
+
+.profil:hover{
+    background-color: #EAAFFF;
+}
+
+.mon_espace{
+    position: absolute;
+    left: 20%;
+    top: 30%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: black;
+}
+
+.ajout_bdd{
+    z-index: 6;
+    position: fixed;
+    top: 5%;
+    left: 30%;
+}
+
+.ajout_bdd li {
+    list-style: none;
+}
+
+.x{
+    padding: 1% 0 0 20%;
+    width: 100%;
+    height: 100%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    font-family: "SF Pro Rounded", sans-serif;
+    color: black;
+}
+
+
+.lien{
+    z-index: 2;
+
+    position: fixed;
+    right: 8%;
+    top: 9%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+
+    text-align: right;
+
+    color: #252733;
+}
+
+.lien a{
+    color: black;
+    text-decoration: none;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-weight: bold;
+}
+
+.lien li {
+    list-style: none;
+}
+
+
+.dashboard{
+    position: fixed;
+    width: 7%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    background: #FFF2F6;
+}
+
+.nav-dashboard{
+    position: fixed;
+    top: 17%;
+    width: 7%;
+}
+
+.nav-item{
+    margin-top: 20px;
+    padding: 10% 10% 10% 20%;
+    width: 100%;
+    height: 100%;
+    top: 20%;
+}
+
+img{
+    width: 50px;
+    height: 50px;
+}
+
+.nav-item:hover {
+    background: rgba(206, 121, 236, 0.54);
+    cursor: pointer;
+}
+
+#m_bdd{
+    z-index: 2;
+
+    position: fixed;
+    width: 14%;
+    height: 3.5%;
+    left: 1%;
+    top: 8%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #252733;
+}
+
+.changer[type=submit]{
+    z-index: 2;
+
+    position: fixed;
+    width: 14%;
+    height: 3%;
+    left: 1%;
+    top: 12%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.changer:hover{
+    background-color: #007AFF;
+}
+
+.ajout_bdd{
+    z-index: 2;
+
+    position: fixed;
+    width: 14%;
+    height: 3%;
+    left: 16%;
+    top: 8%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.ajout_bdd:hover{
+    background-color: #007AFF;
+}
+
+.ajout_bdd p{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 12px;
+    color: white;
+}
+
+.ajout_prod{
+    z-index: 2;
+
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    left: 16%;
+    top: 12%;
+
+    background-color: #5e81ff;
+    border-radius: 30px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.ajout_prod:hover{
+    background-color: #007AFF;
+}
+
+.ajout_prod p{
+    position: absolute;
+    left: 30%;
+    top: 11%;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 12px;
+    color: white;
+}
+
+.x_prod{
+    z-index: 2;
+
+    position: fixed;
+    width: 12%;
+    height: 3%;
+    left: 18%;
+    top: 12%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.x_prod:hover{
+    background-color: #007AFF;
+}
+
+.x_prod p{
+    position: absolute;
+    left: 15%;
+    top: 18%;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 12px;
+    color: white;
+}

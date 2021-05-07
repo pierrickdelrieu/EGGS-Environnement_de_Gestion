@@ -1,0 +1,43 @@
+.valide{
+    position: absolute;
+    width: 40%;
+    height: 8%;
+    left: 30%;
+    top: 85%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.valide:hover{
+    background-color: #007AFF;
+}
+
+.modif_prod{
+    position: absolute;
+    top: 25%;
+    left: 33%;
+
+    width: 40%;
+    height: 60%;
+
+    border: 1px solid black;
+    border-radius: 4px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+
+.modif_prod div{
+    padding: 0 5% 5% 5%;
+}

@@ -57,6 +57,7 @@ def add_database(request):
         if form.is_valid():
             name = form.cleaned_data.get("name")
             type = form.cleaned_data.get("type")
+            user = request.user
 
             db = DataBase()
             db.set(name=name, type=type)
@@ -288,6 +289,7 @@ def add_editor_db(request):
                     user.current_database.user_reader.remove(new_user)
 
                 user.current_database.add_editor(new_user)
+                new_user.save()
 
                 return HttpResponseRedirect('/manager/settings_database/')
         else:
@@ -380,16 +382,5 @@ def delete_editor_db(request, username):
 
     user = request.user
     user.current_database.user_editor.remove(editor)
-
-    return HttpResponseRedirect('/manager/settings_database/')
-
-
-@login_required
-def delete_reader_db(request, username):
-    editor = User.objects.filter(username=username).get()
-    editor.switch_random_database()
-
-    user = request.user
-    user.current_database.user_reader.remove(editor)
 
     return HttpResponseRedirect('/manager/settings_database/')

@@ -1,13 +1,29 @@
-Détail du produit
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-<h1>{{ product.name }}</h1>
-<div>
-    Quantité : {{ product.quantity }}<br>
-    Prix à l'unité : {{ product.price }}
-</div>
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
-{% if user.is_current_owner or user.is_current_editor %}
-    <a href="{% url 'manager:update_product' product_id=product.id %}">Modifier le produit</a>
-    <a href="{% url 'manager:delete_product' product_id=product.id %}">Supprimer le produit</a>
-{% endif %}
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/details_product.css' %}">
+{% endblock %}
 
+{% block content_manager %}
+    <p class="titre">- Fiche produit</p>
+    <div class="aff_prod">
+        <br><br><br>
+        <h1>{{ product.name }}</h1><br><br>
+        <div>
+            <h3>Description :</h3>
+            <p><br><br><br></p>
+            <h3>Informations générales :</h3><br>
+            Quantité : {{ product.quantity }}<br><br>
+            Prix à l'unité : {{ product.price }} €
+        </div>
+        {% if user.is_current_owner or user.is_current_editor %}
+            <a class="modif" href="{% url 'manager:update_product' product_id=product.id %}"><p>Modifier le produit</p></a>
+            <a href="{% url 'manager:delete_product' product_id=product.id %}">Supprimer le produit</a>
+        {% endif %}
+    </div>
+{% endblock %}

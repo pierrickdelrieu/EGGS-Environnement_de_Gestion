@@ -1,18 +1,28 @@
+{% extends 'manager/dashboard.html' %}
+{% load static %}
 
-Ajout de produit
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/add_products.css' %}">
+{% endblock %}
 
- <form action="{% url 'manager:add_product' %}" method="POST">
-     {% csrf_token %} <!-- Vérification sécurité-->
+{% block content_manager %}
+    <p class="titre">- Ajouter un produit</p>
+     <form action="{% url 'manager:add_product' %}" method="POST">
+         {% csrf_token %} <!-- Vérification sécurité-->
 
-    {% for field in form %}
-        {{ field.errors }}
-    {% endfor %}
+        {% for field in form %}
+            {{ field.errors }}
+        {% endfor %}
 
-     {% for field in form %}
-         <div>
-             {{ field.label_tag }}{{ field }}
-         </div>
-     {% endfor %}
-     <input type="submit" value="Ajouter">
- </form>
+         {% for field in form %}
+             <div>
+                 {{ field.label_tag }}{{ field }}
+             </div>
+         {% endfor %}
+         <input type="submit" value="Ajouter">
+     </form>
+{% endblock %}

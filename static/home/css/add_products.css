@@ -1,0 +1,62 @@
+form{
+    position: absolute;
+    width: 825px;
+    height: 343.5px;
+    left: 227px;
+    top: 176px;
+}
+
+input[type=submit]{
+    position: absolute;
+    width: 172px;
+    height: 40px;
+    left: 88%;
+    top: 90%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+
+    color: white;
+    cursor: pointer;
+}
+
+input[type=submit]:hover{
+    background-color: #007AFF;
+}
+
+#name_prod{
+    position: absolute;
+    width: 825px;
+    height: 55px;
+    left: 10%;
+    top: 20%;
+    border: none;
+    background: #FFFCFC;
+}
+
+#q_prod{
+    position: absolute;
+    width: 825px;
+    height: 55px;
+    left: 10%;
+    top: 40%;
+    border: none;
+    background: #FFFCFC;
+}
+
+#prix_prod{
+    position: absolute;
+    width: 825px;
+    height: 55px;
+    left: 10%;
+    top: 60%;
+    border: none;
+    background: #FFFCFC;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}

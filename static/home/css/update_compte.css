@@ -1,0 +1,32 @@
+.valider{
+    position: absolute;
+    width: 20%;
+    height: 5%;
+    left: 42%;
+    top: 75%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.valider:hover{
+    background-color: #007AFF;
+}
+
+.user_4 {
+    z-index: 2;
+    position: absolute;
+    left: 35%;
+    top: 77%;
+}
+
+form{
+    padding: 5px 5px 5px 0;
+}

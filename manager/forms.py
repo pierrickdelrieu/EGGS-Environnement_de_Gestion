@@ -9,17 +9,17 @@ User = get_user_model()  # new User definitions
 
 
 class ContactForm(forms.Form):
-    subject = forms.CharField(label="Object", max_length=100, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Objet"}))
-    message = forms.CharField(label="Message", max_length=1200, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Message"}))
+    subject = forms.CharField(label="", max_length=100, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Votre objet", 'id': "objet"}))
+    message = forms.CharField(label="", max_length=1200, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Votre message", 'id': "message"}))
 
 
 class AddDbForm(forms.Form):
-    name = forms.CharField(label="Nom", max_length=50, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Name"}))
-    type = forms.CharField(label="Catégorie", max_length=50, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Type"}))
+    name = forms.CharField(label="", max_length=50, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Nom de la base de données", 'id': "name_db"}))
+    type = forms.CharField(label="", max_length=50, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Type de la base de données", 'id': "categorie_db"}))
     user = None
 
     def __init__(self, *args, **kwargs):
@@ -40,12 +40,12 @@ class AddDbForm(forms.Form):
 
 
 class AddProductForm(forms.Form):
-    name = forms.CharField(label="Nom", max_length=50, required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Nom"}))
-    quantity = forms.IntegerField(label="Quantité", required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Quantité"}))
-    price = forms.IntegerField(label="Prix", required=True, widget=forms.TextInput(
-        attrs={'placeholder': "Prix"}))
+    name = forms.CharField(label="", max_length=50, required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Nom du produit", 'id': "name_prod"}))
+    quantity = forms.IntegerField(label="", required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Quantité", 'id': "q_prod"}))
+    price = forms.IntegerField(label="", required=True, widget=forms.TextInput(
+        attrs={'placeholder': "Prix à l'unité", 'id': "prix_prod"}))
     user = None
 
     def __init__(self, *args, **kwargs):
@@ -83,9 +83,12 @@ class AddProductForm(forms.Form):
 
 
 class UpdatePasswordForm(forms.Form):
-    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput)
-    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput)
+    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput(
+        attrs={'class': "user2"}))
+    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput(
+        attrs={'class': "user3"}))
+    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput(
+        attrs={'class': "user_4"}))
     user = None
 
     def __init__(self, *args, **kwargs):
