@@ -384,3 +384,14 @@ def delete_editor_db(request, username):
     user.current_database.user_editor.remove(editor)
 
     return HttpResponseRedirect('/manager/settings_database/')
+
+
+@login_required
+def delete_reader_db(request, username):
+    editor = User.objects.filter(username=username).get()
+    editor.switch_random_database()
+
+    user = request.user
+    user.current_database.user_reader.remove(editor)
+
+    return HttpResponseRedirect('/manager/settings_database/')
