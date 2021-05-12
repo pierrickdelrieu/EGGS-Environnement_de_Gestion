@@ -6,156 +6,120 @@
     background: rgba(206, 12, 250, 0.54);
 }
 
-.rectTitrePro{
-    position: absolute;
-    height: 42px;
-    width: 26%;
-    left: 10.75%;
-    top: 20%;
+.main_container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 7%;
+    top: 118px;
+}
 
-    background: #B8C7FC;
+.bouton_bdd a{
+    position: absolute;
+    width: 20%;
+    height: 6%;
+    right: 13%;
+    top: 6%;
+
+    background-color: #5e81ff;
     border-radius: 14px;
-}
+    border: none;
+    cursor: pointer;
 
-.rectPro{
-    position: absolute;
-    width: 26%;
-    height: 70%;
-    left: 10.75%;
-    top: 195px;
-
-    background: #FFFFFF;
-}
-
-#textPro{
-    position: absolute;
-    left: 30%;
-    top: 10%;
-
-    font-family: "SF Pro Rounded", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-
+    text-decoration: none;
+    padding: 13px 0 0 0;
     text-align: center;
-
-    color: #000000;
-}
-
-.rectTitreEdit{
-    position: absolute;
-    height: 42px;
-    width: 26%;
-    left: 40.5%;
-    top: 20%;
-
-    background: #EAAFFF;
-    border-radius: 14px;
-}
-
-.rectEdit{
-    position: absolute;
-    width: 26%;
-    height: 70%;
-    left: 40.5%;
-    top: 195px;
-
-    background: #FFFFFF;
-}
-
-#textEdit{
-    position: absolute;
-    left: 38%;
-    top: 10%;
-
+    font-size: 13px;
     font-family: "SF Pro Rounded", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-
-    text-align: center;
-
-    color: #000000;
+    color: white;
 }
 
-.rectTitreReader{
-    position: absolute;
-    width: 26%;
-    height: 42px;
-    left: 70.25%;
-    top: 20%;
-
-    background: #F8FFCF;
-    border-radius: 14px;
+.bouton_bdd a:hover{
+    background-color: #007AFF;
 }
 
-.rectReader{
+.proprietaire{
     position: absolute;
-    width: 26%;
-    height: 70%;
-    left: 70.25%;
-    top: 195px;
-
-    background: #FFFFFF;
+    height: 60%;
+    width: 25%;
+    left: 4%;
+    top: 15%;
+    background-color: #F9F9FA;
 }
 
-#textReader {
+.editeur{
     position: absolute;
-    left: 38%;
-    top: 10%;
+    height: 60%;
+    width: 25%;
+    left: 33%;
+    top: 15%;
+    background-color: #F9F9FA;
+}
 
+.lecteur{
+    position: absolute;
+    height: 60%;
+    width: 25%;
+    left: 62%;
+    top: 15%;
+    background-color: #F9F9FA;
+}
+
+.rectTitre{
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    background: rgba(206, 12, 250, 0.54);
+    border-radius: 15px;
+    padding: 7px 0 0 0;
+}
+
+.rectTitre p{
     font-family: "SF Pro Rounded", sans-serif;
-    font-style: normal;
-    font-weight: normal;
+    color: black;
     font-size: 25px;
-
     text-align: center;
-
-    color: #000000;
 }
 
-.a_Pro {
+.rectListe{
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 11%;
+    background-color: white;
+}
+
+#p_Pro, #p_Edit, #p_Reader{
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    color: black;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+}
+
+.a_Pro, .a_Edit, .a_Reader{
     position: absolute;
     left: 10%;
     top: 5%;
 }
 
-.a_Pro p{
+.a_Pro p, .a_Edit p, .a_Reader p{
     position: absolute;
-    top: 0;
     font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     color: black;
-    border-bottom: 1px solid #BABABA;
 }
 
-.a_Pro a{
-    position: absolute;
+.a_Pro p:hover, .a_Edit p:hover, .a_Reader p:hover{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.a_Pro li, .a_Edit li, .a_Reader li{
     left: 10%;
     width: 300px;
-    background-color: white;
-
-}
-
-.a_Pro li{
-    left: 10%;
-    width: 300px;
-    list-style-type: circle;
-    padding: 40px 0 0 5px;
-
-}
-
-#p_Edit{
-    position: absolute;
-    left: 42%;
-    top: 30%;
-    color: black;
-}
-
-#p_Reader{
-    position: absolute;
-    left: 72%;
-    top: 30%;
-    color: black;
+    list-style: none;
 }
 
