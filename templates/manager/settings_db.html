@@ -1,76 +1,114 @@
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-Paramètres de ma base de données<br><br>
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
 
-Nom : {{ user.current_database.name }}<br>
-Type  : {{ user.current_database.type }}<br><br>
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'home/css/settings_db.css' %}">
+{% endblock %}
 
-Mon rôle :
-{% if user.is_current_owner %}
-    Propriétaire
-{% endif %}
-{% if user.is_current_editor %}
-    Editeur
-{% endif %}
-{% if user.is_current_reader %}
-    Lecteur
-{% endif %}
-<br><br>
+{% block content_manager %}
+    <p class="titre">- Paramètres de ma base de données</p>
 
+    <div class="main_container">
+        Nom : {{ user.current_database.name }}<br>
+        Type  : {{ user.current_database.type }}<br><br>
 
-Les proprietaires<br>
-{% for owner in user.current_database.user_owner.all %}
-    {% if owner == user %}
-        {{ owner.get_full_name }} ({{ owner.id }}) (Moi)
-    {% else %}
-        {{ owner.get_full_name }} ({{ owner.id }})
-    {% endif %}
-    <br>
-{% endfor %}
-<br>
-
-{% if user.is_current_owner %}
-    <a href="{% url 'manager:add_owner_db'%}">Ajouter un propriétaire</a><br><br>
-{% endif %}
-
-
-
-{% if user.is_current_owner %}
-    Les editeurs<br>
-    {% for editor in user.current_database.user_editor.all %}
-        {% if editor == user %}
-            {{ editor.get_full_name }} ({{ editor.id }}) (Moi)
-        {% else %}
-            {{ editor.get_full_name }} ({{ editor.id }})
-            <a href="{% url 'manager:delete_editor_db' username=editor.username%}">Supprimer son role</a>
+        Mon rôle :
+        {% if user.is_current_owner %}
+            Propriétaire
         {% endif %}
-        <br>
-    {% endfor %}
-    <br>
-    <a href="{% url 'manager:add_editor_db'%}">Ajouter un éditeur</a><br><br>
-{% endif %}
-
-
-{% if user.is_current_owner %}
-    Les lecteurs<br>
-    {% for reader in user.current_database.user_reader.all %}
-        {% if reader == user %}
-            {{ reader.get_full_name }} ({{ reader.id }}) (Moi)
-        {% else %}
-            {{ reader.get_full_name }} ({{ reader.id }})
-            <a href="{% url 'manager:delete_reader_db' username=reader.username%}">Supprimer son role</a>
+        {% if user.is_current_editor %}
+            Editeur
         {% endif %}
-        <br>
-    {% endfor %}
-    <br>
-    <a href="{% url 'manager:add_reader_db'%}">Ajouter un lecteur</a><br><br>
-{% endif %}
+        {% if user.is_current_reader %}
+            Lecteur
+        {% endif %}
+        <br><br>
 
-{% if user.is_current_owner %}
-    <a href="{% url 'manager:delete_database'%}">Supprimer la base de données</a><br><br>
-{% endif %}
+        <div class="bouton_bdd">
+            <p>Bouton modifier</p>
+        </div>
+
+        <div class="proprietaire">
+            <div class="rectTitre">
+                <p>Les propriétaires</p>
+            </div>
+            <div class="rectListe">
+                {% for owner in user.current_database.user_owner.all %}
+                    {% if owner == user %}
+                        {{ owner.get_full_name }} ({{ owner.id }}) (Moi)
+                    {% else %}
+                        {{ owner.get_full_name }} ({{ owner.id }})
+                    {% endif %}
+                {% endfor %}
+
+                <div class="ajouter">
+                    {% if user.is_current_owner %}
+                        <a href="{% url 'manager:add_owner_db'%}">Ajouter un propriétaire</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="editeur">
+            <div class="rectTitre">
+                <p>Les éditeurs</p>
+            </div>
+            <div class="rectListe">
+                {% if user.is_current_owner %}
+                    {% for editor in user.current_database.user_editor.all %}
+                        {% if editor == user %}
+                            {{ editor.get_full_name }} ({{ editor.id }}) (Moi)
+                        {% else %}
+                            {{ editor.get_full_name }} ({{ editor.id }})
+                            <a href="{% url 'manager:delete_editor_db' username=editor.username%}">Supprimer son role</a>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="ajouter">
+                        <a href="{% url 'manager:add_editor_db'%}">Ajouter un éditeur</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="lecteur">
+            <div class="rectTitre">
+                <p>Les lecteurs</p>
+            </div>
+            <div class="rectListe">
+                {% if user.is_current_owner %}
+                    {% for reader in user.current_database.user_reader.all %}
+                        {% if reader == user %}
+                            {{ reader.get_full_name }} ({{ reader.id }}) (Moi)
+                        {% else %}
+                            {{ reader.get_full_name }} ({{ reader.id }})
+                            <a href="{% url 'manager:delete_reader_db' username=reader.username%}">Supprimer son role</a>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="ajouter">
+                        <a href="{% url 'manager:add_reader_db'%}">Ajouter un lecteur</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="supprimer">
+            {% if user.is_current_owner %}
+                <a href="{% url 'manager:delete_database'%}">Supprimer la base de données</a>
+            {% endif %}
+        </div>
+
+         <div class="quitter">
+            {% if user.is_current_editor or user.is_current_reader or user.is_current_owner and user.current_database.user_owner.count > 1 %}
+                <a href="{% url 'manager:leave_db'%}">Quitter cette base de donnée</a>
+            {% endif %}
+         </div>
+    </div>
+{% endblock %}
 
 
-{% if user.is_current_editor or user.is_current_reader or user.is_current_owner and user.current_database.user_owner.count > 1 %}
-    <a href="{% url 'manager:leave_db'%}">Quitter cette base de donnée</a><br><br>
-{% endif %}
+
 

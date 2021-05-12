@@ -1,0 +1,55 @@
+.container{
+    position: fixed;
+    top: 25%;
+    left: 33%;
+
+    width: 40%;
+    height: 60%;
+
+    border: 1px solid black;
+    padding: 5% 5% 5% 5%;
+    border-radius: 4px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+}
+
+.container p{
+    text-align: center;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 20px;
+}
+
+#user_name{
+    position: absolute;
+    width: 60%;
+    height: 10%;
+    left: 20%;
+    top: 50%;
+    border: 0.5px solid darkgrey;
+    background: #FFFCFC;
+}
+
+input[type=submit]{
+    position: absolute;
+    top: 65%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+
+    color: white;
+    cursor: pointer;
+}
+
+input[type=submit]:hover{
+    background-color: #007AFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}

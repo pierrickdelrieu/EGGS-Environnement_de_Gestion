@@ -6,25 +6,28 @@
 {% endblock %}
 
 {% block stylesheet_manager %}
-    <link rel="stylesheet" href="{% static 'home/css/add_editor.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/add_owner_editor_reader.css' %}">
 {% endblock %}
 
 {% block content_manager %}
-    <p class="titre">- Ajouter un éditeur</p>
-    <form action="{% url 'manager:add_editor_db' %}" method="POST">
-        {% csrf_token %} <!-- Vérification sécurité-->
-        {% for field in form %}
-            <div>
-                {{ field.errors }}
-            </div>
-        {% endfor %}
-        {% for field in form %}
-            <div>
-                {{ field.label_tag }} {{ field }}
-            </div>
-        {% endfor %}
-        <input type="submit" value="Ajouter">
-    </form>
+    <p class="titre">- Ajouter un éditeur à la base de données</p>
+    <div class="container">
+        <p>Saisissez un pseudo existant pour ajouter un nouvel utilisateur qui pourra modifier la base de données</p>
+        <form action="{% url 'manager:add_editor_db' %}" method="POST">
+            {% csrf_token %} <!-- Vérification sécurité-->
+            {% for field in form %}
+                <div>
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            {% for field in form %}
+                <div>
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
 {% endblock %}
 
 

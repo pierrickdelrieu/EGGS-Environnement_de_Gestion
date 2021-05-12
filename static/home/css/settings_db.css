@@ -1,0 +1,198 @@
+#settings{
+    background: rgba(206, 121, 236, 0.54);
+}
+
+#settings:hover{
+    background: rgba(206, 12, 250, 0.54);
+}
+
+.main_container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 7%;
+    top: 118px;
+}
+
+.bouton_bdd{
+    position: absolute;
+    width: 20%;
+    height: 6%;
+    right: 13%;
+    top: 6%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    text-decoration: none;
+    padding: 13px 0 0 0;
+    text-align: center;
+    font-size: 13px;
+    font-family: "SF Pro Rounded", sans-serif;
+    color: white;
+}
+
+.bouton_bdd:hover{
+    background-color: #007AFF;
+}
+
+.proprietaire{
+    position: absolute;
+    height: 60%;
+    width: 25%;
+    left: 4%;
+    top: 15%;
+    background-color: #F9F9FA;
+}
+
+.editeur{
+    position: absolute;
+    height: 60%;
+    width: 25%;
+    left: 33%;
+    top: 15%;
+    background-color: #F9F9FA;
+}
+
+.lecteur{
+    position: absolute;
+    height: 60%;
+    width: 25%;
+    left: 62%;
+    top: 15%;
+    background-color: #F9F9FA;
+}
+
+.rectTitre{
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    background: rgba(206, 12, 250, 0.54);
+    border-radius: 15px;
+    padding: 7px 0 0 0;
+}
+
+.rectTitre p{
+    font-family: "SF Pro Rounded", sans-serif;
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.rectListe{
+    z-index: 2;
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    top: 11%;
+    background-color: white;
+}
+
+#p_Pro, #p_Edit, #p_Reader{
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    color: black;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+}
+
+.a_Pro, .a_Edit, .a_Reader{
+    position: absolute;
+    left: 10%;
+    top: 5%;
+}
+
+.a_Pro p, .a_Edit p, .a_Reader p{
+    position: absolute;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: black;
+}
+
+.a_Pro p:hover, .a_Edit p:hover, .a_Reader p:hover{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.a_Pro li, .a_Edit li, .a_Reader li{
+    left: 10%;
+    width: 300px;
+    list-style: none;
+}
+
+.ajouter a{
+    position: absolute;
+    width: 80%;
+    height: 10%;
+    left: 10%;
+    top: 85%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    text-decoration: none;
+    padding: 9px 0 0 0;
+    text-align: center;
+    font-size: 13px;
+    font-family: "SF Pro Rounded", sans-serif;
+    color: white;
+}
+
+.ajouter a:hover{
+    background-color: #007AFF;
+}
+
+.supprimer a {
+    z-index: 4;
+    position: absolute;
+    width: 20%;
+    height: 6%;
+    right: 13%;
+    top: 75%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    text-decoration: none;
+    padding: 13px 0 0 0;
+    text-align: center;
+    font-size: 13px;
+    font-family: "SF Pro Rounded", sans-serif;
+    color: white;
+}
+
+.supprimer a:hover{
+    background-color: #007AFF;
+}
+
+.quitter a {
+    z-index: 4;
+    position: absolute;
+    width: 20%;
+    height: 6%;
+    right: 35%;
+    top: 75%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    text-decoration: none;
+    padding: 13px 0 0 0;
+    text-align: center;
+    font-size: 13px;
+    font-family: "SF Pro Rounded", sans-serif;
+    color: white;
+}
+
+.quitter a:hover{
+    background-color: #007AFF;
+}
