@@ -41,7 +41,7 @@
             </a>
         </div>
     {% endif %}
-    <a class="ajout_bdd" href="{% url 'manager:add_database' %}"><p>Ajouter une base de données</p></a>
+
     <a class="ajout_prod" href="{% url 'manager:add_product' %}"><p>+</p></a>
     <a class="x_prod" href="{% url 'manager:display_products' %}"><p>Afficher les produits</p></a>
 
@@ -102,7 +102,7 @@
             <li class="nav-item">
                 <img src="{% static 'home/img/list.png' %}">
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="settings">
                 <a href ="{% url 'manager:settings_database' %}">
                     <img src="{% static 'home/img/settings.png' %}">
                 </a>
