@@ -28,5 +28,8 @@ urlpatterns = [
     path('delete_product/(?P<product_id>[0-9]+)/', views.delete_product, name="delete_product"),
     path('delete_database/', views.delete_database, name="delete_database"),
 
+    path('search_products/', views.search_products, name="search_products"),
+
+
 
 ]

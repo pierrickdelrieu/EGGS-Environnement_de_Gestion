@@ -1,0 +1,13 @@
+Recherche de produit
+
+<form action="{% url 'manager:search_products' %}" method="get" >
+    <div>
+      <label for="searchForm">Chercher un produit</label>
+      <input id="searchForm" name="query">
+    </div>
+</form>
+
+
+{% for product in products %}
+    {{ product.name }}
+{% endfor %}
