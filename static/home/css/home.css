@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "SF Pro Rounded", sans-serif;
+    font-family: Avenir;
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -18,12 +19,6 @@ main {
     overflow-x: hidden;
     width: 100%;
     height: 100%;
-/*    display: flex;*/
-/*!*    flex-wrap: wrap;*/
-/*    flex-direction: column;*/
-/*    align-items: stretch;*/
-/*    justify-content: flex-start;*!*/
-
 }
 
 main > div {
@@ -33,12 +28,54 @@ main > div {
     justify-content: center;
 }
 
+/**
+    Les cercles trop jolis
+*/
+
+.anim-circle {
+    z-index: 0;
+    position: absolute;
+    border-radius: 50%;
+    width: 144px;
+    height: 144px;
+}
+
+#circle1 {
+    background-color: #FFFBFB;
+    left: -46px;
+    top: 77px;
+}
+
+#circle2 {
+    background-color: #F8FFCF;
+    left: 937px;
+    top: 143px;
+}
+
+#circle3 {
+    background-color: #EAAFFF;
+    left:95vw;
+    top:80vh;
+}
+
+#circle4 {
+    background-color: #F8FFCF;
+    left: 10vw;
+    top: 110vh;
+}
+
+#circle5 {
+    background-color: #FFFBFB;
+    left: 80vw;
+    top: 180vh;
+}
 
 /**
     Header section of the website
 */
 
 header {
+    z-index: 2;
     width: 100%;
     height : 80px;
     position: fixed;
@@ -80,6 +117,82 @@ header {
     margin-left: 2vw;
     font-size: 32px;
     color: white;
+}
+
+/** FOOTER SECTION*/
+footer {
+    width: 100%;
+    height: 300px;
+    background-color: #464646;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h2 {
+    color: white;
+    letter-spacing: 20px;
+    font-size:100px;
+}
+
+h2 span {
+    background: -webkit-linear-gradient(left, white, yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+img #logo {
+    width: 81px;
+    height: 76px;
+}
+
+#useful-links{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: white;
+}
+
+#thelinks {
+    margin-top:12.5px;
+}
+
+#thelinks a {
+    color: navajowhite;
+    text-decoration:none;
+}
+
+#contact{
+    width: 25%;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#contact a{
+    margin-top: 12.5px;
+    text-decoration: none;
+    color: navajowhite;
+}
+
+#social-networks{
+    width: 25%;
+    display: flex;
+    justify-content:flex-start;
+}
+
+#social-networks li {
+    text-decoration: none;
+    list-style: none;
+}
+
+#social-networks img{
+    height: 60px;
+    width: auto;
+    margin-bottom: 5px;
 }
 
 /**
@@ -162,9 +275,10 @@ header {
 }
 
 #youtube-video {
+    z-index:1;
     background-color: black;
-    width: 50%;
-    height: 360px;
+    width: 50vw;
+    height:28vw;
     margin-right: 3.9vw;
 }
 

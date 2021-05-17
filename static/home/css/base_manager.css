@@ -124,7 +124,7 @@
 
 .dashboard{
     position: fixed;
-    width: 7%;
+    width: 6.5%;
     height: 100%;
     left: 0;
     top: 0;
@@ -135,7 +135,7 @@
 .nav-dashboard{
     position: fixed;
     top: 17%;
-    width: 7%;
+    width: 6.5%;
 }
 
 .nav-item{

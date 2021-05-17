@@ -26,9 +26,14 @@
                         <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
                     </ul>
                 {% endif %}
-
-
             </header>
+
+            <div class="anim-circle" id="circle1"></div>
+            <div class="anim-circle" id="circle2"></div>
+            <div class="anim-circle" id="circle3"></div>
+            <div class="anim-circle" id="circle4"></div>
+            <div class="anim-circle" id="circle5"></div>
+
 
             <div id="container1">
                 <div class="wrapper-container1">
@@ -55,7 +60,7 @@
 
                     </div>
 
-                    <div id="youtube-video"></div>
+                    <iframe id="youtube-video" src="https://www.youtube.com/embed/ZFtlMX-7cI4"></iframe>
                 </div>
 
                 <a class="arrow" href="#container2"><img src = "{% static 'home/img/home/arrow-down.png' %}" alt="arrow down image"></a>
@@ -102,6 +107,26 @@
             </div>
 
             <footer>
+                <h2>E<span>GGS</span></h2>
+                <div id="useful-links">
+                    <h3>Liens utiles</h3>
+
+                    <div id="thelinks">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Avis sur notre site</a><br>
+                        <a href="https://youtu.be/3YxaaGgTQYM?t=63">FAQ</a><br>
+                        <a href="https://www.1112.net/lastpage.html">Conditions générales</a>
+                    </div>
+                </div>
+                <div id="contact">
+                    <h3>Nous contacter</h3>
+                    <a href="{% url 'home' %}">Contact</a>
+                </div>
+                <div id="social-networks">
+                    <ul>
+                        <li><a><img src="{% static 'home/img/home/Facebook link.png' %}"></a></li>
+                        <li><a><img src="{% static 'home/img/home/Twitter link.png' %}"></a></li>
+                    </ul>
+                </div>
             </footer>
         </main>
     </body>
