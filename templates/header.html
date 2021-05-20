@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class = "header">
+    <header>
         <img id = "logo" src = "{% static 'home/img/logo.png' %}" alt = "logo eggs">
 
         <div class = "rectangles">
@@ -35,16 +35,17 @@
                 <div class = "line3"></div>
             </div>
         </div>
-    </div>
+    </header>
 
     <div class = "sub-content">
          {% block content %} {% endblock %}
     </div>
 
     {% load static %}
-    <script src = "{% static 'home/js/header.js' %}"> </script>
 
-    {% block script %} {% endblock %}
+    {% block script %}
+        <script src = "{% static 'home/js/header.js' %}"> </script>
+    {% endblock %}
 
 </body>
 </html>

@@ -1,17 +1,17 @@
-form{
+#formulaire{
     position: absolute;
-    width: 825px;
-    height: 343.5px;
-    left: 227px;
-    top: 176px;
+    width: 80%;
+    height: 40%;
+    left: 12%;
+    top: 30%;
 }
 
-input[type=submit]{
+#ajout{
     position: absolute;
     width: 172px;
     height: 40px;
-    left: 88%;
-    top: 90%;
+    left: 78%;
+    top: 85%;
 
     background-color: #5e81ff;
     border-radius: 14px;
@@ -21,7 +21,7 @@ input[type=submit]{
     cursor: pointer;
 }
 
-input[type=submit]:hover{
+#ajout:hover{
     background-color: #007AFF;
 }
 

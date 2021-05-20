@@ -6,107 +6,78 @@
 {% endblock %}
 
 {% block stylesheet_manager %}
-    <link rel="stylesheet" href="{% static 'home/css/settings_db.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/my_databases.css' %}">
 {% endblock %}
 
 {% block content_manager %}
-    <p class="titre">- Paramètres de ma base de données</p>
-
-    <div class="main_container">
-        Nom : {{ user.current_database.name }}<br>
-        Type  : {{ user.current_database.type }}<br><br>
-
-        Mon rôle :
-        {% if user.is_current_owner %}
-            Propriétaire
-        {% endif %}
-        {% if user.is_current_editor %}
-            Editeur
-        {% endif %}
-        {% if user.is_current_reader %}
-            Lecteur
-        {% endif %}
-        <br><br>
-
-        <div class="bouton_bdd">
-            <p>Bouton modifier</p>
+    <p class="titre">- Réglages de ma base de données</p>
+    <div class="wrapper-section">
+        <div class="button-section">
+            <h1>{{ user.current_database.name }}</h1>
+            <button id="my-db" onclick="window.location.href='{% url 'manager:my_databases' %}'">Mes bases de données</button>
+            <button id="newdb" onclick="window.location.href='{% url 'manager:add_database' %}'">Nouvelle base de donnée</button>
         </div>
 
-        <div class="proprietaire">
-            <div class="rectTitre">
-                <p>Les propriétaires</p>
-            </div>
-            <div class="rectListe">
-                {% for owner in user.current_database.user_owner.all %}
-                    {% if owner == user %}
-                        {{ owner.get_full_name }} ({{ owner.id }}) (Moi)
-                    {% else %}
-                        {{ owner.get_full_name }} ({{ owner.id }})
-                    {% endif %}
-                {% endfor %}
-
-                <div class="ajouter">
-                    {% if user.is_current_owner %}
-                        <a href="{% url 'manager:add_owner_db'%}">Ajouter un propriétaire</a>
-                    {% endif %}
+        <div class="wrapper-mydb">
+            <div class="rect owner">
+                <h2 class="textTitre">Propriétaires</h2>
+                <div class="rectListe">
+                    {% for owner in user.current_database.user_owner.all %}
+                        {% if owner == user %}
+                            <p style="color:#007AFF; font-weight: bold">{{ owner.get_full_name }} <{{ owner.id }}></p>
+                        {% else %}
+                            <p>@{{ owner.get_full_name }} <{{ owner.id }}></p>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
-        </div>
 
-        <div class="editeur">
-            <div class="rectTitre">
-                <p>Les éditeurs</p>
             </div>
-            <div class="rectListe">
-                {% if user.is_current_owner %}
-                    {% for editor in user.current_database.user_editor.all %}
-                        {% if editor == user %}
-                            {{ editor.get_full_name }} ({{ editor.id }}) (Moi)
-                        {% else %}
-                            {{ editor.get_full_name }} ({{ editor.id }})
-                            <a href="{% url 'manager:delete_editor_db' username=editor.username%}">Supprimer son role</a>
-                        {% endif %}
-                    {% endfor %}
-                    <div class="ajouter">
-                        <a href="{% url 'manager:add_editor_db'%}">Ajouter un éditeur</a>
+
+            <div class="rect editor">
+                <div class="rectListe">
+                    <h2 class="textTitre">Editeurs</h2>
+                    <div class="rectListe">
+                        {% for editor in user.current_database.user_editor.all %}
+                            {% if editor == user %}
+                                <p style="color:#007AFF; font-weight: bold">{{ editor.get_full_name }} <{{ editor.id }}></p>
+                            {% else %}
+                                <p>@{{ editor.get_full_name }}</p>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                {% endif %}
-            </div>
-        </div>
+                </div>
 
-        <div class="lecteur">
-            <div class="rectTitre">
-                <p>Les lecteurs</p>
             </div>
-            <div class="rectListe">
-                {% if user.is_current_owner %}
-                    {% for reader in user.current_database.user_reader.all %}
+
+            <div class="rect viewer">
+                <h2 class="textTitre">Lecteurs</h2>
+                <div class="rectListe">
+                    {% for reader in user.current_datase.user_reader.all %}
                         {% if reader == user %}
-                            {{ reader.get_full_name }} ({{ reader.id }}) (Moi)
+                            <p style="color:#007AFF; font-weight: bold">{{ reader.get_full_name }} <{{ reader.id }}></p>
                         {% else %}
-                            {{ reader.get_full_name }} ({{ reader.id }})
-                            <a href="{% url 'manager:delete_reader_db' username=reader.username%}">Supprimer son role</a>
+                            <p>@{{ reader.get_full_name }} <{{ reader.id }}></p>
                         {% endif %}
                     {% endfor %}
-                    <div class="ajouter">
-                        <a href="{% url 'manager:add_reader_db'%}">Ajouter un lecteur</a>
                     </div>
-                {% endif %}
+                </div>
+
+
+        </div>
+
+        <div id="wrapper-button">
+            <div id="add-buttons">
+                <button onclick="window.location.href='{% url 'manager:add_owner_db' %}'">Ajouter un propriétaire</button>
+                <button onclick="window.location.href='{% url 'manager:add_editor_db' %}'">Ajouter un éditeur</button>
+                <button onclick="window.location.href='{% url 'manager:add_reader_db' %}'">Ajouter un lecteur</button>
+            </div>
+            <div id="leave-button">
+                <button onclick="window.location.href='{% url 'manager:leave_db' %}'">Quitter la base de données</button>
             </div>
         </div>
-
-        <div class="supprimer">
-            {% if user.is_current_owner %}
-                <a href="{% url 'manager:delete_database'%}">Supprimer la base de données</a>
-            {% endif %}
-        </div>
-
-         <div class="quitter">
-            {% if user.is_current_editor or user.is_current_reader or user.is_current_owner and user.current_database.user_owner.count > 1 %}
-                <a href="{% url 'manager:leave_db'%}">Quitter cette base de donnée</a>
-            {% endif %}
-         </div>
     </div>
+
 {% endblock %}
 
 

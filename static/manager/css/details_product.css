@@ -25,7 +25,7 @@ h1{
     width: 40%;
     height: 8%;
     left: 30%;
-    top: 85%;
+    top: 80%;
 
     background-color: #5e81ff;
     border-radius: 14px;
@@ -35,14 +35,39 @@ h1{
 }
 
 .modif p{
-    position: absolute;
-    top: 22%;
-    left: 23%;
     font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     color: white;
+    text-align: center;
+    padding: 0.5em;
 }
 
 .modif:hover{
+    background-color: #007AFF;
+}
+
+.supprimer{
+    position: absolute;
+    width: 40%;
+    height: 8%;
+    left: 30%;
+    top: 90%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.supprimer p{
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+}
+
+.supprimer:hover{
     background-color: #007AFF;
 }

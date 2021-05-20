@@ -129,7 +129,7 @@ class UpdatePasswordForm(forms.Form):
 
 class EnteringUserForm(forms.Form):
     username = forms.CharField(label="", max_length=30, widget=forms.TextInput(
-        attrs={'placeholder': "Entrer le nom d'utilisateur", 'id': "user_name"}))
+        attrs={'placeholder': "Entrer le nom d'utilisateur", 'id': "new-user"}))
 
     def clean_username(self):
         username = self.cleaned_data.get("username")

@@ -1,26 +1,33 @@
-{% extends 'manager/dashboard.html' %}
+{% extends 'manager/base_manager.html' %}
 {% load static %}
 
 {% block title_manager %}
-    <title>EGGS - Manager</title>
+    <title>EGGS - Contacts</title>
 {% endblock %}
 
 {% block stylesheet_manager %}
-    <link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/contact.css' %}">
 {% endblock %}
 
 {% block content_manager %}
     <p class="titre">- Nous contacter</p>
+    <div id="contact-content">
+        <form id="contact-form" action="{% url 'manager:contact' %}" method="POST">
+            {% csrf_token %}
+            <p>Voulez-vous nous faire part de quelque chose ?</p>
+            {{ form.subject }}
+            {{ form.message }}
+            <input id="contact-button" type="submit" value="Envoyer">
+        </form>
 
-    <form id="form" action="{% url 'manager:contact' %}" method="POST">
-        <h5>Voulez vous nous faire part de quelque chose ?</h5>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit"><p>Envoyer</p></button>
-    </form>
-
-    {% if send %}
-        <p>Message envoyé</p>
-    {% endif %}
+        <div id="contact-socials">
+            <p>Retrouvez-nous sur nos réseaux :</p>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img id="imgSocials" src="{% static 'home/img/Twitter link.png' %}" alt="Notre Twitter"></a>
+            <a href="https://youtu.be/3YxaaGgTQYM?t=63" target="_blank"><img id="imgSocials" src="{% static 'home/img/Facebook link.png' %}"></a>
+        </div>
+        {% if send %}
+            Message envoyé
+        {% endif %}
+    </div>
 {% endblock %}
 

@@ -1,0 +1,29 @@
+.null{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+.tab_produit{
+    position: fixed;
+    height: 60%;
+    width: 70%;
+    left: 200px;
+    top: 200px;
+    text-align: center;
+    border: 1px solid black;
+    cellpadding: 5px 5px 5px 5px;
+}
+
+.tab_produit th{
+    background-color: #EAAFFF;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.tab_produit td, th{
+    border: 1px solid gray;
+}
+
+
+

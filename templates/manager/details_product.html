@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block stylesheet_manager %}
-    <link rel="stylesheet" href="{% static 'home/css/details_product.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/details_product.css' %}">
 {% endblock %}
 
 {% block content_manager %}
     <p class="titre">- Fiche produit</p>
     <div class="aff_prod">
-        <br><br><br>
-        <h1>{{ product.name }}</h1><br><br>
+        <br><br>
+        <h1>{{ product.name }}</h1><br>
         <div>
             <h3>Description :</h3>
             <p><br><br><br></p>
@@ -23,7 +23,7 @@
         </div>
         {% if user.is_current_owner or user.is_current_editor %}
             <a class="modif" href="{% url 'manager:update_product' product_id=product.id %}"><p>Modifier le produit</p></a>
-            <a href="{% url 'manager:delete_product' product_id=product.id %}">Supprimer le produit</a>
+            <a class="supprimer" href="{% url 'manager:delete_product' product_id=product.id %}"><p>Supprimer le produit</p></a>
         {% endif %}
     </div>
 {% endblock %}

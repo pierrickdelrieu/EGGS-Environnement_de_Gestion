@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block stylesheet_manager %}
-    <link rel="stylesheet" href="{% static 'home/css/update_compte.css' %}">
-    <link rel="stylesheet" href="{% static 'home/css/compte.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/update_compte.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/compte.css' %}">
 {% endblock %}
 
 {% block content_manager %}
     <p class="titre">- Modifier mes informations</p>
     <div class="name_c">{{ user.get_full_name }}</div>
-    <img class="profil_c" src="{% static 'home/img/mon_compte.png' %}">
+    <img class="profil_c" src="{% static 'manager/img/mon_compte.png' %}">
     <br><h4>Date d'inscription : <p>{{ user.date_joined }}</p></h4>
 
 
