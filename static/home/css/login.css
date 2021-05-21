@@ -1,5 +1,4 @@
 h2{
-    z-index: 4;
     font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -12,6 +11,13 @@ h2{
     letter-spacing: 0.374px;
 
     color: #000000;
+}
+
+.page-titre{
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 50px;
 }
 
 #formulaire-login{

@@ -20,13 +20,11 @@
     background-color: #007AFF;
 }
 
-.user_4 {
-    z-index: 2;
-    position: absolute;
-    left: 35%;
-    top: 77%;
+.user_2{
+    width: 70%;
 }
 
-form{
-    padding: 5px 5px 5px 0;
+.user_3, .user_4{
+    margin-top: 20px;
+    width: 70%;
 }

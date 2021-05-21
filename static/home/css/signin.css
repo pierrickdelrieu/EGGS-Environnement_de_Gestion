@@ -1,12 +1,4 @@
 h2{
-    z-index: 4;
-
-    position: fixed;
-    height: 40px;
-    left: 53%;
-    right: 38%;
-    top: 140px;
-
     font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -19,10 +11,16 @@ h2{
     color: #000000;
 }
 
+.page-titre{
+    position: absolute;
+    width: 40%;
+    left: 40%;
+    top: 50px;
+}
+
 form{
     background: #F9F9FA;
     border: 0 #F9F9FA;
-    color: #F9F9FA;
 }
 
 #nom{

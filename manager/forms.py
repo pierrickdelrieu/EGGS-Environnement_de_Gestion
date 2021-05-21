@@ -83,12 +83,12 @@ class AddProductForm(forms.Form):
 
 
 class UpdatePasswordForm(forms.Form):
-    current_password = forms.CharField(label="Mot de passe actuel", widget=forms.PasswordInput(
-        attrs={'class': "user2"}))
-    new_password1 = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput(
-        attrs={'class': "user3"}))
-    new_password2 = forms.CharField(label="Confirmation du nouveau mot de passe", widget=forms.PasswordInput(
-        attrs={'class': "user_4"}))
+    current_password = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'class': "user_2", 'placeholder': "Mot de passe actuel"}))
+    new_password1 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'class': "user_3", 'placeholder': "Nouveau mot de passe"}))
+    new_password2 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'class': "user_4", 'placeholder': "Confirmation du nouveau mot de passe"}))
     user = None
 
     def __init__(self, *args, **kwargs):

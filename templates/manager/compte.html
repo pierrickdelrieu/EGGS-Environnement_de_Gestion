@@ -11,19 +11,20 @@
 
 {% block content_manager %}
     <p class="titre">- Mon compte</p>
-    <div class="name_c">{{ user.get_full_name }}</div>
-    <img class="profil_c" src="{% static 'manager/img/mon_compte.png' %}">
+    <div class="name_c">
+        <img class="profil_c" src="{% static 'manager/img/mon_compte.svg' %}">
+        <div>{{ user.get_full_name }}</div>
+    </div>
 
     <ul class="info">
         <li class="user1"><br><h4>Nom d'utilisateur : <p>{{ user.username }}</p></h4></li>
         <li class="user2"><br><h4>Date d'inscription : <p>{{ user.date_joined }}</p></h4></li>
         <li class="user3"><br><h4>Prénom : <p>{{ user.first_name }}</p></h4></li>
-        <li class="user4"><br><h4>Nom : </h4><div><p>{{ user.last_name }}</p></div></li>
+        <li class="user4"><br><h4>Nom : <div><p>{{ user.last_name }}</p></div></h4></li>
     </ul>
     <ul class="info2">
         <li class="user1"><br><h4>Email : <p>{{ user.email }}</p></h4></li>
         <li class="user2"><br><h4>Mot de passe : <p>************</p></h4></li>
-        <li class="user3"><br><a href="{% url 'manager:update_password' %}"><h4>Modifier mon mot de passe</h4></a></li>
     </ul>
     <a class="bouton" href="{% url 'manager:update_compte' %}"><p>Modifier</p></a>
 

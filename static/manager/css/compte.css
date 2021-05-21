@@ -7,27 +7,27 @@
     list-style: none;
     padding: 0 0 0 10px;
 
-    background-color: #FCF0E9;
+    background-color: #FFF2F6;
 }
 
 .info2{
     position: absolute;
-    width: 30%;
+    width: 33%;
     height: 167px;
     left: 53%;
     top: 355px;
     list-style: none;
     padding: 0 0 0 10px;
 
-    background-color: #FCF0E9;
+    background-color: #FFF2F6;
 }
 
 .name_c{
     position: absolute;
-    width: 423px;
-    height: 48px;
-    left: 37%;
-    top: 40%;
+    width: 66%;
+    height: 20%;
+    left: 20%;
+    top: 200px;
 
     font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
@@ -40,19 +40,15 @@
 }
 
 .profil_c{
-    position: fixed;
     width: 100px;
     height: 100px;
-    left: 48%;
-    top: 25%;
-    border-radius: 35px;
 }
 
 .user1 p{
     z-index: 2;
     width: 50%;
     height: 10%;
-    left: 35%;
+    left: 45%;
     top: 11%;
 
     background: #FFFCFC;
@@ -74,7 +70,7 @@
     z-index: 2;
     width: 50%;
     height: 10%;
-    left: 35%;
+    left: 45%;
     top: 33%;
 
     background: #FFFCFC;
@@ -96,7 +92,7 @@
     z-index: 2;
     width: 50%;
     height: 10%;
-    left: 35%;
+    left: 45%;
     top: 55%;
 
     background: #FFFCFC;
@@ -118,7 +114,7 @@
     z-index: 2;
     width: 50%;
     height: 10%;
-    left: 35%;
+    left: 45%;
     top: 77%;
 
     background: #FFFCFC;
@@ -151,9 +147,8 @@
 }
 
 .bouton p{
-    position: absolute;
-    top: 22%;
-    left: 40%;
+    padding-top: 10px;
+    text-align: center;
     font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     color: white;

@@ -13,6 +13,7 @@ a {
 }
 
 #newdb {
+    margin-left: 20px;
     width: 25vw;
     height: 46px;
     border: none;
@@ -100,7 +101,7 @@ ul .a-Owner {
 }
 
 .editor h2 {
-    background-color: #C99FFF;
+    background-color: #EAAFFF;
     border-radius: 13px;
 }
 

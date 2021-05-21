@@ -63,7 +63,7 @@ h2{
     color: rgba(60, 60, 67, 0.6);
 }
 
-input[type=submit] {
+#bouton-a{
     position: absolute;
     height: 51px;;
     width: 30%;
@@ -78,7 +78,7 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+#bouton-a:hover {
     background-color: #007AFF;
 }
 

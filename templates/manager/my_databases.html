@@ -19,9 +19,9 @@
                 <h2 class="textTitre">Propriétaire</h2>
                 <div class="rectListe">
                     {% if user.owner.count == 0 %}
-                        <p id="p-Owner">Vous n'être propriétaire d'aucune base de données</p>
+                        <br><p id="p-Owner">Vous n'êtes propriétaire d'aucune base de données</p>
                     {% else %}
-                        <ul class="a-Owner">
+                        <ul class="a-Owner"><br>
                             {% for database in user.owner.all %}
                                 {% if database.name == user.current_database.name %}
                                     <li><p style="color:#007AFF; font-weight: bold">{{ database.name }}</p></li>
@@ -40,9 +40,9 @@
                 <h2 class="textTitre">Editeur</h2>
                 <div class="rectListe">
                     {% if user.editor.count == 0 %}
-                        <p id="p-Edit">Vous n'être propriétaire d'aucune base de données</p>
+                        <br><p id="p-Edit">Vous n'êtes éditeur d'aucune base de données</p>
                     {% else %}
-                        <ul class="a-Edit">
+                        <ul class="a-Edit"><br>
                             {% for database in user.editor.all %}
                                 {% if database.name == user.current_database.name %}
                                     <li><p style="color:#C99FFF; font-weight: bold">{{ database.name }}</p></li>
@@ -61,9 +61,9 @@
                 <h2 class="textTitre"><span>Lecteur</span></h2>
                 <div class="rectListe">
                     {% if user.reader.count == 0 %}
-                        <p id="p-reader">Vous n'être propriétaire d'aucune base de données</p>
+                        <br><p id="p-reader">Vous n'êtes lecteur d'aucune base de données</p>
                     {% else %}
-                        <ul class="a-reader">
+                        <ul class="a-reader"><br>
                             {% for database in user.reader.all %}
                                 {% if database.name == user.current_database.name %}
                                     <li><p style="color:#F8FFCF; font-weight: bold">{{ database.name }}</p></li>

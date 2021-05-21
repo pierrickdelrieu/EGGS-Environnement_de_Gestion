@@ -12,10 +12,10 @@
 
 {% block content_manager %}
     <p class="titre">- Modifier mes informations</p>
-    <div class="name_c">{{ user.get_full_name }}</div>
-    <img class="profil_c" src="{% static 'manager/img/mon_compte.png' %}">
-    <br><h4>Date d'inscription : <p>{{ user.date_joined }}</p></h4>
-
+    <div class="name_c">
+        <img class="profil_c" src="{% static 'manager/img/mon_compte.svg' %}">
+        <div>{{ user.get_full_name }}</div>
+    </div>
 
     <form action="{% url 'manager:update_compte' %}" method="POST">
         {% csrf_token %} <!-- Vérification sécurité-->
