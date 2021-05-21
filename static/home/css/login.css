@@ -1,44 +1,50 @@
 h2{
     z-index: 4;
-
-    position: absolute;
-    left: 43%;
-    top: 15%;
-
     font-family: "SF Pro Rounded", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 34px;
     line-height: 41px;
 
+    margin-left: 15px;
+    margin-top: 30px;
     text-align: center;
     letter-spacing: 0.374px;
 
     color: #000000;
 }
 
-form{
-    background: #F9F9FA;
-    border: 0px #F9F9FA;
-    color: #F9F9FA;
+#formulaire-login{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 10%;
+    left: 25%;
+    border: 0 #F9F9FA;
+}
+
+#cont-mdpo{
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    top: 10%;
+    left: 60%;
 }
 
 #email{
     position: absolute;
-    height: 7.43%;
-    width: 40%;
-    left: 30%;
-    top: 30%;
+    top: 20%;
+    height: 50px;
+    width: 100%;
     border: 0 white;
     background: #FFFFFF;
 }
 
 #mdp {
     position: absolute;
-    height: 7.43%;
-    width: 40%;
-    left: 30%;
-    top: 38%;
+    top: 35%;
+    height: 50px;
+    width: 100%;
     border: 0 white;
     background: #FFFFFF;
 }
@@ -49,12 +55,14 @@ form{
     color: rgba(60, 60, 67, 0.6);
 }
 
-input[type=submit] {
+#bouton_val{
     position: absolute;
+    top: 55%;
+
     height: 51px;;
-    width: 30%;
-    left: 35%;
-    bottom: 40%;
+    width: 50%;
+
+    margin-left: 25%;
 
     background-color: #5e81ff;
     border-radius: 14px;
@@ -64,19 +72,18 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+#bouton_val:hover {
     background-color: #007AFF;
 }
 
 #signin{
-    position: absolute;
-    left: 38%;
-    bottom: 35%;
-
     font-family: "SF Pro Rounded", sans-serif;
+    position: absolute;
+    left: 20%;
+    top: 70%;
+    width: 100%;
     font-size: 15px;
     line-height: 20px;
-
     display: flex;
     align-items: center;
     color: rgba(60, 60, 67, 0.6);
@@ -91,13 +98,11 @@ input[type=submit]:hover {
 }
 
 .mdpo{
+    position: absolute;
+    top: 40%;
     font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;
     color: #007AFF;
-
-    position: absolute;
-    left: 59%;
-    top: 40%;
 }
 
 .mdpo:hover{

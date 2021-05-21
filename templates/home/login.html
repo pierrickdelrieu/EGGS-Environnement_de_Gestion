@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block connexions %}
+    <p class="titre">- Connexion</p>
     <ul class="links">
         <li><a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br></li>
         <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
@@ -17,7 +18,6 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Connexion</h2>
 
     {% if error %}
         <p class="error"><strong>Nom d'utilisateur ou/et mot de passe incorrect </strong></p>
@@ -26,7 +26,7 @@
     {% if user.is_authenticated %}
         Vous êtes connecté, {{ user.username }} !
     {% else %}
-        <form action="{% url 'home:login' %}" method="POST">
+        <form id="formulaire-login" action="{% url 'home:login' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
             {% for field in form %}
                 <div>
@@ -36,14 +36,15 @@
                     {{ field.label_tag }}{{ field }}
                 </div>
             {% endfor %}
-            <a href="{% url 'home:password_reset' %}" class="mdpo">Mot de passe oublié ?</a><br>
-            <input type="submit" value="Valider">
+            <input id="bouton_val" type="submit" value="Valider">
+            <div id="signin">
+                <p>Vous n'avez pas encore de compte ?</p>
+                <a href="{% url 'home:signin' %}" class="lien">Inscrivez-vous.</a>
+            </div>
         </form>
+        <div id="cont-mdpo">
+            <a class="mdpo" href="{% url 'home:password_reset' %}">Mot de passe oublié ?</a><br>
+        </div>
     {% endif %}
-
-    <div id="signin">
-        <p>Vous n'avez pas encore de compte ?</p>
-        <a href="{% url 'home:signin' %}" class="lien">Inscrivez-vous.</a>
-    </div>
 
 {% endblock %}

@@ -102,11 +102,13 @@ input[type=submit]:hover {
 }
 
 #rectVert{
+    z-index: 1;
+
     position: fixed;
     width: 20%;
     height: 100%;
     left: 0;
-    top: 0;
+    top: 115px;
 
     background: rgba(200, 253, 218, 0.28);
     border-radius: 26px;

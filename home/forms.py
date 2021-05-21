@@ -10,9 +10,9 @@ User = get_user_model()  # new User definitions
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput(
+    email = forms.CharField(label="", max_length=30, widget=forms.TextInput(
         attrs = {'placeholder': "Entrer votre email", 'id': "email"}))
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
+    password = forms.CharField(label="", widget=forms.PasswordInput(
         attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
 
     # Error if the account is not active
@@ -42,15 +42,15 @@ class LoginForm(forms.Form):
 
 
 class SigninForm(forms.Form):
-    last_name = forms.CharField(label="Nom", max_length=30, widget=forms.TextInput(
+    last_name = forms.CharField(label="", max_length=30, widget=forms.TextInput(
         attrs={'placeholder': "Entrer votre nom", 'id': "nom"}))
-    first_name = forms.CharField(label="Prénom", max_length=30, widget=forms.TextInput(
+    first_name = forms.CharField(label="", max_length=30, widget=forms.TextInput(
         attrs={'placeholder': "Entrer votre prénom", 'id': "prenom"}))
-    email = forms.EmailField(label="Email", widget=forms.TextInput(
+    email = forms.EmailField(label="", widget=forms.TextInput(
         attrs={'placeholder': "Entrer votre email", 'id': "email"}))
-    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
+    password1 = forms.CharField(label="", widget=forms.PasswordInput(
         attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
-    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput(
+    password2 = forms.CharField(label="", widget=forms.PasswordInput(
         attrs={'placeholder': "Confirmer votre mot de passe", 'id': "confirmation"}))
 
     # Error if the password confirmation is not valid
@@ -131,5 +131,5 @@ class PasswordResetConfirmationForm(SetPasswordForm):
 # Redefinition
 # cf. : https://django-wiki.readthedocs.io/en/0.2.2/_modules/django/contrib/auth/forms.html
 class PasswordResetFormEmail(PasswordResetForm):
-    email = forms.EmailField(label="Email", max_length=254, widget=forms.PasswordInput(
+    email = forms.EmailField(label="", max_length=254, widget=forms.PasswordInput(
         attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))
