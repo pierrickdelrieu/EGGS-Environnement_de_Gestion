@@ -5,8 +5,8 @@ a {
 
 .wrapper-section {
     overflow: hidden;
-    height: 80vh;
-    width: 100vw;
+    height: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -14,7 +14,7 @@ a {
 
 #newdb {
     margin-left: 20px;
-    width: 25vw;
+    width: 25%;
     height: 46px;
     border: none;
     color: white;
@@ -31,7 +31,7 @@ a {
 
 .wrapper-mydb {
     overflow: hidden;
-    height: 60vh;
+    height: 60%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -58,9 +58,13 @@ a {
     overflow: hidden;
 }
 
+.rectListe{
+    overflow-y: scroll;
+}
+
 h2 {
     overflow: hidden;
-    min-height: 2vh;
+    min-height: 2%;
 }
 
 .owner h2 {
@@ -89,12 +93,12 @@ span .circle {
     text-align: center;
 }
 
-.owner li:hover {
-    font-size: 2vh;
+.wrapper-mydb li:hover {
+    font-size: 28px;
     cursor: pointer;
 }
 
-ul .a-Owner {
+ul .a-tab {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -108,38 +112,4 @@ ul .a-Owner {
 .viewer h2 {
     background-color: #F8FFCF;
     border-radius: 13px;
-}
-/* Bases de données dans les rectangles */
-
-.a_Pro, .a_Edit, .a_Reader{
-    position: absolute;
-    left: 5%;
-    top: 5%;
-}
-
-.a_Pro p, .a_Edit p, .a_Reader p{
-    position: absolute;
-    font-family: "SF Pro Rounded", sans-serif;
-    font-size: 15px;
-    color: black;
-}
-
-.a_Pro p:hover, .a_Edit p:hover, .a_Reader p:hover{
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.a_Pro li, .a_Edit li, .a_Reader li{
-    left: 10%;
-    width: 300px;
-    list-style: none;
-}
-
-#p_Pro, #p_Edit, #p_Reader{
-    position: absolute;
-    left: 5%;
-    top: 5%;
-    color: black;
-    font-family: "SF Pro Rounded", sans-serif;
-    font-size: 15px;
 }

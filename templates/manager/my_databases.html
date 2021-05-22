@@ -21,7 +21,7 @@
                     {% if user.owner.count == 0 %}
                         <br><p id="p-Owner">Vous n'êtes propriétaire d'aucune base de données</p>
                     {% else %}
-                        <ul class="a-Owner"><br>
+                        <ul class="a-tab"><br>
                             {% for database in user.owner.all %}
                                 {% if database.name == user.current_database.name %}
                                     <li><p style="color:#007AFF; font-weight: bold">{{ database.name }}</p></li>
@@ -42,7 +42,7 @@
                     {% if user.editor.count == 0 %}
                         <br><p id="p-Edit">Vous n'êtes éditeur d'aucune base de données</p>
                     {% else %}
-                        <ul class="a-Edit"><br>
+                        <ul class="a-tab"><br>
                             {% for database in user.editor.all %}
                                 {% if database.name == user.current_database.name %}
                                     <li><p style="color:#C99FFF; font-weight: bold">{{ database.name }}</p></li>
@@ -63,7 +63,7 @@
                     {% if user.reader.count == 0 %}
                         <br><p id="p-reader">Vous n'êtes lecteur d'aucune base de données</p>
                     {% else %}
-                        <ul class="a-reader"><br>
+                        <ul class="a-tab"><br>
                             {% for database in user.reader.all %}
                                 {% if database.name == user.current_database.name %}
                                     <li><p style="color:#F8FFCF; font-weight: bold">{{ database.name }}</p></li>

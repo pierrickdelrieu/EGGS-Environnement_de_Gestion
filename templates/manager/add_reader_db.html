@@ -12,7 +12,7 @@
 {% block content_manager %}
     <div class="content-wrapper">
         <h1>Ajouter un lecteur</h1>
-        <form action="{% url 'manager:add_reader_db' %}" method="POST">
+        <form id="add-people" action="{% url 'manager:add_reader_db' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
             {% for field in form %}
                 <div>

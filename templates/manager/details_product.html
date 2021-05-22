@@ -22,8 +22,8 @@
             Prix à l'unité : {{ product.price }} €
         </div>
         {% if user.is_current_owner or user.is_current_editor %}
-            <a class="modif" href="{% url 'manager:update_product' product_id=product.id %}"><p>Modifier le produit</p></a>
-            <a class="supprimer" href="{% url 'manager:delete_product' product_id=product.id %}"><p>Supprimer le produit</p></a>
+            <button class="modif" onclick="window.location.href= '{% url 'manager:update_product' product_id=product.id %}'">Modifier le produit</button>
+            <button class="supprimer" onclick="window.location.href= '{% url 'manager:delete_product' product_id=product.id %}'">Supprimer le produit</button>
         {% endif %}
     </div>
 {% endblock %}

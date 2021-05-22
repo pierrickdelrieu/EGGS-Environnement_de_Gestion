@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block stylesheet_manager %}
-    <link rel="stylesheet" href="{% static 'manager/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/settings_db.css' %}">
     <link rel="stylesheet" href="{% static 'manager/css/my_databases.css' %}">
 {% endblock %}
 
@@ -57,7 +57,8 @@
                         {% if reader == user %}
                             <p style="color:#007AFF; font-weight: bold">{{ reader.get_full_name }} <{{ reader.id }}></p>
                         {% else %}
-                            <p>@{{ reader.get_full_name }} <{{ reader.id }}></p>
+                            as
+                            <p>@{{ reader.get_full_name }}</p>
                         {% endif %}
                     {% endfor %}
                     </div>
@@ -72,9 +73,9 @@
                 <button onclick="window.location.href='{% url 'manager:add_editor_db' %}'">Ajouter un éditeur</button>
                 <button onclick="window.location.href='{% url 'manager:add_reader_db' %}'">Ajouter un lecteur</button>
             </div>
-            <div id="leave-button">
-                <button onclick="window.location.href='{% url 'manager:leave_db' %}'">Quitter la base de données</button>
-            </div>
+
+            <button onclick="window.location.href='{% url 'manager:leave_db' %}'"
+            style="align-self:center;">Quitter la base de données</button>
         </div>
     </div>
 

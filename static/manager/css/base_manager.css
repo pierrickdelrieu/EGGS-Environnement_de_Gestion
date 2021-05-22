@@ -24,7 +24,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
     font-family: "SF Pro Rounded", sans-serif;
 }
 
@@ -138,7 +137,11 @@ header {
 }
 
 .manager-links li a:hover{
-    font-size: 18px;
+    font-size: 15px;
+}
+
+.manager-links li {
+    list-style: none;
 }
 
 #header-title{
@@ -205,4 +208,8 @@ button{
 button:hover{
     cursor: pointer;
     background-color: #5e81ff;
+}
+
+a {
+    text-decoration: none;
 }

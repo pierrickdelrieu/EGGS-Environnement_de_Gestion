@@ -25,5 +25,25 @@
     border: 1px solid gray;
 }
 
+.tab_produit tr:nth-child(2n){
+    background-color: #FFF2F6;
+}
 
+.tab_produit tr:nth-child(2n+1) {
+    background-color: snow;
+}
+
+.tab_produit td:hover{
+    border: 1px solid #C99FFF;
+}
+
+.tab_produit a {
+    text-decoration: none;
+    color: black;
+}
+
+.tab_produit a:hover {
+    cursor: pointer;
+    color: #007AFF;
+}
 

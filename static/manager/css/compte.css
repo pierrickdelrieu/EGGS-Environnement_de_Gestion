@@ -146,8 +146,7 @@
     cursor: pointer;
 }
 
-.bouton p{
-    padding-top: 10px;
+.bouton{
     text-align: center;
     font-family: "SF Pro Rounded", sans-serif;
     font-size: 15px;

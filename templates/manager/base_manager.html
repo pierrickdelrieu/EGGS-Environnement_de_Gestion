@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'manager/css/base_manager.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/img/logo.png' %}">
     {% block stylesheet_manager %} {% endblock %}
     <title>EGGS - Manager</title>
 </head>
@@ -93,8 +94,10 @@
                     <img src="{% static 'manager/img/contact.svg' %}">
                 </a>
             </div>
-            {% block content_manager %}
-            {% endblock %}
+            <div class="sub-section" style="width: 90vw">
+                {% block content_manager %}
+                {% endblock %}
+            </div>
         </div>
     </main>
 </body>

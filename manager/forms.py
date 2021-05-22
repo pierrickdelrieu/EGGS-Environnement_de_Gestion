@@ -11,7 +11,7 @@ User = get_user_model()  # new User definitions
 class ContactForm(forms.Form):
     subject = forms.CharField(label="", max_length=100, required=True, widget=forms.TextInput(
         attrs={'placeholder': "Votre objet", 'id': "objet"}))
-    message = forms.CharField(label="", max_length=1200, required=True, widget=forms.TextInput(
+    message = forms.CharField(label="", max_length=1200, required=True, widget=forms.Textarea(
         attrs={'placeholder': "Votre message", 'id': "message"}))
 
 

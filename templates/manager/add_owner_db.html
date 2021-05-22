@@ -12,7 +12,7 @@
 {% block content_manager %}
     <div class="content-wrapper">
         <h1>Ajouter un propriétaire</h1>
-        <form action="{% url 'manager:add_owner_db' %}" method="POST">
+        <form id="add-people" action="{% url 'manager:add_owner_db' %}" method="POST">
             {% csrf_token %} <!-- Vérification sécurité-->
             {% for field in form %}
                 <div>
@@ -24,7 +24,7 @@
                     {{ field.label_tag }} {{ field }}
                 </div>
             {% endfor %}
-            <input class="bouton_ajout" id="submit-button" type="submit" value="Ajouter">
+            <input id="submit-button" type="submit" value="Ajouter">
         </form>
     </div>
 {% endblock %}

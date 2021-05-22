@@ -26,6 +26,6 @@
         <li class="user1"><br><h4>Email : <p>{{ user.email }}</p></h4></li>
         <li class="user2"><br><h4>Mot de passe : <p>************</p></h4></li>
     </ul>
-    <a class="bouton" href="{% url 'manager:update_compte' %}"><p>Modifier</p></a>
+    <button class="bouton" onclick="window.location.href='{% url 'manager:update_compte' %}'">Modifier</button>
 
 {% endblock %}
