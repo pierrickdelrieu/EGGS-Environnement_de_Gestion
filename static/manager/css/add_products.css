@@ -1,22 +1,40 @@
+.page-titre{
+    margin-left: 5%;
+    margin-top: 5%;
+    text-align: center;
+}
+
 #formulaire{
     position: absolute;
-    width: 80%;
-    height: 40%;
-    left: 12%;
-    top: 30%;
+    top: 40%;
+    left: 35%;
+    width: 40%;
+    border: 0 #F9F9FA;
+}
+
+#name_prod, #q_prod, #prix_prod{
+    height: 55px;
+    width: 100%;
+    margin-top: 5px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
 }
 
 #ajout{
-    position: absolute;
-    width: 172px;
-    height: 40px;
-    left: 78%;
-    top: 85%;
+    height: 55px;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 10%;
 
     background-color: #5e81ff;
     border-radius: 14px;
     border: none;
-
     color: white;
     cursor: pointer;
 }
@@ -25,38 +43,3 @@
     background-color: #007AFF;
 }
 
-#name_prod{
-    position: absolute;
-    width: 825px;
-    height: 55px;
-    left: 10%;
-    top: 20%;
-    border: none;
-    background: #FFFCFC;
-}
-
-#q_prod{
-    position: absolute;
-    width: 825px;
-    height: 55px;
-    left: 10%;
-    top: 40%;
-    border: none;
-    background: #FFFCFC;
-}
-
-#prix_prod{
-    position: absolute;
-    width: 825px;
-    height: 55px;
-    left: 10%;
-    top: 60%;
-    border: none;
-    background: #FFFCFC;
-}
-
-::placeholder{
-    padding: 5px;
-    font-size: 15px;
-    color: rgba(60, 60, 67, 0.6);
-}

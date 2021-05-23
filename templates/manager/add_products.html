@@ -11,6 +11,9 @@
 
 {% block content_manager %}
     <p class="titre">- Ajouter un produit</p>
+    <div class="page-titre">
+        <h2>Ajouter un produit</h2>
+    </div>
      <form id="formulaire" action="{% url 'manager:add_product' %}" method="POST">
          {% csrf_token %} <!-- Vérification sécurité-->
 
