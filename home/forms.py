@@ -105,14 +105,10 @@ class SigninForm(forms.Form):
 # Redéfinition
 # cf. : https://django-wiki.readthedocs.io/en/0.2.2/_modules/django/contrib/auth/forms.html
 class PasswordResetConfirmationForm(SetPasswordForm):
-    new_password1 = forms.CharField(
-        label="Mot de passe",
-        widget=forms.PasswordInput,
-    )
-    new_password2 = forms.CharField(
-        label="Confirmation de mot de passe",
-        widget=forms.PasswordInput,
-    )
+    new_password1 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
+    new_password2 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Confirmer votre mot de passe", 'id': "confirmation"}))
 
     # Error if the password confirmation is not valid
     def clean_new_password2(self):

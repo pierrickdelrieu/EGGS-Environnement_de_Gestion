@@ -1,31 +1,13 @@
-h2{
-    font-family: "SF Pro Rounded", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 34px;
-    line-height: 41px;
-
-    margin-left: 15px;
-    margin-top: 30px;
-    text-align: center;
-    letter-spacing: 0.374px;
-
-    color: #000000;
-}
-
 .page-titre{
-    position: absolute;
-    width: 50%;
-    left: 25%;
-    top: 50px;
+    margin-top: 5%;
+    text-align: center;
 }
 
 #formulaire-login{
     position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 10%;
-    left: 25%;
+    top: 20%;
+    left: 30%;
+    width: 40%;
     border: 0 #F9F9FA;
 }
 
@@ -37,24 +19,13 @@ h2{
     left: 60%;
 }
 
-#email{
-    position: absolute;
-    top: 20%;
-    height: 50px;
+#email, #mdp{
+    height: 55px;
     width: 100%;
+    margin-top: 5px;
     border: 0 white;
     background: #FFFFFF;
 }
-
-#mdp {
-    position: absolute;
-    top: 35%;
-    height: 50px;
-    width: 100%;
-    border: 0 white;
-    background: #FFFFFF;
-}
-
 ::placeholder{
     padding: 5px;
     font-size: 15px;
@@ -62,18 +33,14 @@ h2{
 }
 
 #bouton_val{
-    position: absolute;
-    top: 55%;
-
-    height: 51px;;
-    width: 50%;
-
-    margin-left: 25%;
+    height: 55px;
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 10%;
 
     background-color: #5e81ff;
     border-radius: 14px;
     border: none;
-
     color: white;
     cursor: pointer;
 }
@@ -83,15 +50,8 @@ h2{
 }
 
 #signin{
-    font-family: "SF Pro Rounded", sans-serif;
-    position: absolute;
-    left: 20%;
-    top: 70%;
-    width: 100%;
+    text-align: center;
     font-size: 15px;
-    line-height: 20px;
-    display: flex;
-    align-items: center;
     color: rgba(60, 60, 67, 0.6);
 }
 
@@ -135,10 +95,12 @@ h2{
     color: red;
 }
 
-#cadenas{
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    left: 80%;
-    top: 44%;
+.text-reset{
+    text-align: justify;
+    margin: 0 20% 0 20%;
+}
+
+.text{
+    text-align: justify;
+    margin: 0 20% 0 20%;
 }

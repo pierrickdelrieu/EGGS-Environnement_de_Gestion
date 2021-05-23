@@ -1,75 +1,20 @@
-h2{
-    font-family: "SF Pro Rounded", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 34px;
-    line-height: 41px;
-
-    text-align: center;
-    letter-spacing: 0.374px;
-
-    color: #000000;
-}
-
 .page-titre{
-    position: absolute;
-    width: 40%;
-    left: 40%;
-    top: 50px;
+    margin-top: 5%;
+    text-align: center;
 }
 
-form{
-    background: #F9F9FA;
+#formulaire-signin{
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width: 40%;
     border: 0 #F9F9FA;
 }
 
-#nom{
-    position: fixed;
+#nom, #prenom, #email, #mdp, #confirmation{
     height: 55px;
-    width: 40%;
-    left: 40%;
-    top: 250px;
-
-    border: 0 white;
-    background: #FFFFFF;
-}
-
-#prenom{
-    position: fixed;
-    height: 55px;
-    width: 40%;
-    left: 40%;
-    top: 310px;
-    border: 0 white;
-    background: #FFFFFF;
-}
-
-#email{
-    position: fixed;
-    height: 55px;
-    width: 40%;
-    left: 40%;
-    top: 370px;
-    border: 0 white;
-    background: #FFFFFF;
-}
-
-#mdp{
-    position: fixed;
-    height: 55px;
-    width: 40%;
-    left: 40%;
-    top: 430px;
-    border: 0 white;
-    background: #FFFFFF;
-}
-
-#confirmation{
-    position: fixed;
-    height: 55px;
-    width: 40%;
-    left: 40%;
-    top: 490px;
+    width: 100%;
+    margin-top: 5px;
     border: 0 white;
     background: #FFFFFF;
 }
@@ -80,66 +25,27 @@ form{
     color: rgba(60, 60, 67, 0.6);
 }
 
-input[type=submit] {
-    position: fixed;
-    height: 51px;;
-    width: 30%;
-    left: 45%;
-    bottom: 15%;
+#bouton-valider{
+    height: 55px;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 10%;
 
     background-color: #5e81ff;
     border-radius: 14px;
     border: none;
-
     color: white;
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+#bouton-valider:hover {
     background-color: #007AFF;
 }
 
-#rectVert{
-    z-index: 1;
-
-    position: fixed;
-    width: 20%;
-    height: 100%;
-    left: 0;
-    top: 115px;
-
-    background: rgba(200, 253, 218, 0.28);
-    border-radius: 26px;
-}
-
-#titreVert{
-    position: absolute;
-    left: 25%;
-    top: 140px;
-
-    font-family: "SF Pro Rounded", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 22px;
-    /* or 61% */
-
-    letter-spacing: -0.408px;
-
-    color: #000000;
-}
-
 #login{
-    position: fixed;
-    left: 50%;
-    bottom: 9%;
-
-    font-family: "SF Pro Rounded", sans-serif;
+    margin-top: 5px;
+    text-align: center;
     font-size: 15px;
-    line-height: 20px;
-
-    display: flex;
-    align-items: center;
     color: rgba(60, 60, 67, 0.6);
 }
 
