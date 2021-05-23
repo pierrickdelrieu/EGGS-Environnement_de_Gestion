@@ -92,7 +92,7 @@ def add_product(request):
                 # Ajout du produit dans la base de donnée
                 current_database.products.add(product)
 
-                return HttpResponseRedirect('/manager/dashboard/')
+                return HttpResponseRedirect('/manager/display_products/')
         else:
             form = AddProductForm(initial={'user': request.user})
 
@@ -152,7 +152,7 @@ def switch_current_db(request, database_name):
     database = DataBase.objects.filter(name=database_name).get()
     user.update_current_database(database)
 
-    return render(request, 'manager/display_products.html', locals())
+    return HttpResponseRedirect('/manager/display_products/')
 
 
 @login_required

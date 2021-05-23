@@ -131,5 +131,5 @@ class PasswordResetConfirmationForm(SetPasswordForm):
 # Redefinition
 # cf. : https://django-wiki.readthedocs.io/en/0.2.2/_modules/django/contrib/auth/forms.html
 class PasswordResetFormEmail(PasswordResetForm):
-    email = forms.EmailField(label="", max_length=254, widget=forms.PasswordInput(
-        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))
+    email = forms.EmailField(label="", max_length=254, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre email", 'id': "email"}))

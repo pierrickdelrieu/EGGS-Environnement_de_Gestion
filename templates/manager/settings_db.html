@@ -27,7 +27,7 @@
                         {% if owner == user %}
                             <p style="color:#007AFF; font-weight: bold">{{ owner.get_full_name }} <{{ owner.id }}></p>
                         {% else %}
-                            <p>@{{ owner.get_full_name }} <{{ owner.id }}></p>
+                            <p>{{ owner.get_full_name }} <{{ owner.id }}></p>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -42,7 +42,7 @@
                             {% if editor == user %}
                                 <p style="color:#007AFF; font-weight: bold">{{ editor.get_full_name }} <{{ editor.id }}></p>
                             {% else %}
-                                <p>@{{ editor.get_full_name }}</p>
+                                <p>{{ editor.get_full_name }} <{{ editor.id }}></p>
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -58,7 +58,7 @@
                             <p style="color:#007AFF; font-weight: bold">{{ reader.get_full_name }} <{{ reader.id }}></p>
                         {% else %}
                             as
-                            <p>@{{ reader.get_full_name }}</p>
+                            <p>{{ reader.get_full_name }} <{{ reader.id }}</p>
                         {% endif %}
                     {% endfor %}
                     </div>
