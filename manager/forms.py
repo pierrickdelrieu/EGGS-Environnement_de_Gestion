@@ -65,7 +65,7 @@ class AddProductForm(forms.Form):
 
     def clean_quantity(self):
         quantity = self.cleaned_data.get("quantity")
-        if quantity and quantity < 0:
+        if quantity and (quantity < 0 or quantity > 2147483647):
             raise ValidationError(
                 _("La quantité doit être positive ou nul"),
                 code='quantity_is_negative',
@@ -74,7 +74,7 @@ class AddProductForm(forms.Form):
 
     def clean_price(self):
         price = self.cleaned_data.get("price")
-        if price and price < 0:
+        if price and (price < 0 or price > 2147483647):
             raise ValidationError(
                 _("Le prix doit être positif ou nul"),
                 code='price_is_negative',
