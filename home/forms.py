@@ -27,6 +27,7 @@ class LoginForm(forms.Form):
                 )
         return email
 
+    # Vérification de la connexion
     def clean_password(self):
         email = self.cleaned_data["email"].lower()
         password = self.cleaned_data.get("password")
@@ -38,7 +39,6 @@ class LoginForm(forms.Form):
             )
 
         return password
-
 
 
 class SigninForm(forms.Form):

@@ -27,6 +27,7 @@ class AddDbForm(forms.Form):
         initial = kwargs.pop('initial')
         self.user = initial['user']
 
+    # vérification si le nom de la databse n'est pas déjà existant
     def clean_name(self):
         user = User.objects.get(username=self.user.username)
         name = self.cleaned_data.get("name") + ' (' + user.first_name[0].upper() + \
@@ -65,7 +66,7 @@ class AddProductForm(forms.Form):
 
     def clean_quantity(self):
         quantity = self.cleaned_data.get("quantity")
-        if quantity and (quantity < 0 or quantity > 2147483647):
+        if quantity and (quantity < 0 or quantity > 2147483647): # 2147483647 limite supérieur d'un Integer
             raise ValidationError(
                 _("La quantité doit être positive ou nul"),
                 code='quantity_is_negative',

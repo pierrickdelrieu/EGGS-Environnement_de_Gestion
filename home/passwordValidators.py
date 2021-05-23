@@ -2,7 +2,7 @@ import re  # Regular expression
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
-
+# Validation des nombres dans le mot de passe
 class NumberValidator(object):
     def __init__(self, nb=2):
         self.nb = nb
@@ -21,7 +21,7 @@ class NumberValidator(object):
             % {'nb': self.nb}
         )
 
-
+# Validation des majuscules dans le mot de passe
 class UppercaseValidator(object):
     def __init__(self, nb=1):
         self.nb = nb
@@ -40,7 +40,7 @@ class UppercaseValidator(object):
             % {'nb': self.nb}
         )
 
-
+# Validation des minuscule dans le mot de passe
 class LowercaseValidator(object):
     def __init__(self, nb=2):
         self.nb = nb
@@ -59,7 +59,7 @@ class LowercaseValidator(object):
             % {'nb': self.nb}
         )
 
-
+# Validation d'un nombre dans le mot de passe
 class SymbolValidator(object):
     def __init__(self, nb=2):
         self.nb = nb

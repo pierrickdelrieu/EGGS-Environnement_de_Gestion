@@ -53,6 +53,7 @@ def inscription(request):
             user.save()  # User registration in the database
             user.set_username()  # Initializing username
 
+            # envoie du mail de confirmation
             current_site = get_current_site(request)
             mail_subject = 'Active ton compte EGGS'
             message = render_to_string('home/acc_active_email.html', {

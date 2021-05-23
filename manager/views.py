@@ -15,7 +15,7 @@ from .urls import *
 User = get_user_model()  # new User definitions
 
 
-@login_required
+@login_required # renvoie à la page de connexion si l'utilisateur n'est pas connecté
 def dashboard(request):
     user = request.user
 
@@ -218,6 +218,7 @@ def update_password(request):
             user.set_password(new_password2)
             user.save()
 
+            # envoie d'un mail pour notifié de la modification du mot de passe
             current_site = get_current_site(request)
             subject = user.get_short_name() + " - Vous avez modifié votre mot de passe - "
             message = message = render_to_string('manager/update_password_email.html', {
@@ -332,6 +333,7 @@ def add_reader_db(request):
 def delete_product(request, product_id):
     user = request.user
 
+    # Vérification des droits
     if user.is_current_owner() or user.is_current_editor():
         product = Product.objects.filter(id=product_id).get()
         product.delete()
@@ -343,6 +345,7 @@ def delete_product(request, product_id):
 def delete_database(request):
     user = request.user
 
+    # Vérification des droits
     if user.is_current_owner():
         database = user.current_database
         for product in database.products.all():
@@ -362,6 +365,7 @@ def leave_db(request):
     database = user.current_database
 
     if user.is_current_owner():
+        # Vérification si le propriétaire est le seul propriétaire
         if database.user_owner.count() > 1:
             user.switch_random_database()
             database.user_owner.remove(user)
