@@ -28,8 +28,8 @@
         <ul class="info2">
             <li class="user1"><br><h4>Email : <p><input type="text" id="email" name="email" value="{{ user.email }}"></p></h4></li>
             <li class="user2"><br><h4>Mot de passe : <p>************</p></h4></li>
-            <li class="user3"><br><a href="{% url 'manager:update_password' %}"><h4>Modifier mon mot de passe</h4></a></li>
+            <li class="user3"><br><a id="lien-modifier" href="{% url 'manager:update_password' %}"><h4>Modifier mon mot de passe</h4></a></li>
         </ul>
-        <input class="valider" type="submit" value="Valider">
+        <input id="val-button" type="submit" value="Valider">
     </form><br>
 {% endblock %}
