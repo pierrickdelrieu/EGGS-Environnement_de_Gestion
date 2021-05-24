@@ -1,0 +1,87 @@
+h3{
+    position: absolute;
+    height: 37px;
+    left: 407px;
+    right: 407px;
+    top: 20%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    line-height: 41px;
+
+    text-align: center;
+    letter-spacing: 0.374px;
+
+    color: #000000;
+}
+
+#welcome{
+    position: absolute;
+    height: 40px;
+    left: 435.84px;
+    right: 431.52px;
+    top: 35%;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 22px;
+
+    text-align: center;
+    letter-spacing: -0.408px;
+
+    color: rgba(60, 60, 67, 0.6);
+}
+
+#name_db{
+    position: absolute;
+    height: 7.4%;
+    width: 40%;
+    left: 30%;
+    top: 45%;
+
+    border: none;
+    background: #FFFFFF;
+}
+
+#categorie_db{
+    position: absolute;
+    height: 7.4%;
+    width: 40%;
+    left: 30%;
+    top: 55%;
+    border: none;
+    background: #FFFFFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+#bouton-a{
+    position: absolute;
+    height: 51px;;
+    width: 30%;
+    left: 35%;
+    top: 70%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+
+    color: white;
+    cursor: pointer;
+}
+
+#bouton-a:hover {
+    background-color: #007AFF;
+}
+
+.error {
+    color: red;
+}

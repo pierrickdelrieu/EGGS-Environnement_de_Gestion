@@ -1,21 +1,125 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/img/logo.png' %}">
+    <title>Home</title>
+</head>
+    <body>
+        <main>
+            <header>
+                <img id = "eggs-logo" src = "{% static 'home/img/logo.png' %}" alt = "Le logo de EGGS">
+                <p id="header-title">E.G.G.S</p>
 
-{% block title %}
-<title>Accueil</title>
-{% endblock %}
+                {% if user.is_authenticated %}
+                    <ul class = "eggs-links">
+                        <li><a href="{% url 'home:login' %}" class="survol">Mon espace</a><br></li>
+                        <li><a href="{% url 'home:logout' %}" class="survol">Me déconnecter</a></li>
+                    </ul>
+                {% else %}
+                    <ul class = "eggs-links">
+                        <li><a href="{% url 'home:login' %}" class="survol">Connexion</a><br></li>
+                        <li><a href="{% url 'home:signin' %}" class="survol">Inscription</a></li>
+                    </ul>
+                {% endif %}
+            </header>
+
+            <div class="anim-circle" id="circle1"></div>
+            <div class="anim-circle" id="circle2"></div>
+            <div class="anim-circle" id="circle3"></div>
+            <div class="anim-circle" id="circle4"></div>
+            <div class="anim-circle" id="circle5"></div>
 
 
-{% block content %}
-    {% if user.is_authenticated %}
-        <nav>
-            <a href="{% url 'home:login' %}" class="survol">Mon espace</a><br>
-        </nav>
-    {% else %}
-        <nav>
-            <a href="{% url 'home:signin' %}" class="survol">Inscription</a><br>
-            <a href="{% url 'home:login' %}" class="survol">Connexion</a>
-        </nav>
-    {% endif %}
+            <div id="container1">
+                <div class="wrapper-container1">
+                    <div id="wrapper-presentation">
+                        <div class="eggs-presentation">
+                            <h1 id="eggs-title">E.G.G.S <span><img src="{% static 'home/img/eggs-twoeggs.png' %}"></span></h1>
+                            <div class="eggs-presentation-wrapper">
+                                <p id="eggs-subtitle">Votre environnement de gestion simplifié, un outil pour vous faciliter la vie</p>
+                                <p id="eggs-desc">E.G.G.S est un logiciel de gestion gratuit, fait pour vous, par vous. Créez, puis ajoutez des centaines de produits dans vos bases de données. </p>
+                            </div>
+                        </div>
 
-    <h2>Un outil pour vous faciliter la vie</h2>
-{% endblock %}
+                        {% if user.is_authenticated %}
+                            <div class="eggs-buttons">
+                                <a href="{% url 'home:login' %}"><button>Mon espace</button></a>
+                                <a href="{% url 'home:logout' %}"><button>Me déconnecter</button></a>
+                            </div>
+                        {% else %}
+                            <div class="eggs-buttons">
+                                <a href="{% url 'home:signin' %}"><button>Créer un compte</button></a>
+                                <a href="{% url 'home:login' %}"><button>Se connecter</button></a>
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <iframe id="youtube-video" src="https://www.youtube.com/embed/ZFtlMX-7cI4"></iframe>
+                </div>
+
+                <a class="arrow" href="#container2"><img src = "{% static 'home/img/arrow-down.png' %}" alt="arrow down image"></a>
+            </div>
+
+            <div id="container2">
+                <div id ="wrapper-container-2">
+                    <div class="text-c2">
+                        <img id="image-database" src="{% static 'home/img/database-storage.svg' %}" alt="database image">
+                        <p>Créez vos bases de données</p>
+                    </div>
+                    <div class="text-c2">
+                        <img id="image-sculptor" src="{% static 'home/img/eggs-sculptor.svg' %}" alt="un mec qui charbonne dur">
+                        <p>Créez les objets que vous voulez ajouter</p>
+                    </div>
+                    <div class="text-c2">
+                        <img id="image-approved" src="{% static 'home/img/approved.svg' %}" alt="j'approuve ce choix">
+                        <p>Ne perdez plus aucune trace de vos objets</p>
+                    </div>
+                </div>
+
+                 <a class="arrow" href="#container3"><img src = "{% static 'home/img/arrow-down.png' %}"></a>
+            </div>
+
+            <div id="container3">
+                <div id="wrapper-container-3">
+                    <img id="image-group-chat" src="{% static 'home/img/group.svg' %}">
+                    <div id="table-c3">
+                        <div class="text-c3">
+                            <img id="image-magic-wand" src="{% static 'home/img/magic-wand.svg' %}">
+                            <p>Créez votre environnement EGGS</p>
+                        </div>
+                        <div class="text-c3">
+                            <img id="image-pencil" src="{% static 'home/img/pencil.svg' %}">
+                            <p>Partagez-le à vos collègues ou amis</p>
+                        </div>
+                        <div class="text-c3">
+                            <img id="image-binoculars" src="{% static 'home/img/binoculars.svg' %}">
+                            <p>Ou accèdez à l’environnement EGGS <br> d’autres utilisateurs</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="arrow" href="#container1"><img src="{% static 'home/img/arrow-up.png' %}"></a>
+            </div>
+
+            <footer>
+                <h2>E<span>GGS</span></h2>
+                <div id="contact">
+                    <h3>Qui sommes-nous ?</h3>
+                    <a href="{% url 'home:about' %}">À propos</a><br>
+                </div>
+                <div id="social-networks">
+                    <ul>
+                        <li><a><img src="{% static 'home/img/Facebook link.png' %}"></a></li>
+                        <li><a><img src="{% static 'home/img/Twitter link.png' %}"></a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </body>
+</html>

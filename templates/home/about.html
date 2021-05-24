@@ -1,0 +1,58 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+    <title>EGGS - À propos</title>
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'home/css/about.css' %}">
+{% endblock %}
+
+{% block connexions %}
+    <p class="titre">- Qui sommes-nous ?</p>
+    <ul class="links">
+        <li><a href="{% url 'home' %}" class="survol">Retour à l'accueil</a><br></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="page-contenu">
+        <p id="page-titre">Qui sommes-nous ?</p><br><br>
+        <ul>
+            <li><img src = "{% static 'home/img/Faustin.png' %}"></li>
+            <li><img src = "{% static 'home/img/Harold.png' %}"></li>
+            <li><img src = "{% static 'home/img/Celia.png' %}"></li>
+            <li><img src = "{% static 'home/img/Pierrick.png' %}"></li>
+            <li><img src = "{% static 'home/img/Benjamin.png' %}"></li>
+        </ul><br><br>
+        <div class="text">
+            <p>Nous sommes cinq étudiants et nous vous présentons : E.G.G.S.<img id="logo-eggs" src="{% static 'home/img/logo.png' %}"></p>
+
+            <br><br><h4>Un outil pour vous faciliter la vie</h4><br>
+            De nos jours, le numérique règne dans notre société. Il représente la vie de tous les jours mais surtout l’avenir. Nous vous présentons E.G.G.S, notre environnement de gestion grandement simplifié. Comme un œuf est un aliment qui peut permettre de cuisiner différents plats, E.G.G.S. est une application que nous pouvons utiliser pour réaliser diverses actions. En effet, E.G.G.S est plus qu’une simple application, elle permet de gérer des stocks de façon simple et pratique, rapide et efficace. De plus, elle apporte un gain de temps, non négligeable, à ses utilisateurs grâce à ses nombreuses fonctionnalités qui fournissent une maitrise totalement numérisée des stocks et des flux d’entrées et de sorties de chaque produit.
+
+            <br><br><h4>Pour les petits commerçants</h4><br>
+            Notre application est conçue pour aider les petits commerçants. En effet, ce sont ces petits commerces qui n’ont pas la possibilité de faire développer un logiciel en interne ou bien d’en acheter un comme pourrait le faire les grandes entreprises. C’est pourquoi nous avons créé E.G.G.S., une application de gestion gratuite et simple d’utilisation.
+
+            <br><br><h4>Comme pour les particuliers</h4><br>
+            E.G.G.S. apporte donc de nombreux avantages quant à la gestion de produits. Ainsi elle peut être très utile dans la vie de tous les jours d’un particulier. Il est vrai que souvent nous avons beaucoup de produits (vêtements, nourriture, produits de toilettes et encore bien d’autres), mais nous perdons toujours du temps à chercher nos affaires. Or E.G.G.S. révolutionne cette perte de temps grâce à la création de bases de données, par exemple il est possible de créer une base de données pour chaque pièce et ainsi savoir à tout instant ce qu’il y a à l’intérieur.
+            <br><br><br><br>
+        </div>
+    </div>
+
+    <footer>
+        <h2>E<span>GGS</span></h2>
+        <div id="contact">
+            <h3>Qui sommes-nous ?</h3>
+            <a href="{% url 'home:about' %}">À propos</a><br>
+
+        </div>
+        <div id="social-networks">
+            <ul>
+                <li><a><img src="{% static 'home/img/Facebook link.png' %}"></a></li>
+                <li><a><img src="{% static 'home/img/Twitter link.png' %}"></a></li>
+            </ul>
+        </div>
+    </footer>
+{% endblock %}

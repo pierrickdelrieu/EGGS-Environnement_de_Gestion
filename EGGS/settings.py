@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # adaptateur postgresql
         'NAME': 'EGGS',
-        'USER': 'pierrickdelrieu',  # attention : remplacez par votre nom d'utilisateur
+        'USER': 'Celia',  # attention : remplacez par votre nom d'utilisateur
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -98,12 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'OPTIONS': {
             'min_length': 8,
         }
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
     {
         'NAME': 'home.passwordValidators.UppercaseValidator',
@@ -153,7 +147,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 # URL de connexion
-LOGIN_URL = '/home/login'
+LOGIN_URL = '/home/login/'
 
 # Paramtres email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

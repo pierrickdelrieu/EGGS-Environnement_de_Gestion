@@ -1,0 +1,106 @@
+.page-titre{
+    margin-top: 5%;
+    text-align: center;
+}
+
+#formulaire-login{
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    border: 0 #F9F9FA;
+}
+
+#cont-mdpo{
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    top: 10%;
+    left: 60%;
+}
+
+#email, #mdp{
+    height: 55px;
+    width: 100%;
+    margin-top: 5px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+#bouton_val{
+    height: 55px;
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 10%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#bouton_val:hover {
+    background-color: #007AFF;
+}
+
+#signin{
+    text-align: center;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+.lien{
+    color: #007AFF;
+}
+
+.lien:hover{
+    color: darkblue;
+}
+
+.mdpo{
+    position: absolute;
+    top: 40%;
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: #007AFF;
+}
+
+.mdpo:hover{
+    color: darkblue;
+}
+
+.error {
+    z-index: 4;
+
+    position: absolute;
+    left: 50px;
+    top: 500px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 38px;
+
+    color: #000000;
+}
+
+.error {
+    color: red;
+}
+
+.text-reset{
+    text-align: justify;
+    margin: 0 20% 0 20%;
+}
+
+.text{
+    text-align: justify;
+    margin: 0 20% 0 20%;
+}

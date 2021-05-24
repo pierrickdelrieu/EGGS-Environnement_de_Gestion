@@ -1,2 +1,56 @@
-{% extends 'base.html' %}
- Affichage des produits
+{% extends 'manager/base_manager.html' %}
+{% load static %}
+
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
+
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'manager/css/display_products.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    <p class="titre">- Liste des produits</p>
+    {% if products_list.count == 0 %}
+        <div class="null">
+            Aucun produits n'a été ajouté dans cette base de données
+        </div>
+    {% else %}
+        <table class="tab_produit">
+            <thead>
+                <tr>
+                <th>Les produits</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td><a href="{% url 'manager:details_product' product_id=product.id %}">{{ product.name }}</a></td>
+                        <td><a href="{% url 'manager:details_product' product_id=product.id %}">{{ product.quantity }}</a></td>
+                        <td><a href="{% url 'manager:details_product' product_id=product.id %}">{{ product.price }}€</a></td>
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="clearfix"></div>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% if paginate %}
+        <div class="clearfix"></div>
+        <nav aria-label="">
+            <ul class="pager">
+                {% if products.has_previous %}
+                    <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+                {% endif %}
+                {% if products.has_next %}
+                    <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+{% endblock %}

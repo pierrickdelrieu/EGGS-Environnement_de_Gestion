@@ -1,21 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
 {% load static %}
 
 {% block title %}
     <title>EGGS - Validation du compte</title>
 {% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'home/css/login.css' %}">
+{% endblock %}
+
+{% block connexions %}
+    <p class="titre">- Validation du compte</p>
+    <ul class="links">
+        <li><a href="{% url 'home' %}">Retour à l'accueil</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-    <h2>Validation du compte</h2>
+    <div class="page-titre">
+        <h2>Validation du compte</h2>
+    </div>
 
-    <nav>
-        <a href="{% url 'home' %}">Retour à l'accueil</a><br>
-    </nav>
-
-    <p class="text">
-        Votre email a bien été confirmé. Vous pouvez maintenant vous connecter à votre compte. <a href="{% url 'home:login' %}">Me connecter</a> maintenant.
-    </p>
-
-
+    <p class="text">Votre email a bien été confirmé. Vous pouvez maintenant vous connecter à votre compte.
+    <a href="{% url 'home:login' %}">Me connecter</a> maintenant.</p>
 {% endblock %}
+
+

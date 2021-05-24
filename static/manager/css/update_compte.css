@@ -1,0 +1,59 @@
+#val-button{
+    width: 20%;
+    height: 5%;
+    left: 42%;
+    top: 75%;
+    position: absolute;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    cursor: pointer
+}
+
+#val{
+    height: 20px;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 40%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#val:hover{
+    background-color: #007AFF;
+}
+
+.user_2, .user_3, .user_4{
+    z-index: 2;
+    width: 100%;
+    height: 10%;
+
+    background: white;
+    border-radius: 7px;
+
+    margin-left: 30%;
+    margin-top: 10px;
+    border: 0 white;
+}
+
+#formulaire-mdp{
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width: 50%;
+    border: 0 #F9F9FA;
+}
+
+#lien-modifier{
+    color: #007AFF;
+}
+
+#lien-modifier:hover{
+    color: black;
+}

@@ -1,0 +1,73 @@
+.aff_prod{
+    position: absolute;
+    top: 25%;
+    left: 33%;
+
+    width: 40%;
+    height: 60%;
+
+    border: 1px solid black;
+    border-radius: 4px;
+
+    font-family: "SF Pro Rounded", sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+
+.aff_prod div{
+    padding: 0 5% 5% 5%;
+}
+
+.modif{
+    position: absolute;
+    width: 40%;
+    height: 8%;
+    left: 30%;
+    top: 80%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.modif p{
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+}
+
+.modif:hover{
+    background-color: #007AFF;
+}
+
+.supprimer{
+    position: absolute;
+    width: 40%;
+    height: 8%;
+    left: 30%;
+    top: 90%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+
+    border: none;
+    cursor: pointer;
+}
+
+.supprimer p{
+    font-family: "SF Pro Rounded", sans-serif;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+}
+
+.supprimer:hover{
+    background-color: #007AFF;
+}

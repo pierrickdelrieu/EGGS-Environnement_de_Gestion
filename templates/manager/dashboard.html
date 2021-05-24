@@ -1,20 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-{% block title %}
-    <title>EGGS - Manager</title>
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'manager/css/base_manager.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    {% block title_manager %}
+    {% endblock %}
+
+     <p class="titre">- Mon Espace</p>
+    <div class="mon_espace">
+        <h1>Mon espace</h1>
+        <br><br>
+        Vous pouvez dès à présent créer une ou plusieurs bases de données et leurs ajouter des produits. Par la suite,
+        <br>vous pourrez accéder à ses données et les modifier à votre convenance.
+        <br><br>
+        De plus vous trouverez un onglet "Mon compte" dans lequel vous avez la possibilité de modifier vos informations
+        <br>ainsi que votre mot de passe EGGS.
+        <br><br>
+        Si vous rencontrez des problèmes lors de l'utilisation de notre site internet vous pouvez nous joindre sur l'onglet
+        <br>"Nous contacter".
+    </div>
+
 {% endblock %}
 
 
-{% block content %}
-    <h2>Interface interne</h2>
-
-    <nav>
-        <a href="{% url 'home:logout' %}" class="top-menu">Deconnexion</a><br>
-        <a href="{% url 'home' %}">Retour à l'accueil</a>
-    </nav>
-
-    {% if user.is_authenticated %}
-        <p class="text">Vous êtes connecté, {{ user.get_full_name }} !</p>
-    {% endif %}
-
-{% endblock %}

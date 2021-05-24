@@ -12,7 +12,12 @@ from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()  # new User definitions
+
+
+def about(request):
+    return render(request, 'home/about.html', locals())
 
 
 def connexion(request):
@@ -23,8 +28,11 @@ def connexion(request):
         form = LoginForm(request.POST)
 
         if form.is_valid():  # If there is no error (clean) in the form
-            if form.log(request):  # User login attempt
-                return HttpResponseRedirect('/manager/dashboard/')
+            email = form.cleaned_data.get('email').lower()
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
+            login(request, user)
+            return HttpResponseRedirect('/manager/dashboard/')
     else:
         form = LoginForm()
 
@@ -38,12 +46,14 @@ def inscription(request):
     elif request.method == 'POST':
         form = SigninForm(request.POST)
 
-        if form.is_valid(): # If there is no error (clean) in the form
+        if form.is_valid():  # If there is no error (clean) in the form
             user = form.save(commit=False)  # User registration but not in the database
             user.is_active = False  # Blocking user login
-            user.save()  # User registration in the database
-            user.set_username() # Initializing username
 
+            user.save()  # User registration in the database
+            user.set_username()  # Initializing username
+
+            # envoie du mail de confirmation
             current_site = get_current_site(request)
             mail_subject = 'Active ton compte EGGS'
             message = render_to_string('home/acc_active_email.html', {
@@ -67,7 +77,7 @@ def inscription(request):
 
 def deconnexion(request):
     logout(request)
-    return HttpResponseRedirect('/home/login/')
+    return HttpResponseRedirect('/')
 
 
 # cf : https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef
@@ -80,7 +90,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True  # Activate the possibility of connection
         user.save()  # User registration in the database
-        return HttpResponseRedirect('/home/activate_complete/')
+        login(request, user)
+        return HttpResponseRedirect('/manager/dashboard/')
     else:
         return HttpResponse("Lien d'activation invalide")
 
@@ -88,6 +99,3 @@ def activate(request, uidb64, token):
 def activate_done(request):
     return render(request, 'home/acc_active_done.html', locals())
 
-
-def activate_complete(request):
-    return render(request, 'home/acc_active_complete.html', locals())

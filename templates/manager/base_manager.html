@@ -1,0 +1,104 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'manager/css/base_manager.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/img/logo.png' %}">
+    {% block stylesheet_manager %} {% endblock %}
+    <title>EGGS - Manager</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div id="header-logo">
+                <img id="eggs-logo" src="{% static 'home/img/logo.png' %}" alt="logo eggs">
+
+                <div id="header-titles">
+                    <p id="eggs">EGGS</p>
+                    {% block title_manager %}
+                    {% endblock %}
+
+                    <form action="{% url 'manager:dashboard' %}" method="POST">
+                        {% csrf_token %} <!-- Vérification sécurité-->
+                        <select class = "form-button" name="database" id="m_bdd">
+                            {% if user.current_database == None %}
+                                <option value="None" selected>Aucune base de donnée</option>
+                            {% else %}
+                                <option value="{{ user.current_database.name }}" selected>{{ user.current_database.name }}</option>
+                                <optgroup label="Propriétaire">
+                                    {% for database in user.owner.all %}
+                                        {% if database.name != user.current_database.name %}
+                                            <option value="{{ database.name }}">{{ database.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Editeur">
+                                    {% for database in user.editor.all %}
+                                        {% if database.name != user.current_database.name %}
+                                            <option value="{{ database.name }}">{{ database.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Lecteur">
+                                    {% for database in user.reader.all %}
+                                        {% if database.name != user.current_database.name %}
+                                            <option value="{{ database.name }}">{{ database.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                            {% endif %}
+                        </select>
+                        {% if user.current_database != None %}
+                            <input class = "form-button" type="submit" value="Changer">
+                        {% endif %}
+                    </form>
+
+                </div>
+            </div>
+
+            <div id="header-wrapper">
+                <div id="header-profile">
+                    <h2>{{ user.get_full_name }}</h2>
+                    <a href="{% url 'manager:compte' %}">
+                        <img id="profile-img" src="{% static 'manager/img/m_compte.svg' %}">
+                    </a>
+                </div>
+
+                <div class="links">
+                    <ul class= "manager-links">
+                        <li><a href = "{% url 'home' %}">Retour à l'accueil</a></li>
+                        {% block manager_links %}
+                        {% endblock %}
+                        <li><a href = "{% url 'home:logout' %}">Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div class = "wrapper-content">
+            <div id = "dashboard">
+                <a href="{% url 'manager:my_databases' %}">
+                    <img src="{% static 'manager/img/databases.svg' %}">
+                </a>
+                <a href="{% url 'manager:add_product' %}">
+                    <img src="{% static 'manager/img/add_product.svg' %}">
+                </a>
+                <a href="{% url 'manager:display_products' %}">
+                    <img src="{% static 'manager/img/dossier.svg' %}">
+                </a>
+                <img src="{% static 'manager/img/stats.svg' %}">
+                <a href="{% url 'manager:settings_database' %}">
+                    <img src="{% static 'manager/img/settings.svg' %}">
+                </a>
+                <a href="{% url 'manager:contact' %}">
+                    <img src="{% static 'manager/img/contact.svg' %}">
+                </a>
+            </div>
+            <div class="sub-section" style="width: 90vw">
+                {% block content_manager %}
+                {% endblock %}
+            </div>
+        </div>
+    </main>
+</body>
+</html>

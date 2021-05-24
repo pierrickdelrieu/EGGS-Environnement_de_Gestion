@@ -1,0 +1,49 @@
+.null{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+.tab_produit{
+    position: fixed;
+    height: 60%;
+    width: 70%;
+    left: 200px;
+    top: 200px;
+    text-align: center;
+    border: 1px solid black;
+    cellpadding: 5px 5px 5px 5px;
+}
+
+.tab_produit th{
+    background-color: #EAAFFF;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.tab_produit td, th{
+    border: 1px solid gray;
+}
+
+.tab_produit tr:nth-child(2n){
+    background-color: #FFF2F6;
+}
+
+.tab_produit tr:nth-child(2n+1) {
+    background-color: snow;
+}
+
+.tab_produit td:hover{
+    border: 1px solid #C99FFF;
+}
+
+.tab_produit a {
+    text-decoration: none;
+    color: black;
+}
+
+.tab_produit a:hover {
+    cursor: pointer;
+    color: #007AFF;
+}
+

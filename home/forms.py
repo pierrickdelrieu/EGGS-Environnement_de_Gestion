@@ -10,12 +10,14 @@ User = get_user_model()  # new User definitions
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput)
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)  # boite de caractères masqués
+    email = forms.CharField(label="", max_length=30, widget=forms.TextInput(
+        attrs = {'placeholder': "Entrer votre email", 'id': "email"}))
+    password = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
 
     # Error if the account is not active
     def clean_email(self):
-        email = self.cleaned_data["email"]
+        email = self.cleaned_data["email"].lower()
         if email and User.objects.filter(email=email).exists():
             user = Manager.objects.filter(email=email).get()
             if not user.is_active:
@@ -25,28 +27,31 @@ class LoginForm(forms.Form):
                 )
         return email
 
-    # Connection: returns True if the connection was successful and False otherwise
-    def log(self, request) -> bool:
-        email = self.cleaned_data.get("email")
+    # Vérification de la connexion
+    def clean_password(self):
+        email = self.cleaned_data["email"].lower()
         password = self.cleaned_data.get("password")
-        user = authenticate(username=email, password=password)  # vérifications si les données sont corrects
-        if user:  # si user ≠ None
-            login(request, user)
-            return True
-        return False
+        user_auth = authenticate(username=email, password=password)  # vérifications si les données sont corrects
+        if user_auth is None:  # si user ≠ None
+            raise ValidationError(
+                _("Adresse email ou mot de passe invalide"),
+                code='invalid_auth',
+            )
+
+        return password
 
 
 class SigninForm(forms.Form):
-    first_name = forms.CharField(label="Prénom", max_length=30, widget=forms.TextInput(
-        attrs={'placeholder': "Entrer votre prénom"}))
-    last_name = forms.CharField(label="Nom", max_length=30, widget=forms.TextInput(
-        attrs={'placeholder': "Entrer votre nom de famille"}))
-    email = forms.EmailField(label="Email", widget=forms.TextInput(
-        attrs={'placeholder': "Entrer votre email"}))
-    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(
-        attrs={'placeholder': "Entrer votre mot de passe"}))  # boite de caractères masqués
-    password2 = forms.CharField(label="Confirmation de mot de passe", widget=forms.PasswordInput(
-        attrs={'placeholder': "Confirmer votre mot de passe"}))
+    last_name = forms.CharField(label="", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre nom", 'id': "nom"}))
+    first_name = forms.CharField(label="", max_length=30, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre prénom", 'id': "prenom"}))
+    email = forms.EmailField(label="", widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre email", 'id': "email"}))
+    password1 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
+    password2 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Confirmer votre mot de passe", 'id': "confirmation"}))
 
     # Error if the password confirmation is not valid
     def clean_password2(self):
@@ -61,7 +66,7 @@ class SigninForm(forms.Form):
 
     # Error if the email is already existing in the database
     def clean_email(self):
-        email = self.cleaned_data.get("email")
+        email = self.cleaned_data.get("email").lower()
         if email and User.objects.filter(email=email).exists():
             raise ValidationError(
                 _("L'email est deja existant"),
@@ -88,8 +93,9 @@ class SigninForm(forms.Form):
         last_name = self.cleaned_data.get("last_name")
 
         new_user = Manager()
-        new_user.create_user(first_name=first_name, last_name=last_name, email=email,
-                             password=password)
+        new_user.set(first_name=first_name, last_name=last_name, email=email)
+        new_user.set_password(password)
+
         if commit:
             new_user.save()
 
@@ -99,14 +105,10 @@ class SigninForm(forms.Form):
 # Redéfinition
 # cf. : https://django-wiki.readthedocs.io/en/0.2.2/_modules/django/contrib/auth/forms.html
 class PasswordResetConfirmationForm(SetPasswordForm):
-    new_password1 = forms.CharField(
-        label="Mot de passe",
-        widget=forms.PasswordInput,
-    )
-    new_password2 = forms.CharField(
-        label="Confirmation de mot de passe",
-        widget=forms.PasswordInput,
-    )
+    new_password1 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Entrer votre mot de passe", 'id': "mdp"}))  # boite de caractères masqués
+    new_password2 = forms.CharField(label="", widget=forms.PasswordInput(
+        attrs={'placeholder': "Confirmer votre mot de passe", 'id': "confirmation"}))
 
     # Error if the password confirmation is not valid
     def clean_new_password2(self):
@@ -125,4 +127,5 @@ class PasswordResetConfirmationForm(SetPasswordForm):
 # Redefinition
 # cf. : https://django-wiki.readthedocs.io/en/0.2.2/_modules/django/contrib/auth/forms.html
 class PasswordResetFormEmail(PasswordResetForm):
-    email = forms.EmailField(label="Email", max_length=254)
+    email = forms.EmailField(label="", max_length=254, widget=forms.TextInput(
+        attrs={'placeholder': "Entrer votre email", 'id': "email"}))

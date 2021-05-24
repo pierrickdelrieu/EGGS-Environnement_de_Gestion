@@ -1,0 +1,33 @@
+{% extends 'manager/base_manager.html' %}
+{% load static %}
+
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
+
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'manager/css/add_db.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    <p class="titre">- Ajouter une base de données</p>
+    <h3>Nouvelle base de données</h3>
+    <p id="welcome">Bienvenue dans l'interface de création de bases de données</p>
+
+     <form action="{% url 'manager:add_database' %}" method="POST">
+         {% csrf_token %} <!-- Vérification sécurité-->
+
+        {% for field in form %}
+            <div>
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+
+         {% for field in form %}
+             <div>
+                 {{ field.label_tag }}{{ field }}
+             </div>
+         {% endfor %}
+         <input id="bouton-a" type="submit" value="Créer">
+     </form>
+{% endblock %}

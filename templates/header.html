@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'home/css/header.css' %}">
+    {% block stylesheet %} {% endblock %}
+    {% block title %} {% endblock %}
+</head>
+
+<body>
+    <header>
+        <div id="header-logo">
+            <img id="eggs-logo" src="{% static 'home/img/logo.png' %}" alt="logo eggs">
+            <div id="header-titles">
+                <p id="eggs">EGGS</p>
+            </div>
+        </div>
+
+        <div class = "menu-bar">
+            {% block connexions %}
+            {% endblock %}
+
+            <div class = "burger">
+                <div class = "line1"></div>
+                <div class = "line2"></div>
+                <div class = "line3"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class = "sub-content">
+         {% block content %} {% endblock %}
+    </div>
+
+    {% load static %}
+
+    {% block script %}
+        <script src = "{% static 'home/js/header.js' %}"></script>
+    {% endblock %}
+
+</body>
+</html>

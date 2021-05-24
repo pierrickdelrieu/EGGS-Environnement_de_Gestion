@@ -1,0 +1,45 @@
+.page-titre{
+    margin-left: 5%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+#formulaire{
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    width: 40%;
+    border: 0 #F9F9FA;
+}
+
+#name_prod, #q_prod, #prix_prod{
+    height: 55px;
+    width: 100%;
+    margin-top: 5px;
+    border: 0 white;
+    background: #FFFFFF;
+}
+
+::placeholder{
+    padding: 5px;
+    font-size: 15px;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+#ajout{
+    height: 55px;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 10%;
+
+    background-color: #5e81ff;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#ajout:hover{
+    background-color: #007AFF;
+}
+

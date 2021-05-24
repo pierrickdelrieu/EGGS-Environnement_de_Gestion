@@ -1,3 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'manager/base_manager.html' %}
+{% load static %}
 
-Compte
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
+
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'manager/css/compte.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    <p class="titre">- Mon compte</p>
+    <div class="name_c">
+        <img class="profil_c" src="{% static 'manager/img/mon_compte.svg' %}">
+        <div>{{ user.get_full_name }}</div>
+    </div>
+
+    <ul class="info">
+        <li class="user1"><br><h4>Nom d'utilisateur : <p>{{ user.username }}</p></h4></li>
+        <li class="user2"><br><h4>Date d'inscription : <p>{{ user.date_joined }}</p></h4></li>
+        <li class="user3"><br><h4>Prénom : <p>{{ user.first_name }}</p></h4></li>
+        <li class="user4"><br><h4>Nom : <div><p>{{ user.last_name }}</p></div></h4></li>
+    </ul>
+    <ul class="info2">
+        <li class="user1"><br><h4>Email : <p>{{ user.email }}</p></h4></li>
+        <li class="user2"><br><h4>Mot de passe : <p>************</p></h4></li>
+    </ul>
+    <button class="bouton" onclick="window.location.href='{% url 'manager:update_compte' %}'">Modifier</button>
+
+{% endblock %}

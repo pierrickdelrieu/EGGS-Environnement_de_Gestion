@@ -1,0 +1,29 @@
+{% extends 'manager/base_manager.html' %}
+{% load static %}
+
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
+
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'manager/css/details_product.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    <p class="titre">- Fiche produit</p>
+    <div class="aff_prod">
+        <br><br>
+        <h1>{{ product.name }}</h1><br>
+        <div>
+            <h3>Description :</h3>
+            <p><br><br><br></p>
+            <h3>Informations générales :</h3><br>
+            Quantité : {{ product.quantity }}<br><br>
+            Prix à l'unité : {{ product.price }} €
+        </div>
+        {% if user.is_current_owner or user.is_current_editor %}
+            <button class="modif" onclick="window.location.href= '{% url 'manager:update_product' product_id=product.id %}'">Modifier le produit</button>
+            <button class="supprimer" onclick="window.location.href= '{% url 'manager:delete_product' product_id=product.id %}'">Supprimer le produit</button>
+        {% endif %}
+    </div>
+{% endblock %}

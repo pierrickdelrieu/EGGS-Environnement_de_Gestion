@@ -1,0 +1,35 @@
+{% extends 'manager/base_manager.html' %}
+{% load static %}
+
+{% block title_manager %}
+    <title>EGGS - Manager</title>
+{% endblock %}
+
+{% block stylesheet_manager %}
+    <link rel="stylesheet" href="{% static 'manager/css/update_compte.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/compte.css' %}">
+{% endblock %}
+
+{% block content_manager %}
+    <p class="titre">- Modifier mes informations</p>
+    <div class="name_c">
+        <img class="profil_c" src="{% static 'manager/img/mon_compte.svg' %}">
+        <div>{{ user.get_full_name }}</div>
+    </div>
+
+    <form action="{% url 'manager:update_compte' %}" method="POST">
+        {% csrf_token %} <!-- Vérification sécurité-->
+        <ul class="info">
+            <li class="user1"><br><h4>Nom d'utilisateur : <p>{{ user.username }}</p></h4></li>
+            <li class="user2"><br><h4>Date d'inscription : <p>{{ user.date_joined }}</p></h4></li>
+            <li class="user3"><br><h4>Prénom : <p><input type="text" id="first_name" name="first_name" value="{{ user.first_name }}"></p></h4></li>
+            <li class="user4"><br><h4>Nom : </h4><div><p><input type="text" id="first_name" name="last_name" value="{{ user.last_name }}"></p></div></li>
+        </ul>
+        <ul class="info2">
+            <li class="user1"><br><h4>Email : <p><input type="text" id="email" name="email" value="{{ user.email }}"></p></h4></li>
+            <li class="user2"><br><h4>Mot de passe : <p>************</p></h4></li>
+            <li class="user3"><br><a id="lien-modifier" href="{% url 'manager:update_password' %}"><h4>Modifier mon mot de passe</h4></a></li>
+        </ul>
+        <input id="val-button" type="submit" value="Valider">
+    </form><br>
+{% endblock %}
