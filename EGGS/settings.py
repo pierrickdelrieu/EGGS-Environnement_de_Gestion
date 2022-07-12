@@ -9,22 +9,29 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+from concurrent.futures import process
 import os
 from pathlib import Path
+import environ
+import dj_database_url
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env.read_env() # reading .env file
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '...'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['eggs-website.herokuapp.com']
 
 # Application definition
 
@@ -50,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # django-debug-toolbar
     'django.middleware.locale.LocaleMiddleware',  #
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'EGGS.urls'
@@ -77,12 +85,12 @@ WSGI_APPLICATION = 'EGGS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # adaptateur postgresql
-        'NAME': 'EGGS',
-        'USER': 'Celia',  # attention : remplacez par votre nom d'utilisateur
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',  # adaptateur postgresql
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PWD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
@@ -146,15 +154,21 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # URL de connexion
 LOGIN_URL = '/home/login/'
 
 # Paramtres email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = '...'
-EMAIL_HOST_PASSWORD = '...'
+EMAIL_BACKEND = env('MAIL_BACKEND')
+EMAIL_HOST = env('MAIL_HOST')
+EMAIL_PORT = env('MAIL_PORT')
+EMAIL_HOST_USER = env('MAIL_ADRS')
+EMAIL_HOST_PASSWORD = env('MAIL_PWD')
 EMAIL_USE_TLS = True
 
 AUTH_USER_MODEL = 'home.Manager'
+
+
+django_heroku.settings(locals())
